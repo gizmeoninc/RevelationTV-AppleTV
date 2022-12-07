@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="21507" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" appearance="light"/>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopBannerTableCell" id="cfv-M7-G48" userLabel="TopBannerTableCell" customClass="TopBannerTableViewCell" customModule="RevelationTV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1984" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cfv-M7-G48" id="0zk-kt-hQN">
+                <rect key="frame" x="0.0" y="0.0" width="1984" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4Ii-DS-pLS">
+                        <rect key="frame" x="0.0" y="0.0" width="1984" height="44"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Is3-kX-y10">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="4Ii-DS-pLS" secondAttribute="trailing" id="H5T-ak-gMr"/>
+                    <constraint firstItem="4Ii-DS-pLS" firstAttribute="leading" secondItem="0zk-kt-hQN" secondAttribute="leading" id="PTM-R5-OXu"/>
+                    <constraint firstAttribute="bottom" secondItem="4Ii-DS-pLS" secondAttribute="bottom" id="Z1D-tR-d9a"/>
+                    <constraint firstItem="4Ii-DS-pLS" firstAttribute="top" secondItem="0zk-kt-hQN" secondAttribute="top" id="p5n-HD-jGr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="topBannerCollectionView" destination="4Ii-DS-pLS" id="1fB-CL-mVJ"/>
+            </connections>
+            <point key="canvasLocation" x="91" y="-125"/>
+        </tableViewCell>
+    </objects>
+</document>

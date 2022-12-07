@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="21507" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" appearance="light"/>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="PopularCollectionViewCell" id="Rz2-K0-ksD" customClass="PopularCollectionViewCell" customModule="KICCTV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="601" height="411"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="601" height="411"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j87-Al-g7g">
+                        <rect key="frame" x="0.0" y="0.0" width="601" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="zHu-jo-uEr"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPS-jr-9nx">
+                        <rect key="frame" x="16" y="116" width="577" height="34"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YA-RQ-E0V">
+                        <rect key="frame" x="16" y="108" width="577" height="0.0"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   LIVE   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lZ-BM-QvH">
+                        <rect key="frame" x="524" y="16" width="69" height="24"/>
+                        <color key="backgroundColor" red="0.89909736259999995" green="0.098672933510000005" blue="0.067869173059999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="g8h-Ln-bXA">
+                        <rect key="frame" x="0.0" y="94" width="601" height="5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="pT3-cW-aAf"/>
+                        </constraints>
+                    </progressView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="j87-Al-g7g" secondAttribute="trailing" id="6nX-5a-3rh"/>
+                <constraint firstItem="HPS-jr-9nx" firstAttribute="top" secondItem="j87-Al-g7g" secondAttribute="bottom" constant="16" id="8mj-B3-kvp"/>
+                <constraint firstAttribute="trailing" secondItem="g8h-Ln-bXA" secondAttribute="trailing" id="8pO-rK-Cyy"/>
+                <constraint firstItem="j87-Al-g7g" firstAttribute="bottom" secondItem="g8h-Ln-bXA" secondAttribute="bottom" constant="1" id="M9u-O6-xZi"/>
+                <constraint firstItem="0lZ-BM-QvH" firstAttribute="trailing" secondItem="j87-Al-g7g" secondAttribute="trailing" constant="-8" id="WU1-d8-HMt"/>
+                <constraint firstItem="0YA-RQ-E0V" firstAttribute="leading" secondItem="HPS-jr-9nx" secondAttribute="leading" id="Z13-DF-rJS"/>
+                <constraint firstItem="0YA-RQ-E0V" firstAttribute="trailing" secondItem="HPS-jr-9nx" secondAttribute="trailing" id="e16-kw-ccg"/>
+                <constraint firstItem="0YA-RQ-E0V" firstAttribute="bottom" secondItem="HPS-jr-9nx" secondAttribute="top" constant="-8" id="fi7-28-lpV"/>
+                <constraint firstAttribute="trailing" secondItem="HPS-jr-9nx" secondAttribute="trailing" constant="8" id="iT8-Xd-9qN"/>
+                <constraint firstItem="j87-Al-g7g" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="jwt-jE-hqV"/>
+                <constraint firstItem="j87-Al-g7g" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="nsI-0f-inM"/>
+                <constraint firstItem="HPS-jr-9nx" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" constant="16" id="ofx-yw-qfk"/>
+                <constraint firstItem="0lZ-BM-QvH" firstAttribute="top" secondItem="j87-Al-g7g" secondAttribute="top" constant="16" id="phS-Lb-GFZ"/>
+                <constraint firstItem="g8h-Ln-bXA" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="pt0-F0-Nvu"/>
+            </constraints>
+            <size key="customSize" width="601" height="411"/>
+            <connections>
+                <outlet property="liveLabel" destination="0lZ-BM-QvH" id="AiE-3x-7wb"/>
+                <outlet property="nameLabel" destination="HPS-jr-9nx" id="Y7k-VW-5Mg"/>
+                <outlet property="progressBar" destination="g8h-Ln-bXA" id="9M0-0X-xCV"/>
+                <outlet property="progressBarHeight" destination="pT3-cW-aAf" id="rDu-iK-eb3"/>
+                <outlet property="timeLabel" destination="0YA-RQ-E0V" id="ktW-Ln-MYY"/>
+                <outlet property="videoImageHeight" destination="zHu-jo-uEr" id="YaJ-p2-isc"/>
+                <outlet property="videoImageView" destination="j87-Al-g7g" id="ehJ-S6-nks"/>
+            </connections>
+            <point key="canvasLocation" x="395.5" y="417.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
