@@ -969,7 +969,7 @@ print("registerMobile",url)
         let user_id = UserDefaults.standard.string(forKey:"user_id")!
         let country_code = UserDefaults.standard.string(forKey:"countryCode")!
         let pubid = UserDefaults.standard.string(forKey:"pubid")!
-       let device_type = "apple-tv"
+        let device_type = "apple-tv"
         let dev_id = UserDefaults.standard.string(forKey:"UDID")!
         let ipAddress = UserDefaults.standard.string(forKey:"IPAddress")!
         let channelid = UserDefaults.standard.string(forKey:"channelid")!

@@ -1136,244 +1136,290 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ChW-UO-k4T" userLabel="ContentView">
-                                <rect key="frame" x="840" y="476" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iF-SS-KFw">
+                                <rect key="frame" x="316" y="180" width="248" height="31"/>
+                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qen-jR-WV6" userLabel="DividerView">
+                                <rect key="frame" x="297" y="219" width="1327" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="WWW-s5-Dvp"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUp-XQ-Exf" userLabel="welcomeView">
-                                <rect key="frame" x="0.0" y="150" width="1920" height="42"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChW-UO-k4T" userLabel="ContentView">
+                                <rect key="frame" x="297" y="220" width="1327" height="725"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to RevelationTV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPt-bF-893" userLabel="WelcomeLabel">
-                                        <rect key="frame" x="100" y="0.0" width="300" height="24"/>
-                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already a member?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NR-EZ-WLs">
-                                        <rect key="frame" x="1120" y="0.0" width="500" height="46"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register to Revelation TV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsm-Qm-GEf">
+                                        <rect key="frame" x="100" y="80.5" width="286" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="aQZ-Xn-gf2"/>
-                                            <constraint firstAttribute="width" constant="500" id="rxS-t4-HQL"/>
+                                            <constraint firstAttribute="height" constant="25" id="zZO-5K-MA6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quA-Ua-THy">
+                                        <rect key="frame" x="140" y="158" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="ajF-F1-EGr"/>
+                                            <constraint firstAttribute="height" constant="40" id="nwU-7s-ECm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zS0-aw-zD9" userLabel="NameText">
+                                        <rect key="frame" x="140" y="204" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="Mxa-T5-ty3"/>
+                                            <constraint firstAttribute="width" constant="310" id="sWI-2e-ANK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gk-5f-TTU" userLabel="Last Name Label">
+                                        <rect key="frame" x="470" y="158" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="ghg-lv-4Va"/>
+                                            <constraint firstAttribute="height" constant="40" id="swO-R7-Z3U"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DAC-AQ-cPB" userLabel="LastNameText">
+                                        <rect key="frame" x="470" y="204" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="f4V-5p-spG"/>
+                                            <constraint firstAttribute="width" constant="310" id="rDK-9S-qr2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdS-Kq-gme" userLabel="Email">
+                                        <rect key="frame" x="140" y="275" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="FfD-P3-Kcl"/>
+                                            <constraint firstAttribute="height" constant="40" id="Q5U-LA-6Go"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDI-Z3-kh3" userLabel="EmailText">
+                                        <rect key="frame" x="140" y="321" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="18k-at-ECm"/>
+                                            <constraint firstAttribute="height" constant="56" id="UZm-6c-mUj"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwo-vk-DO3" userLabel="Password">
+                                        <rect key="frame" x="140" y="392" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="mlu-0p-hxM"/>
+                                            <constraint firstAttribute="width" constant="310" id="nzv-yV-N7m"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmK-I7-Fk2" userLabel="passwordText">
+                                        <rect key="frame" x="140" y="438" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="66W-Mj-jN2"/>
+                                            <constraint firstAttribute="height" constant="56" id="a7f-Dt-vED"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOH-5E-lx6" userLabel="countryLabel">
+                                        <rect key="frame" x="470" y="275" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="8lj-zz-siK"/>
+                                            <constraint firstAttribute="width" constant="310" id="PRJ-Vv-rTv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcu-iL-Dx5" userLabel="countryButton">
+                                        <rect key="frame" x="470" y="321" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="Ses-8q-cEA"/>
+                                            <constraint firstAttribute="width" constant="310" id="yWp-r0-0Wj"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="countryButtonAction:" destination="u13-x6-eyn" eventType="primaryActionTriggered" id="Dvt-xp-pMD"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyr-dr-DgJ" userLabel="confirmPassword">
+                                        <rect key="frame" x="470" y="392" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="fHb-fY-w1o"/>
+                                            <constraint firstAttribute="width" constant="310" id="u0F-NS-R0k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tp7-QN-DIz" userLabel="confirmPasswordText">
+                                        <rect key="frame" x="470" y="438" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="5pJ-21-mTn"/>
+                                            <constraint firstAttribute="height" constant="56" id="Pxt-Dv-HMu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Klw-dv-ZxV">
+                                        <rect key="frame" x="343.5" y="630" width="235" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="235" id="dg5-yJ-se2"/>
+                                            <constraint firstAttribute="height" constant="45" id="mHJ-ej-vBq"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Register"/>
+                                        <connections>
+                                            <action selector="registerAction:" destination="u13-x6-eyn" eventType="primaryActionTriggered" id="dhN-9A-S3d"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In to Revelation TV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eo4-M5-fgG">
+                                        <rect key="frame" x="836" y="80.5" width="265" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="265" id="Atn-7A-XCt"/>
+                                            <constraint firstAttribute="height" constant="25" id="ZOn-W7-7KA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOI-CK-FS3">
+                                        <rect key="frame" x="800" y="298" width="1" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="5v9-0W-2hv"/>
+                                            <constraint firstAttribute="height" constant="500" id="sYU-KK-A26"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNK-40-fht" userLabel="Email Login">
+                                        <rect key="frame" x="877" y="158" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="QaK-8m-3VU"/>
+                                            <constraint firstAttribute="width" constant="310" id="p2m-Hj-8iK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oRc-C6-aJz" userLabel="emailLoginText">
+                                        <rect key="frame" x="877" y="204" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="46A-DO-yp4"/>
+                                            <constraint firstAttribute="width" constant="310" id="Ph7-n2-046"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lb9-6m-WIV" userLabel="passwordLogin">
+                                        <rect key="frame" x="877" y="275" width="310" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="bTP-AE-pxQ"/>
+                                            <constraint firstAttribute="height" constant="40" id="cCT-Jb-C7C"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wpw-HU-5d2" userLabel="passwordLoginText">
+                                        <rect key="frame" x="877" y="321" width="310" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="0Gb-vl-Zs5"/>
+                                            <constraint firstAttribute="width" constant="310" id="Jaa-4U-Mac"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyv-75-JV9">
+                                        <rect key="frame" x="914.5" y="437" width="235" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="235" id="XmE-V9-5Uj"/>
+                                            <constraint firstAttribute="height" constant="45" id="gNu-8U-BwG"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Log In"/>
+                                        <connections>
+                                            <action selector="loginAction:" destination="u13-x6-eyn" eventType="primaryActionTriggered" id="pIB-ef-eIy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="KPt-bF-893" firstAttribute="top" secondItem="yUp-XQ-Exf" secondAttribute="top" id="QM2-B8-G2q"/>
-                                    <constraint firstAttribute="height" constant="42" id="jwS-L6-W1b"/>
-                                    <constraint firstItem="KPt-bF-893" firstAttribute="leading" secondItem="yUp-XQ-Exf" secondAttribute="leading" constant="100" id="mRL-GJ-FH4"/>
-                                    <constraint firstItem="5NR-EZ-WLs" firstAttribute="top" secondItem="yUp-XQ-Exf" secondAttribute="top" id="twS-3R-3Jj"/>
+                                    <constraint firstItem="vsm-Qm-GEf" firstAttribute="top" secondItem="ChW-UO-k4T" secondAttribute="top" constant="80.5" id="0aC-va-MLw"/>
+                                    <constraint firstItem="MOI-CK-FS3" firstAttribute="leading" secondItem="DAC-AQ-cPB" secondAttribute="trailing" constant="20" id="3Hh-q7-Z13"/>
+                                    <constraint firstItem="cmK-I7-Fk2" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="140" id="46m-L3-mjK"/>
+                                    <constraint firstItem="Klw-dv-ZxV" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="343.5" id="536-xb-9AK"/>
+                                    <constraint firstAttribute="trailing" secondItem="KNK-40-fht" secondAttribute="trailing" constant="140" id="6O8-zc-Mnb"/>
+                                    <constraint firstItem="0Gk-5f-TTU" firstAttribute="leading" secondItem="quA-Ua-THy" secondAttribute="trailing" constant="20" id="725-jK-4Vy"/>
+                                    <constraint firstItem="KNK-40-fht" firstAttribute="top" secondItem="eo4-M5-fgG" secondAttribute="bottom" constant="52.5" id="8LC-zJ-W0X"/>
+                                    <constraint firstItem="BOH-5E-lx6" firstAttribute="top" secondItem="DAC-AQ-cPB" secondAttribute="bottom" constant="15" id="8yb-cc-oNV"/>
+                                    <constraint firstItem="zS0-aw-zD9" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="140" id="AQ3-Ry-qkU"/>
+                                    <constraint firstItem="oRc-C6-aJz" firstAttribute="top" secondItem="KNK-40-fht" secondAttribute="bottom" constant="6" id="BeV-gO-JNC"/>
+                                    <constraint firstItem="wcu-iL-Dx5" firstAttribute="leading" secondItem="bDI-Z3-kh3" secondAttribute="trailing" constant="20" id="Fbd-jm-Fc5"/>
+                                    <constraint firstItem="eo4-M5-fgG" firstAttribute="top" secondItem="ChW-UO-k4T" secondAttribute="top" constant="80.5" id="FmO-P3-u4X"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lb9-6m-WIV" secondAttribute="trailing" constant="140" id="Gpj-W0-She"/>
+                                    <constraint firstItem="DAC-AQ-cPB" firstAttribute="top" secondItem="0Gk-5f-TTU" secondAttribute="bottom" constant="6" id="H4l-It-aRH"/>
+                                    <constraint firstItem="quA-Ua-THy" firstAttribute="top" secondItem="vsm-Qm-GEf" secondAttribute="bottom" constant="52.5" id="K7l-Wk-cPH"/>
+                                    <constraint firstItem="Wpw-HU-5d2" firstAttribute="top" secondItem="Lb9-6m-WIV" secondAttribute="bottom" constant="6" id="Lwa-g1-cJa"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jyv-75-JV9" secondAttribute="trailing" constant="177.5" id="NFo-Vl-YZh"/>
+                                    <constraint firstItem="bDI-Z3-kh3" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="140" id="NWB-Ph-mYd"/>
+                                    <constraint firstItem="bwo-vk-DO3" firstAttribute="top" secondItem="bDI-Z3-kh3" secondAttribute="bottom" constant="15" id="QYk-5V-Bml"/>
+                                    <constraint firstItem="DAC-AQ-cPB" firstAttribute="leading" secondItem="zS0-aw-zD9" secondAttribute="trailing" constant="20" id="SYH-0D-fSt"/>
+                                    <constraint firstItem="wcu-iL-Dx5" firstAttribute="top" secondItem="BOH-5E-lx6" secondAttribute="bottom" constant="6" id="SdW-El-ibp"/>
+                                    <constraint firstItem="Nyr-dr-DgJ" firstAttribute="top" secondItem="wcu-iL-Dx5" secondAttribute="bottom" constant="15" id="X8O-ii-PbR"/>
+                                    <constraint firstItem="tp7-QN-DIz" firstAttribute="leading" secondItem="cmK-I7-Fk2" secondAttribute="trailing" constant="20" id="YZF-cZ-ZVC"/>
+                                    <constraint firstItem="Klw-dv-ZxV" firstAttribute="top" secondItem="ChW-UO-k4T" secondAttribute="top" constant="630" id="YoY-Ks-Jo0"/>
+                                    <constraint firstItem="bwo-vk-DO3" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="140" id="aD3-th-rtP"/>
+                                    <constraint firstItem="tp7-QN-DIz" firstAttribute="top" secondItem="Nyr-dr-DgJ" secondAttribute="bottom" constant="6" id="aSr-9d-EdZ"/>
+                                    <constraint firstItem="Jyv-75-JV9" firstAttribute="top" secondItem="Wpw-HU-5d2" secondAttribute="bottom" constant="60" id="bwj-ua-lQ9"/>
+                                    <constraint firstAttribute="trailing" secondItem="oRc-C6-aJz" secondAttribute="trailing" constant="140" id="cUY-DZ-0bb"/>
+                                    <constraint firstItem="pdS-Kq-gme" firstAttribute="top" secondItem="zS0-aw-zD9" secondAttribute="bottom" constant="15" id="ebG-OO-2gH"/>
+                                    <constraint firstAttribute="height" constant="725" id="kOy-Pd-Of9"/>
+                                    <constraint firstAttribute="trailing" secondItem="eo4-M5-fgG" secondAttribute="trailing" constant="226" id="kry-ex-DAQ"/>
+                                    <constraint firstItem="Nyr-dr-DgJ" firstAttribute="leading" secondItem="bwo-vk-DO3" secondAttribute="trailing" constant="20" id="l3K-UZ-xQn"/>
+                                    <constraint firstItem="Lb9-6m-WIV" firstAttribute="top" secondItem="oRc-C6-aJz" secondAttribute="bottom" constant="15" id="noe-Bg-Az4"/>
+                                    <constraint firstItem="cmK-I7-Fk2" firstAttribute="top" secondItem="bwo-vk-DO3" secondAttribute="bottom" constant="6" id="nox-9c-cF1"/>
+                                    <constraint firstItem="pdS-Kq-gme" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="140" id="p4t-hH-yVJ"/>
+                                    <constraint firstItem="vsm-Qm-GEf" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="100" id="p5q-pf-KcQ"/>
+                                    <constraint firstItem="BOH-5E-lx6" firstAttribute="leading" secondItem="pdS-Kq-gme" secondAttribute="trailing" constant="20" id="p6p-1Q-iKa"/>
+                                    <constraint firstItem="bDI-Z3-kh3" firstAttribute="top" secondItem="pdS-Kq-gme" secondAttribute="bottom" constant="6" id="pNH-o0-IMS"/>
+                                    <constraint firstItem="quA-Ua-THy" firstAttribute="leading" secondItem="ChW-UO-k4T" secondAttribute="leading" constant="140" id="rJv-7B-1yQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wpw-HU-5d2" secondAttribute="trailing" constant="140" id="t68-py-dps"/>
+                                    <constraint firstItem="zS0-aw-zD9" firstAttribute="top" secondItem="quA-Ua-THy" secondAttribute="bottom" constant="6" id="va2-y5-QVS"/>
+                                    <constraint firstItem="0Gk-5f-TTU" firstAttribute="top" secondItem="vsm-Qm-GEf" secondAttribute="bottom" constant="52.5" id="z6F-cL-rt7"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quA-Ua-THy">
-                                <rect key="frame" x="100" y="217" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="ajF-F1-EGr"/>
-                                    <constraint firstAttribute="height" constant="40" id="nwU-7s-ECm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zS0-aw-zD9" userLabel="NameText">
-                                <rect key="frame" x="100" y="263" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="Mxa-T5-ty3"/>
-                                    <constraint firstAttribute="width" constant="320" id="sWI-2e-ANK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gk-5f-TTU" userLabel="Last Name Label">
-                                <rect key="frame" x="470" y="217" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="ghg-lv-4Va"/>
-                                    <constraint firstAttribute="height" constant="40" id="swO-R7-Z3U"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DAC-AQ-cPB" userLabel="LastNameText">
-                                <rect key="frame" x="470" y="263" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="f4V-5p-spG"/>
-                                    <constraint firstAttribute="width" constant="320" id="rDK-9S-qr2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdS-Kq-gme" userLabel="Email">
-                                <rect key="frame" x="100" y="334" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="FfD-P3-Kcl"/>
-                                    <constraint firstAttribute="height" constant="40" id="Q5U-LA-6Go"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDI-Z3-kh3" userLabel="EmailText">
-                                <rect key="frame" x="100" y="380" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="18k-at-ECm"/>
-                                    <constraint firstAttribute="height" constant="56" id="UZm-6c-mUj"/>
-                                </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwo-vk-DO3" userLabel="Password">
-                                <rect key="frame" x="100" y="451" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="mlu-0p-hxM"/>
-                                    <constraint firstAttribute="width" constant="320" id="nzv-yV-N7m"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmK-I7-Fk2" userLabel="passwordText">
-                                <rect key="frame" x="100" y="497" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="66W-Mj-jN2"/>
-                                    <constraint firstAttribute="height" constant="56" id="a7f-Dt-vED"/>
-                                </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyr-dr-DgJ" userLabel="confirmPassword">
-                                <rect key="frame" x="470" y="461" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="fHb-fY-w1o"/>
-                                    <constraint firstAttribute="width" constant="320" id="u0F-NS-R0k"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tp7-QN-DIz" userLabel="confirmPasswordText">
-                                <rect key="frame" x="470" y="507" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="5pJ-21-mTn"/>
-                                    <constraint firstAttribute="height" constant="56" id="Pxt-Dv-HMu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOH-5E-lx6" userLabel="countryLabel">
-                                <rect key="frame" x="470" y="344" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="8lj-zz-siK"/>
-                                    <constraint firstAttribute="width" constant="320" id="PRJ-Vv-rTv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcu-iL-Dx5" userLabel="countryButton">
-                                <rect key="frame" x="470" y="390" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="Ses-8q-cEA"/>
-                                    <constraint firstAttribute="width" constant="320" id="yWp-r0-0Wj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="countryButtonAction:" destination="u13-x6-eyn" eventType="primaryActionTriggered" id="Dvt-xp-pMD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Klw-dv-ZxV">
-                                <rect key="frame" x="200" y="603" width="235" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="235" id="dg5-yJ-se2"/>
-                                    <constraint firstAttribute="height" constant="45" id="mHJ-ej-vBq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <action selector="registerAction:" destination="u13-x6-eyn" eventType="primaryActionTriggered" id="dhN-9A-S3d"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jd2-rO-K8I" userLabel="Divider View">
-                                <rect key="frame" x="990" y="263" width="0.0" height="500"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="53w-KF-Pbd"/>
-                                    <constraint firstAttribute="width" id="PQt-rg-s8T"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNK-40-fht" userLabel="Email Login">
-                                <rect key="frame" x="1070" y="217" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="QaK-8m-3VU"/>
-                                    <constraint firstAttribute="width" constant="320" id="p2m-Hj-8iK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oRc-C6-aJz" userLabel="emailLoginText">
-                                <rect key="frame" x="1070" y="263" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="46A-DO-yp4"/>
-                                    <constraint firstAttribute="width" constant="320" id="Ph7-n2-046"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lb9-6m-WIV" userLabel="passwordLogin">
-                                <rect key="frame" x="1070" y="334" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="bTP-AE-pxQ"/>
-                                    <constraint firstAttribute="height" constant="40" id="cCT-Jb-C7C"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wpw-HU-5d2" userLabel="passwordLoginText">
-                                <rect key="frame" x="1070" y="380" width="320" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="0Gb-vl-Zs5"/>
-                                    <constraint firstAttribute="width" constant="320" id="Jaa-4U-Mac"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyv-75-JV9">
-                                <rect key="frame" x="1170" y="486" width="235" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="235" id="XmE-V9-5Uj"/>
-                                    <constraint firstAttribute="height" constant="45" id="gNu-8U-BwG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Log In"/>
-                                <connections>
-                                    <action selector="loginAction:" destination="u13-x6-eyn" eventType="primaryActionTriggered" id="pIB-ef-eIy"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbS-4v-v6U">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
@@ -1456,51 +1502,18 @@
                             <accessibilityTraits key="traits" image="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="jd2-rO-K8I" firstAttribute="leading" secondItem="DAC-AQ-cPB" secondAttribute="trailing" constant="200" id="0ol-i6-FFw"/>
-                            <constraint firstItem="oRc-C6-aJz" firstAttribute="top" secondItem="KNK-40-fht" secondAttribute="bottom" constant="6" id="1Op-Bn-rOG"/>
-                            <constraint firstItem="bwo-vk-DO3" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" constant="100" id="1Pz-pn-Ca3"/>
-                            <constraint firstItem="cmK-I7-Fk2" firstAttribute="top" secondItem="bwo-vk-DO3" secondAttribute="bottom" constant="6" id="2bu-sM-vDL"/>
-                            <constraint firstItem="Wpw-HU-5d2" firstAttribute="top" secondItem="Lb9-6m-WIV" secondAttribute="bottom" constant="6" id="3X4-dF-73S"/>
-                            <constraint firstItem="Wpw-HU-5d2" firstAttribute="leading" secondItem="jd2-rO-K8I" secondAttribute="trailing" constant="80" id="6pX-pl-CUZ"/>
+                            <constraint firstItem="ChW-UO-k4T" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leadingMargin" constant="201" id="1QM-Yq-1Fe"/>
                             <constraint firstItem="pbS-4v-v6U" firstAttribute="top" secondItem="cHC-im-tBd" secondAttribute="top" id="7qC-IV-cmo"/>
-                            <constraint firstItem="yUp-XQ-Exf" firstAttribute="top" secondItem="pbS-4v-v6U" secondAttribute="bottom" constant="50" id="9za-Te-zZ9"/>
-                            <constraint firstItem="quA-Ua-THy" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" constant="100" id="DHd-oQ-t4g"/>
-                            <constraint firstItem="KNK-40-fht" firstAttribute="leading" secondItem="jd2-rO-K8I" secondAttribute="trailing" constant="80" id="DTa-u1-aoi"/>
-                            <constraint firstItem="Jyv-75-JV9" firstAttribute="leading" secondItem="jd2-rO-K8I" secondAttribute="trailing" constant="180" id="DTg-f7-8Oc"/>
-                            <constraint firstItem="tp7-QN-DIz" firstAttribute="leading" secondItem="cmK-I7-Fk2" secondAttribute="trailing" constant="50" id="F12-Ga-fo2"/>
-                            <constraint firstItem="yUp-XQ-Exf" firstAttribute="centerX" secondItem="cHC-im-tBd" secondAttribute="centerX" id="FEV-6f-d4u"/>
-                            <constraint firstItem="KNK-40-fht" firstAttribute="top" secondItem="0Gk-5f-TTU" secondAttribute="top" id="Fge-s1-Bj4"/>
-                            <constraint firstItem="pdS-Kq-gme" firstAttribute="top" secondItem="zS0-aw-zD9" secondAttribute="bottom" constant="15" id="FrX-S9-1M3"/>
                             <constraint firstAttribute="trailing" secondItem="pbS-4v-v6U" secondAttribute="trailing" id="G6H-DA-Iao"/>
-                            <constraint firstItem="wcu-iL-Dx5" firstAttribute="leading" secondItem="bDI-Z3-kh3" secondAttribute="trailing" constant="50" id="JNy-p9-sDr"/>
-                            <constraint firstItem="oRc-C6-aJz" firstAttribute="leading" secondItem="jd2-rO-K8I" secondAttribute="trailing" constant="80" id="NGD-I9-nzm"/>
-                            <constraint firstItem="quA-Ua-THy" firstAttribute="top" secondItem="yUp-XQ-Exf" secondAttribute="bottom" constant="25" id="Qk8-rK-bNA"/>
-                            <constraint firstItem="bDI-Z3-kh3" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" constant="100" id="QxV-2S-RIf"/>
+                            <constraint firstItem="qen-jR-WV6" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leadingMargin" constant="201" id="GXb-ld-yKg"/>
+                            <constraint firstItem="ChW-UO-k4T" firstAttribute="top" secondItem="pbS-4v-v6U" secondAttribute="bottom" constant="120" id="JA6-IT-xlC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qen-jR-WV6" secondAttribute="trailing" constant="200" id="Jmv-dn-HT7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ChW-UO-k4T" secondAttribute="trailing" constant="200" id="KLT-hm-NFk"/>
                             <constraint firstItem="pbS-4v-v6U" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" id="R80-Ca-x9n"/>
-                            <constraint firstItem="zS0-aw-zD9" firstAttribute="top" secondItem="quA-Ua-THy" secondAttribute="bottom" constant="6" id="SNK-Bl-zc9"/>
-                            <constraint firstItem="Klw-dv-ZxV" firstAttribute="top" secondItem="cmK-I7-Fk2" secondAttribute="bottom" constant="50" id="VLS-9W-aah"/>
-                            <constraint firstItem="yUp-XQ-Exf" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" id="Vd5-Ua-Atr"/>
-                            <constraint firstItem="DAC-AQ-cPB" firstAttribute="top" secondItem="0Gk-5f-TTU" secondAttribute="bottom" constant="6" id="W9U-hj-ZSg"/>
-                            <constraint firstItem="Jyv-75-JV9" firstAttribute="top" secondItem="Wpw-HU-5d2" secondAttribute="bottom" constant="50" id="Wmo-rv-rK5"/>
-                            <constraint firstItem="Nyr-dr-DgJ" firstAttribute="leading" secondItem="bwo-vk-DO3" secondAttribute="trailing" constant="50" id="Z8D-wd-BDt"/>
-                            <constraint firstItem="pdS-Kq-gme" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" constant="100" id="a4E-tQ-hYl"/>
-                            <constraint firstItem="BOH-5E-lx6" firstAttribute="leading" secondItem="pdS-Kq-gme" secondAttribute="trailing" constant="50" id="ai6-im-IrG"/>
-                            <constraint firstItem="5NR-EZ-WLs" firstAttribute="leading" secondItem="jd2-rO-K8I" secondAttribute="leading" constant="130" id="ajQ-6T-LcN"/>
-                            <constraint firstItem="jd2-rO-K8I" firstAttribute="top" secondItem="DAC-AQ-cPB" secondAttribute="top" id="b8D-J0-yOj"/>
-                            <constraint firstItem="0Gk-5f-TTU" firstAttribute="leading" secondItem="quA-Ua-THy" secondAttribute="trailing" constant="50" id="dXe-w0-heM"/>
-                            <constraint firstItem="wcu-iL-Dx5" firstAttribute="top" secondItem="BOH-5E-lx6" secondAttribute="bottom" constant="6" id="eHW-l8-Yr9"/>
-                            <constraint firstItem="BOH-5E-lx6" firstAttribute="top" secondItem="DAC-AQ-cPB" secondAttribute="bottom" constant="25" id="eQR-4V-YIy"/>
-                            <constraint firstItem="tp7-QN-DIz" firstAttribute="top" secondItem="Nyr-dr-DgJ" secondAttribute="bottom" constant="6" id="f3V-eW-s6N"/>
-                            <constraint firstItem="Lb9-6m-WIV" firstAttribute="top" secondItem="oRc-C6-aJz" secondAttribute="bottom" constant="15" id="gFS-PY-iuv"/>
-                            <constraint firstItem="bwo-vk-DO3" firstAttribute="top" secondItem="bDI-Z3-kh3" secondAttribute="bottom" constant="15" id="iaI-Y2-uCh"/>
-                            <constraint firstItem="cmK-I7-Fk2" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" constant="100" id="laT-Qd-GK7"/>
-                            <constraint firstItem="zS0-aw-zD9" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" constant="100" id="n2I-WH-082"/>
-                            <constraint firstItem="bDI-Z3-kh3" firstAttribute="top" secondItem="pdS-Kq-gme" secondAttribute="bottom" constant="6" id="thE-Fi-bBG"/>
-                            <constraint firstItem="Klw-dv-ZxV" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leading" constant="200" id="uSy-rd-3Kk"/>
-                            <constraint firstItem="Nyr-dr-DgJ" firstAttribute="top" secondItem="wcu-iL-Dx5" secondAttribute="bottom" constant="15" id="vSc-Ng-j0Q"/>
-                            <constraint firstItem="0Gk-5f-TTU" firstAttribute="top" secondItem="yUp-XQ-Exf" secondAttribute="bottom" constant="25" id="wKa-EJ-4px"/>
-                            <constraint firstItem="DAC-AQ-cPB" firstAttribute="leading" secondItem="zS0-aw-zD9" secondAttribute="trailing" constant="50" id="xXR-PX-uJd"/>
-                            <constraint firstItem="Lb9-6m-WIV" firstAttribute="leading" secondItem="jd2-rO-K8I" secondAttribute="trailing" constant="80" id="zA0-aX-wMz"/>
+                            <constraint firstItem="9iF-SS-KFw" firstAttribute="leading" secondItem="cHC-im-tBd" secondAttribute="leadingMargin" constant="220" id="eLV-q9-5b6"/>
+                            <constraint firstItem="qen-jR-WV6" firstAttribute="top" secondItem="9iF-SS-KFw" secondAttribute="bottom" constant="8" id="pSo-CX-Wpo"/>
+                            <constraint firstItem="9iF-SS-KFw" firstAttribute="top" secondItem="pbS-4v-v6U" secondAttribute="bottom" constant="80" id="qJ7-j9-VIf"/>
+                            <constraint firstItem="ChW-UO-k4T" firstAttribute="top" secondItem="qen-jR-WV6" secondAttribute="bottom" id="xzc-nV-NBK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1510,6 +1523,7 @@
                         <outlet property="accountOuterView" destination="XfG-rd-WxS" id="XZ7-ak-0pb"/>
                         <outlet property="confirmPasswordLabel" destination="Nyr-dr-DgJ" id="tvA-uC-25A"/>
                         <outlet property="confirmPasswordText" destination="tp7-QN-DIz" id="udM-si-kPg"/>
+                        <outlet property="contentView" destination="ChW-UO-k4T" id="l3w-ku-k2R"/>
                         <outlet property="countryButton" destination="wcu-iL-Dx5" id="NLi-Od-RrP"/>
                         <outlet property="countryLabel" destination="BOH-5E-lx6" id="Y7v-P5-OCF"/>
                         <outlet property="dropDownArrowACcount" destination="BP3-y6-pGK" id="UhS-oT-zmu"/>
@@ -1517,7 +1531,9 @@
                         <outlet property="emailLoginLabel" destination="KNK-40-fht" id="hpK-yU-4qK"/>
                         <outlet property="emailLoginText" destination="oRc-C6-aJz" id="vHi-vG-Zxk"/>
                         <outlet property="emailText" destination="bDI-Z3-kh3" id="AVz-zX-DdK"/>
+                        <outlet property="lastNameLabel" destination="0Gk-5f-TTU" id="ibu-Ny-Sqe"/>
                         <outlet property="lastNameText" destination="DAC-AQ-cPB" id="boQ-hl-jrY"/>
+                        <outlet property="loginHeader" destination="eo4-M5-fgG" id="nZo-sw-gbj"/>
                         <outlet property="menuBar" destination="pbS-4v-v6U" id="zmG-6X-GGw"/>
                         <outlet property="menuCollectionView" destination="bGa-Ke-2wU" id="fh8-C3-ETw"/>
                         <outlet property="nameText" destination="zS0-aw-zD9" id="jI2-jg-GKF"/>
@@ -1526,7 +1542,7 @@
                         <outlet property="passwordLoginText" destination="Wpw-HU-5d2" id="sKB-vj-hrX"/>
                         <outlet property="passwordText" destination="cmK-I7-Fk2" id="QGK-TR-rjM"/>
                         <outlet property="registerButton" destination="Klw-dv-ZxV" id="6hQ-3Z-OlV"/>
-                        <outlet property="welcomView" destination="yUp-XQ-Exf" id="TYM-Hc-zRo"/>
+                        <outlet property="registerHeader" destination="vsm-Qm-GEf" id="dHZ-RI-215"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUY-oK-juT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4105,7 +4121,7 @@ Just Watch Me
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MOv-iT-MsJ"/>
+        <segue reference="GEg-8z-Vkh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="HomeTabBarOne" width="24" height="24"/>

@@ -36,6 +36,12 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
         }
     }
     
+    @IBOutlet weak var moreIconButton: UIButton!{
+        didSet{
+            moreIconButton.setImage(UIImage(named: "moreButtonUnfocused"), for: .normal)
+        }
+    }
+    
     @IBOutlet weak var rightArrowIcon: UIImageView!{
         didSet{
             rightArrowIcon.tintColor = .red
@@ -67,6 +73,16 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
         
         videoArray = []
     }
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.moreIconButton.isFocused{
+            self.moreIconButton.backgroundColor = .clear
+            self.moreIconButton.setImage(UIImage(named: "moreButtonFocused"), for: .normal)
+            self.moreIconButton.tintColor = ThemeManager.currentTheme().buttonTextColor
+        }
+        else{
+            self.moreIconButton.setImage( UIImage(named: "moreButtonUnfocused"), for: .normal)
+        }
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -95,7 +111,8 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCollectionViewCell", for: indexPath as IndexPath) as! PopularCollectionViewCell
-        cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+//        cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
 
         cell.videoImageView.contentMode = .scaleToFill
         if videoArray![indexPath.row].type == "CONTINUE_WATCHING"  {
@@ -273,7 +290,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
         }
         else{
             let width =  bounds.width / 4.5
-            let height = (9 * width) / 16 + 50
+            let height = (9 * width) / 16 + 30
             return CGSize(width: width, height: height)
 //            let width = (2 *  bounds.height - cellOffset) / 3
 //            let itemSize = CGSize(width: width, height: bounds.height - cellOffset)

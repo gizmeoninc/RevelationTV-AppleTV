@@ -34,9 +34,6 @@ class CatchupTableViewCell: UITableViewCell {
         }
     }
     
-    
-  
-    
     @IBOutlet weak var remindMeButton: UIButton!{
         didSet{
             remindMeButton.setTitle("Remind Me", for: .normal)

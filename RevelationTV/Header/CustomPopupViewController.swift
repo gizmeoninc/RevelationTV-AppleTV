@@ -17,7 +17,8 @@ class CustomPopupViewController: UIViewController {
 
     @IBOutlet weak var acoountSettingsButton: UIButton!{
         didSet{
-            self.acoountSettingsButton.setTitle("Account Settings", for: .normal)
+            self.acoountSettingsButton.setTitle("My Favourites", for: .normal)
+//            self.acoountSettingsButton.setTitle("Account Settings", for: .normal)
             self.acoountSettingsButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             self.acoountSettingsButton.titleLabel?.textColor = ThemeManager.currentTheme().headerTextColor
             self.acoountSettingsButton.titleLabel?.font =  UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)

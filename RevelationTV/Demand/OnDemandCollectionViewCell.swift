@@ -88,6 +88,7 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
             MoreInfoButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             MoreInfoButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().ButtonBorderColor
+            MoreInfoButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
             MoreInfoButton.layer.borderWidth = 3.0
             MoreInfoButton.titleLabel?.font =  UIFont(name:"ITCAvantGardePro-Bk", size: 25)
             MoreInfoButton.layer.cornerRadius = 10

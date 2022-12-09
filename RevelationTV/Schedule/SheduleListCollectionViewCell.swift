@@ -191,15 +191,12 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
             delegate.didSelectReminder(passModel: scheduleItem)
         }else{
             self.addToReminderAPI()
-
         }
-        
     }
     
     
     var addReminder = false
-
-   
+    
     
     func addToReminderAPI() {
         var parameterDict: [String: String?] = [ : ]
@@ -217,7 +214,6 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
         if let shedule_id =  scheduleItem?.id {
             parameterDict["schedule_id"] = String(shedule_id)
             parameterDict["cancel"] = String((scheduleItem?.schedule_reminded)!)
-          
         }
        
         let encoder = JSONEncoder()
@@ -229,6 +225,7 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
                   return
                 }
 //
+                 
                 if succes == 0{
                     DispatchQueue.main.async {
                     }
@@ -236,14 +233,14 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
                 else if succes == 1 {
                     DispatchQueue.main.async {
                         self.addReminder = !self.addReminder
-
+                        print("remainder",self.addReminder)
                         if self.addReminder  {
                             self.watchlistButton.setImage(UIImage(named: ""), for: .normal)
                             self.watchlistButton.setTitle("Remove from list", for: .normal)
                             self.watchListButtonWidth.constant = 250
                             self.watchListButtonHeight.constant = 55
-   
-                        } else {
+                        }
+                        else {
                             self.watchlistButton.setTitle("Remind Me", for: .normal)
                             let image = UIImage(named: "icon-notification-24")?.withRenderingMode(.alwaysTemplate)
                             self.watchlistButton.setImage(image, for: .normal)

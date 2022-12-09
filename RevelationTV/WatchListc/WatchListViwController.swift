@@ -241,11 +241,13 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
             cell.backgroundColor = .clear
             cell.videoType = "Dianamic"
             let data = dianamicVideos[indexPath.section].data
+            cell.TitleLabel.text = "Favourites"
+            cell.iconImage.image = UIImage(named: "favouritesIcon")
+            cell.iconImage.tintColor = ThemeManager.currentTheme().ButtonBorderColor
             cell.videoArray = data
             return cell
         }
-       
-        
+
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("hello")
@@ -257,10 +259,12 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
             let height = (width * 9)/16
             return height + 100
             
-            
-            
         }
-      return rowHeight
+        let width =  UIScreen.main.bounds.width / 4.5
+        let height = (9 * width) / 16 + 35
+        
+      return height + 90
+//      return rowHeight
 
     }
     
@@ -271,25 +275,25 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
         }
         return 60
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+//
+//
+//        if dianamicVideos[section].type == "REMINDERS" {
+//            headerView.customLabel.text =  "My Reminders"
+//            headerView.moreButton.isHidden = true
+//        }
+//        else{
+//            headerView.customLabel.text =  dianamicVideos[section].key
+//            headerView.moreButton.isHidden = true
+//        }
+//
+//
+//
+//        return headerView
+//    }
 
-       
-        if dianamicVideos[section].type == "REMINDERS" {
-            headerView.customLabel.text =  "My Reminders"
-            headerView.moreButton.isHidden = true
-        }
-        else{
-            headerView.customLabel.text =  dianamicVideos[section].key
-            headerView.moreButton.isHidden = true
-        }
-        
-       
-       
-        return headerView
-    }
-  
 }
 extension WatchListViewController: HomeTableViewCellDelegate  {
     func didSelectFilmOfTheDay(passModel: VideoModel?) {
@@ -569,10 +573,6 @@ extension WatchListViewController : PopUpDelegate{
                 }
             }
 
-        
-        
     }
-    
-   
     
 }

@@ -59,14 +59,24 @@ var menuArray = [String]()
     var userId = String()
     var countryCode : String?
     var selectedDateString : String?
-
-    @IBOutlet weak var welcomView: UIView!{
+    
+    @IBOutlet weak var contentView: UIView!{
         didSet{
-            welcomView.backgroundColor = ThemeManager.currentTheme().UIImageColor
+            contentView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         }
     }
     
-    @IBOutlet weak var FullNameLabel: UILabel!
+    @IBOutlet weak var registerHeader: UILabel!{
+        didSet{
+            registerHeader.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 24)
+        }
+    }
+    
+    @IBOutlet weak var FullNameLabel: UILabel!{
+        didSet{
+            FullNameLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
     
     @IBOutlet weak var nameText: UITextField!{
         didSet{
@@ -75,20 +85,38 @@ var menuArray = [String]()
         }
     }
     
-    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!{
+        didSet{
+            lastNameLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
     
-    @IBOutlet weak var lastNameText: UITextField!
+    @IBOutlet weak var lastNameText: UITextField!{
+        didSet{
+            lastNameText.layer.cornerRadius = 5
+            lastNameText.layer.masksToBounds = true
+        }
+    }
     
-    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!{
+        didSet{
+            emailLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
     
     @IBOutlet weak var emailText: UITextField!{
         didSet{
             emailText.layer.cornerRadius = 5
             emailText.layer.masksToBounds = true
+            emailText.keyboardType = .emailAddress
         }
     }
     
-    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!{
+        didSet{
+            passwordLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
     
     @IBOutlet weak var passwordText: UITextField! {
         didSet{
@@ -98,7 +126,11 @@ var menuArray = [String]()
         }
     }
     
-    @IBOutlet weak var confirmPasswordLabel: UILabel!
+    @IBOutlet weak var confirmPasswordLabel: UILabel!{
+        didSet{
+            confirmPasswordLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
     
     @IBOutlet weak var confirmPasswordText: UITextField!{
         didSet{
@@ -146,7 +178,11 @@ var menuArray = [String]()
 //
 //    }
     
-    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!{
+        didSet{
+            countryLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
 
     @IBOutlet weak var countryButton: UIButton!{
         didSet{
@@ -178,11 +214,11 @@ var menuArray = [String]()
     
     @IBOutlet weak var registerButton: UIButton!{
         didSet{
-              registerButton.backgroundColor = ThemeManager.currentTheme().ButtonBorderColor
-//              registerButton.titleLabel?.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)
+              registerButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+              registerButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
               registerButton.titleLabel?.textColor = .white
-            registerButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
-              registerButton.layer.borderWidth = 4
+//            registerButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+              registerButton.layer.borderWidth = 0
               registerButton.layer.cornerRadius = 8
               registerButton.layer.masksToBounds = true
             }
@@ -209,7 +245,17 @@ var menuArray = [String]()
     
     @IBOutlet weak var privacyLabel: UILabel!
     
-    @IBOutlet weak var emailLoginLabel: UILabel!
+    @IBOutlet weak var loginHeader: UILabel!{
+        didSet{
+            loginHeader.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 24)
+        }
+    }
+    
+    @IBOutlet weak var emailLoginLabel: UILabel!{
+        didSet{
+            emailLoginLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
     
     @IBOutlet weak var emailLoginText: UITextField!{
         didSet{
@@ -218,7 +264,11 @@ var menuArray = [String]()
         }
     }
     
-    @IBOutlet weak var passwordLoginLabel: UILabel!
+    @IBOutlet weak var passwordLoginLabel: UILabel!{
+        didSet{
+            passwordLoginLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 18)
+        }
+    }
     
     @IBOutlet weak var passwordLoginText: UITextField!{
         didSet{
@@ -231,11 +281,11 @@ var menuArray = [String]()
     @IBOutlet weak var LoginButton: UIButton!{
         didSet{
               LoginButton.backgroundColor = ThemeManager.currentTheme().ButtonBorderColor
-//              LoginButton.titleLabel?.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)
-            LoginButton.titleLabel?.textColor = UIColor.white
+              LoginButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+              LoginButton.titleLabel?.textColor = UIColor.white
               LoginButton.layer.cornerRadius = 8
-            LoginButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
-              LoginButton.layer.borderWidth = 4
+//            LoginButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+              LoginButton.layer.borderWidth = 0
               LoginButton.layer.masksToBounds = true
             }
     }
@@ -525,11 +575,24 @@ var menuArray = [String]()
       else if nameText.text!.isReallyEmpty || nameText.text == "              " {
         commonClass.showAlert(viewController:self, messages: "User name must start with letter")
       }
+     else if (lastNameText.text?.isEmpty)! {
+            commonClass.showAlert(viewController:self, messages: "Enter Last Name")
+        }
+      else if  lastNameText.text?.rangeOfCharacter(from: lettersAndSpacesCharacterSet) != nil {
+        commonClass.showAlert(viewController:self, messages: "No special character allowed for user name")
+       }
+      else if lastNameText.text!.isReallyEmpty || lastNameText.text == "              " {
+        commonClass.showAlert(viewController:self, messages: "User name must start with letter")
+      }
         else if (commonClass.isValidEmail(email:emailText!.text! ) == 1) {
             commonClass.showAlert(viewController:self, messages: "Enter Email")
         } else if(commonClass.isValidEmail(email:emailText!.text! ) == 3) {
             commonClass.showAlert(viewController:self, messages: "Invalid Email")
-        } else if (passwordText.text?.isEmpty)! {
+        }
+        else if (countryButton.titleLabel!.text?.isEmpty)! {
+            commonClass.showAlert(viewController:self, messages: "Enter Country")
+        }
+        else if (passwordText.text?.isEmpty)! {
             commonClass.showAlert(viewController:self, messages: "Enter Password")
         }
         else if (passwordText.text!.count < 6) {
@@ -556,7 +619,7 @@ var menuArray = [String]()
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as! String
         var parameterDict: [String: String?] = [ : ]
         
-        guard let email = self.emailText.text, let password = self.passwordText.text,let udid = UDID,let name = self.nameText.text  else {
+        guard let email = self.emailText.text, let password = self.passwordText.text,let udid = UDID,let name = self.nameText.text,let lastname = self.lastNameText.text  else {
             return
         }
         
@@ -572,7 +635,7 @@ var menuArray = [String]()
         }
 
         parameterDict["first_name"] = name
-        parameterDict["last_name"] = ""
+        parameterDict["last_name"] = lastname
 //        if self.dobButton.titleLabel != nil {
 //            let dob = self.selectedDateString
 //            parameterDict["dob"] = dob
@@ -697,39 +760,45 @@ var menuArray = [String]()
                 self.accountOuterView.layer.borderWidth = 0
                 
             }
-//            if self.dobButton.isFocused {
-//                self.dobButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-//                self.genderButton.backgroundColor = UIColor.white
-//                self.countryButton.backgroundColor = UIColor.white
-//            }
-
-//            else if self.genderButton.isFocused {
-//                self.genderButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-//                self.dobButton.backgroundColor = UIColor.white
-//                self.countryButton.backgroundColor = UIColor.white
-//            }
-
             if self.countryButton.isFocused {
                 self.countryButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-//                self.genderButton.backgroundColor = UIColor.white
-//                self.dobButton.backgroundColor = UIColor.white
             }
-            else if self.nameText.isFocused {
-//                self.genderButton.backgroundColor = UIColor.white
-//                self.dobButton.backgroundColor = UIColor.white
-                self.countryButton.backgroundColor = UIColor.white
-            }
-
             else {
-//                self.genderButton.backgroundColor = UIColor.white
-//                self.dobButton.backgroundColor = UIColor.white
                 self.countryButton.backgroundColor = UIColor.white
             }
-    
-    
-    
+//            if self.lastNameText.isEditing{
+//                self.emailLoginText.resignFirstResponder()
+//            }
+//            else{
+//                
+//            }
         }, completion: nil)
     }
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        if textField == nameText{
+//            nameText.resignFirstResponder()
+//        }
+//        if textField == lastNameText {
+//            lastNameText.resignFirstResponder()
+//        }
+//        return true
+//    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        if textField == nameText{
+//            nameText.resignFirstResponder()
+//        }
+//        if textField == lastNameText {
+//            lastNameText.resignFirstResponder()
+//        }
+//    }
+//    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+//        if textField == nameText{
+//            nameText.resignFirstResponder()
+//        }
+//        if textField == lastNameText {
+//            lastNameText.resignFirstResponder()
+//        }
+//    }
     func didSelectGuestRegister() {
         Application.shared.guestRegister = true
         self.gotoHome()
@@ -743,7 +812,14 @@ var menuArray = [String]()
 
 }
 extension LoginRegisterViewController: UITextFieldDelegate {
-
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if textField == nameText{
+//            lastNameText.becomeFirstResponder()
+//        }
+//        else if textField == lastNameText{
+//            emailText.becomeFirstResponder()
+//        }
+//    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailLoginText{
             passwordLoginText.becomeFirstResponder()
