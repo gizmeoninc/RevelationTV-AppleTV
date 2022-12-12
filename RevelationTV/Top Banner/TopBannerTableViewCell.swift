@@ -65,9 +65,9 @@ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection s
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         let width  = UIScreen.main.bounds.width
-        let widthBanner =  UIScreen.main.bounds.width / 4.5
+        let widthBanner =  UIScreen.main.bounds.width / 2.424
         let height = (9 * widthBanner) / 16
-            return CGSize(width: width, height: height)
+            return CGSize(width: widthBanner, height: height)
     }
 
 func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

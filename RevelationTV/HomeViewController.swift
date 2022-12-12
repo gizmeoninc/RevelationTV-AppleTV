@@ -13,6 +13,8 @@ import Reachability
 
 class HomeViewController: UIViewController {
 
+    
+
     @IBOutlet weak var HomeTableView: UITableView!
     @IBOutlet weak var menuCollectionView: UICollectionView!{
         didSet{
@@ -160,9 +162,9 @@ var menuArray = [String]()
     }
     @objc func click(sender: UIButton) {
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
-            self.present(videoDetailView, animated: false, completion: nil)
-           
+//            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
+//            self.present(videoDetailView, animated: false, completion: nil)
+            CustomPopupViewController.showPopup(parentVC: self)
         }
         else{
             CustomPopupViewController.showPopup(parentVC: self)
@@ -471,10 +473,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if dianamicVideos[indexPath.section].type == "TOP_BANNERS" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TopBannerTableCell", for: indexPath) as! TopBannerTableViewCell
-
                         cell.featuredVideos = dianamicVideos[indexPath.section].shows
 //                        cell.delegate = self
-            
                         cell.selectionStyle = .none
                         cell.layer.cornerRadius = 8
                         return cell
@@ -487,6 +487,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             cell.backgroundColor = .clear
             cell.videoType = "Dianamic"
             cell.TitleLabel.text = "Featured"
+            cell.TitleLabel.textColor = .white
             
 //            cell.TitleLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 40)
             cell.videoArray = dianamicVideos[indexPath.section].shows
@@ -521,6 +522,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             cell.videoType = "Dianamic"
             cell.videoArray = dianamicVideos[indexPath.section].shows
             cell.TitleLabel.text = dianamicVideos[indexPath.section].category_name
+            cell.TitleLabel.textColor = .white
 //            cell.TitleLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 100)
 //            let data = dianamicVideos[indexPath.section].shows
 //            if (data?.count)! >= 10 {
@@ -546,14 +548,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if dianamicVideos[indexPath.section].type == "TOP_BANNERS" {
             let width =  UIScreen.main.bounds.width / 4.5
-            let height = (9 * width) / 16
+            let height = (9 * width) / 32
             return height
         }
         else if dianamicVideos[indexPath.section].type == "FEATURED" {
 //            let height = (UIScreen.main.bounds.height - ((UIScreen.main.bounds.height)/3))
 //            return height + 40
             let width =  UIScreen.main.bounds.width / 4.5
-            let height = (9 * width) / 16
+            let height = (9 * width) / 16 + 35
             return height + 90
         }
         else if dianamicVideos[indexPath.section].type == "LIVE" {
@@ -568,9 +570,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             return height + 280
         }
         let width =  UIScreen.main.bounds.width / 4.5
-        let height = (9 * width) / 16 
+        let height = (9 * width) / 16 + 35
         
-
       return height + 90
 
     }
@@ -584,6 +585,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
           
         return 60
     }
+    
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        let headerView = UIView()
 //        let titleLabel = UILabel()
@@ -882,15 +884,15 @@ extension HomeViewController:ScheduleListTableViewCellDelegate{
 //    }
     
     func didSelectReminder(passModel: VideoModel?) {
-        if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
-            self.present(videoDetailView, animated: false, completion: nil)
-           
-        }else{
+//        if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
+//            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
+//            self.present(videoDetailView, animated: false, completion: nil)
+//
+//        }
+//        else{
             commonClass.showAlert(viewController:self, messages: "Reminder updated")
-        }
+//        }
       
-
     }
     
     
@@ -901,6 +903,8 @@ extension HomeViewController : PopUpDelegate{
     func handleAccountButtonAction(action: Bool) {
         let accountVC =  self.storyboard?.instantiateViewController(withIdentifier: "AccountVC") as! AccountViewController
         self.present(accountVC, animated: false, completion: nil)
+//        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "WatchListVC") as! WatchListViewController
+//        self.present(videoDetailView, animated: false, completion: nil)
     }
     
     func handleLogoutAction(action: Bool) {

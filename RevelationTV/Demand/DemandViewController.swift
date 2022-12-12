@@ -101,7 +101,6 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
 
         }
         lastFocusedIndexPath = IndexPath(row: 2, section: 0)
-
         menuCollectionView.register(UINib(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "menuCollectionCell")
         menuCollectionView.delegate = self
         menuCollectionView.dataSource = self

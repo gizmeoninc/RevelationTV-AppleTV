@@ -464,13 +464,13 @@ extension LiveTabViewController:ScheduleListTableViewCellDelegate{
     
     func didSelectReminder(passModel: VideoModel?) {
 //        print("reminder added")
-        if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
-            self.present(videoDetailView, animated: false, completion: nil)
-           
-        }else{
+//        if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
+//            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
+//            self.present(videoDetailView, animated: false, completion: nil)
+//
+//        }else{
             commonClass.showAlert(viewController:self, messages: "Reminder updated")
-        }
+//        }
     }
     
     

@@ -248,7 +248,7 @@ class ShowDetailsViewController : UIViewController{
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
             self.present(videoDetailView, animated: false, completion: nil)
-           
+
         }else{
             if !watchVideo {
               self.watchVideo = true
@@ -264,7 +264,6 @@ class ShowDetailsViewController : UIViewController{
             }
         }
        
-        
     }
     
     @IBAction func seasonButtonAction(_ sender: Any) {
