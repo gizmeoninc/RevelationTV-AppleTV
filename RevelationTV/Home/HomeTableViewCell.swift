@@ -30,6 +30,9 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     
     @IBOutlet weak var iconImage: UIImageView!
     
+    @IBOutlet weak var iconImageHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var iconImageWidth: NSLayoutConstraint!
     @IBOutlet weak var leftArrowIcon: UIImageView!{
         didSet{
             leftArrowIcon.tintColor = .red

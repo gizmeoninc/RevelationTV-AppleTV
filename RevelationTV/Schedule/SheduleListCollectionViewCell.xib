@@ -7,46 +7,58 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="ITCAvantGardePro-Bk.otf">
+            <string>ITCAvantGardePro-Bk</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScheduleListCollectionCell" id="Rz2-K0-ksD" customClass="SheduleListCollectionViewCell" customModule="KICCTV" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScheduleListCollectionCell" id="Rz2-K0-ksD" customClass="SheduleListCollectionViewCell" customModule="RevelationTV" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="889" height="581"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="889" height="581"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="IconClock" translatesAutoresizingMaskIntoConstraints="NO" id="FYE-Qa-cqi" userLabel="IconClockImg">
+                        <rect key="frame" x="324" y="226" width="240" height="128"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="7Hx-Hx-iC9"/>
+                            <constraint firstAttribute="height" constant="20" id="ITY-Hj-ldd"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a8-oE-Dnp" userLabel="TimeLabel">
-                        <rect key="frame" x="0.0" y="0.0" width="881" height="36"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <rect key="frame" x="110" y="0.0" width="771" height="20"/>
+                        <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-xr-LAD">
-                        <rect key="frame" x="0.0" y="61" width="240" height="486"/>
+                        <rect key="frame" x="80" y="35" width="240" height="486"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="240" id="deB-7n-mZg"/>
                             <constraint firstAttribute="height" constant="486" id="ged-9c-0Fr"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jewish Voice Appeal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRs-o0-SRL">
-                        <rect key="frame" x="265" y="77" width="616" height="46"/>
+                        <rect key="frame" x="345" y="51" width="536" height="46"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loreum lipsum" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzs-ML-plI">
-                        <rect key="frame" x="265" y="139" width="616" height="30"/>
+                        <rect key="frame" x="345" y="113" width="536" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yD-bk-5wr" userLabel="Play Button">
-                        <rect key="frame" x="265" y="467" width="200" height="55"/>
+                        <rect key="frame" x="345" y="441" width="215" height="55"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="55" id="XOM-A2-nyM"/>
-                            <constraint firstAttribute="width" constant="200" id="geN-62-ems"/>
+                            <constraint firstAttribute="width" constant="215" id="geN-62-ems"/>
                         </constraints>
                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -56,7 +68,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C89-Px-a1u" userLabel="WatchList">
-                        <rect key="frame" x="515" y="467" width="220" height="55"/>
+                        <rect key="frame" x="590" y="441" width="220" height="55"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="220" id="KJN-Mo-XoW"/>
                             <constraint firstAttribute="height" constant="55" id="kS8-6E-66E"/>
@@ -75,18 +87,20 @@
             <constraints>
                 <constraint firstItem="Fzs-ML-plI" firstAttribute="top" secondItem="wRs-o0-SRL" secondAttribute="bottom" constant="16" id="1fe-cW-pAH"/>
                 <constraint firstItem="C89-Px-a1u" firstAttribute="top" secondItem="3yD-bk-5wr" secondAttribute="top" id="5Rf-48-DTn"/>
-                <constraint firstItem="jAg-xr-LAD" firstAttribute="leading" secondItem="0a8-oE-Dnp" secondAttribute="leading" id="5qP-bd-vij"/>
                 <constraint firstItem="3yD-bk-5wr" firstAttribute="leading" secondItem="Fzs-ML-plI" secondAttribute="leading" id="79f-YY-tdf"/>
                 <constraint firstAttribute="trailing" secondItem="0a8-oE-Dnp" secondAttribute="trailing" constant="8" id="BAR-RJ-qFO"/>
                 <constraint firstItem="wRs-o0-SRL" firstAttribute="leading" secondItem="jAg-xr-LAD" secondAttribute="trailing" constant="25" id="GXE-vM-r6c"/>
                 <constraint firstItem="Fzs-ML-plI" firstAttribute="trailing" secondItem="wRs-o0-SRL" secondAttribute="trailing" id="Isy-Gg-Ohe"/>
+                <constraint firstItem="FYE-Qa-cqi" firstAttribute="top" secondItem="0a8-oE-Dnp" secondAttribute="top" id="Jyk-5T-g7S"/>
+                <constraint firstItem="0a8-oE-Dnp" firstAttribute="leading" secondItem="FYE-Qa-cqi" secondAttribute="trailing" constant="10" id="Rdm-Zy-ujQ"/>
                 <constraint firstItem="0a8-oE-Dnp" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" id="TqO-iT-BhO"/>
-                <constraint firstItem="jAg-xr-LAD" firstAttribute="top" secondItem="0a8-oE-Dnp" secondAttribute="bottom" constant="25" id="XrT-KT-FDu"/>
+                <constraint firstItem="jAg-xr-LAD" firstAttribute="top" secondItem="0a8-oE-Dnp" secondAttribute="bottom" constant="15" id="XrT-KT-FDu"/>
                 <constraint firstAttribute="trailing" secondItem="wRs-o0-SRL" secondAttribute="trailing" constant="8" id="YUV-f6-GHe"/>
                 <constraint firstItem="3yD-bk-5wr" firstAttribute="bottom" secondItem="jAg-xr-LAD" secondAttribute="bottom" constant="-25" id="ezi-hc-AF8"/>
-                <constraint firstItem="0a8-oE-Dnp" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" id="hEu-hB-oWq"/>
                 <constraint firstItem="Fzs-ML-plI" firstAttribute="leading" secondItem="wRs-o0-SRL" secondAttribute="leading" id="kpD-Ob-G09"/>
-                <constraint firstItem="C89-Px-a1u" firstAttribute="leading" secondItem="3yD-bk-5wr" secondAttribute="trailing" constant="50" id="qYr-2i-55P"/>
+                <constraint firstItem="jAg-xr-LAD" firstAttribute="leading" secondItem="FYE-Qa-cqi" secondAttribute="leading" id="lFg-Gf-kRI"/>
+                <constraint firstItem="C89-Px-a1u" firstAttribute="leading" secondItem="3yD-bk-5wr" secondAttribute="trailing" constant="30" id="qYr-2i-55P"/>
+                <constraint firstItem="FYE-Qa-cqi" firstAttribute="leading" secondItem="7PP-Ag-gPX" secondAttribute="leading" id="xeK-gv-NhS"/>
                 <constraint firstItem="wRs-o0-SRL" firstAttribute="top" secondItem="jAg-xr-LAD" secondAttribute="top" constant="16" id="z6I-gJ-KD3"/>
             </constraints>
             <size key="customSize" width="889" height="581"/>
@@ -105,4 +119,7 @@
             <point key="canvasLocation" x="338.5" y="155.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="IconClock" width="20" height="20"/>
+    </resources>
 </document>

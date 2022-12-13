@@ -21,8 +21,8 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var timeLabel: UILabel!{
         didSet{
-            timeLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 30)
-            timeLabel.textColor = ThemeManager.currentTheme().headerTextColor
+            timeLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            timeLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }
     }
     
@@ -31,27 +31,27 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playButton: UIButton!{
         didSet{
             playButton.setTitle("On Demand", for: .normal)
-            playButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-            playButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            playButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            playButton.layer.borderColor = ThemeManager.currentTheme().buttonTextColor.cgColor
             playButton.layer.borderWidth = 3.0
-            playButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 20)
-            playButton.layer.cornerRadius = 28
+            playButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            playButton.layer.cornerRadius = 10
             playButton.titleLabel?.textAlignment = .center
-            playButton.titleLabel?.textColor = ThemeManager.currentTheme().buttonTextColor
+            playButton.titleLabel?.textColor = UIColor.white
             playButton.layer.masksToBounds = true
            
         }
     }
     @IBOutlet weak var nameLabel: UILabel!{
         didSet{
-            nameLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 30)
+            nameLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
             nameLabel.textColor = ThemeManager.currentTheme().headerTextColor
         }
     }
     
     @IBOutlet weak var descriptionLabel: UILabel!{
         didSet{
-            descriptionLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)
+            descriptionLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
             descriptionLabel.textColor = ThemeManager.currentTheme().descriptionTextColor
             descriptionLabel.numberOfLines = 6
         }
@@ -67,18 +67,18 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
             let image = UIImage(named: "icon-notification-24")?.withRenderingMode(.alwaysTemplate)
             watchlistButton.setImage(image, for: .normal)
             watchlistButton.tintColor = UIColor.white
-            watchlistButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            watchlistButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
             watchlistButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             watchlistButton.layer.borderWidth = 3.0
-            watchlistButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 20)
-            watchlistButton.titleLabel?.textColor = ThemeManager.currentTheme().buttonTextColor
-            watchlistButton.layer.cornerRadius = 28
+            watchlistButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            watchlistButton.titleLabel?.textColor = UIColor.white
+            watchlistButton.layer.cornerRadius = 10
             watchlistButton.titleLabel?.textAlignment = .center
             watchlistButton.layer.masksToBounds = true
             watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            watchlistButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50)
+            watchlistButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
     var scheduleItem: VideoModel? {
@@ -132,20 +132,26 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
             if (scheduleItem?.schedule_reminded)!{
                 addReminder = true
                 self.watchlistButton.setImage(UIImage(named: ""), for: .normal)
-                self.watchlistButton.setTitle("Remove from list", for: .normal)
+//                self.watchlistButton.setTitle("Remove from list", for: .normal)
+                self.watchlistButton.setTitle("Cancel Reminder", for: .normal)
+                self.watchlistButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+                let image = UIImage(named: "closeButton")?.withRenderingMode(.alwaysTemplate)
+                self.watchlistButton.setImage(image, for: .normal)
                 self.watchListButtonWidth.constant = 250
                 self.watchListButtonHeight.constant = 55
-                
+                watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                watchlistButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
             else{
                 addReminder = false
                 self.watchlistButton.setTitle("Remind Me", for: .normal)
                 let image = UIImage(named: "icon-notification-24")?.withRenderingMode(.alwaysTemplate)
                 self.watchlistButton.setImage(image, for: .normal)
-                self.watchListButtonWidth.constant = 220
+                self.watchListButtonWidth.constant = 250
                 self.watchListButtonHeight.constant = 55
             }
-          
         }
     }
     weak var delegate: SheduleListCollectionViewCellDelegate!
@@ -231,20 +237,28 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
                     }
                 }
                 else if succes == 1 {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         self.addReminder = !self.addReminder
                         print("remainder",self.addReminder)
                         if self.addReminder  {
                             self.watchlistButton.setImage(UIImage(named: ""), for: .normal)
-                            self.watchlistButton.setTitle("Remove from list", for: .normal)
+//                            self.watchlistButton.setTitle("Remove from list", for: .normal)
+                            self.watchlistButton.setTitle("Cancel Reminder", for: .normal)
+                            self.watchlistButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+                            let image = UIImage(named: "closeButton")?.withRenderingMode(.alwaysTemplate)
+                            self.watchlistButton.setImage(image, for: .normal)
                             self.watchListButtonWidth.constant = 250
                             self.watchListButtonHeight.constant = 55
+                            self.watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                            watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                            self.watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                            self.watchlistButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                         }
                         else {
                             self.watchlistButton.setTitle("Remind Me", for: .normal)
                             let image = UIImage(named: "icon-notification-24")?.withRenderingMode(.alwaysTemplate)
                             self.watchlistButton.setImage(image, for: .normal)
-                            self.watchListButtonWidth.constant = 220
+                            self.watchListButtonWidth.constant = 250
                             self.watchListButtonHeight.constant = 55
                         }
                         self.delegate.didSelectReminder(passModel: self.scheduleItem)
@@ -256,7 +270,4 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
             }
 
         }
-    
-    
-    
 }

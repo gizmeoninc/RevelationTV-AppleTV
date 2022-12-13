@@ -217,8 +217,11 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
 
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 1 {
+            print("section 1",dianamicVideos[section].data!.count)
+            return dianamicVideos[section].data!.count
+        }
         return 1
-        
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -227,12 +230,12 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
         if dianamicVideos[indexPath.section].type == "REMINDERS" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReminderTableCell", for: indexPath) as! ReminderListingTableViewCell
             cell.scheduleVideos = dianamicVideos[indexPath.section].data
+            cell.scheduleItem = cell.scheduleVideos?[indexPath.row]
             cell.delegate = self
             cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             cell.selectionStyle = .none
             cell.layer.cornerRadius = 8
             return cell
-            
         }
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableCell", for: indexPath) as! HomeTableViewCell
@@ -242,8 +245,14 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
             cell.videoType = "Dianamic"
             let data = dianamicVideos[indexPath.section].data
             cell.TitleLabel.text = "Favourites"
+            cell.TitleLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
             cell.iconImage.image = UIImage(named: "favouritesIcon")
+            cell.iconImageWidth.constant = 30
+            cell.iconImageHeight.constant = 30
+            cell.iconImage.image = cell.iconImage.image?.withRenderingMode(.alwaysTemplate)
             cell.iconImage.tintColor = ThemeManager.currentTheme().ButtonBorderColor
+            let screenSize: CGRect = UIScreen.main.bounds
+            cell.iconImage.frame = CGRect(x: 0, y: 0, width: 30, height: 29)
             cell.videoArray = data
             return cell
         }
@@ -275,24 +284,27 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
         }
         return 60
     }
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
-//
-//
-//        if dianamicVideos[section].type == "REMINDERS" {
-//            headerView.customLabel.text =  "My Reminders"
-//            headerView.moreButton.isHidden = true
-//        }
-//        else{
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+
+        if dianamicVideos[section].type == "REMINDERS" {
+            headerView.customLabel.text =  "Show Library"
+            headerView.customLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
+            headerView.moreButton.isHidden = true
+            headerView.dividerView.isHidden = false
+        }
+        else{
+            headerView.customLabel.isHidden = true
 //            headerView.customLabel.text =  dianamicVideos[section].key
-//            headerView.moreButton.isHidden = true
-//        }
-//
-//
-//
-//        return headerView
-//    }
+            headerView.moreButton.isHidden = true
+            headerView.dividerView.isHidden = true
+        }
+
+
+
+        return headerView
+    }
 
 }
 extension WatchListViewController: HomeTableViewCellDelegate  {

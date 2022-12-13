@@ -465,8 +465,7 @@ extension ScheduleListTableViewCell:UICollectionViewDelegateFlowLayout,UICollect
                 let height = ((widthnew)*9)/16
                 return CGSize(width: width + 100, height: height + 150)
             }
-            
-            
+
         }
         else{
             return CGSize(width: 200, height: 60)

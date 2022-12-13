@@ -99,6 +99,8 @@
             <connections>
                 <outlet property="TitleLabel" destination="492-My-HOm" id="vyS-o2-3dc"/>
                 <outlet property="iconImage" destination="ljN-lf-aKB" id="stp-sl-T9z"/>
+                <outlet property="iconImageHeight" destination="66K-mM-LdI" id="EfP-X9-5fn"/>
+                <outlet property="iconImageWidth" destination="Xn9-mk-ubN" id="WMD-Zu-Qw8"/>
                 <outlet property="leftArrowIcon" destination="wlj-DX-ZKl" id="8Ti-J1-Cmq"/>
                 <outlet property="mainCollectionView" destination="Osj-Ru-6yi" id="C6u-Q4-PuK"/>
                 <outlet property="moreIconButton" destination="e1L-a0-m43" id="zY7-E3-JMz"/>
