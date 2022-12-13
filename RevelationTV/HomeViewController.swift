@@ -162,9 +162,9 @@ var menuArray = [String]()
     }
     @objc func click(sender: UIButton) {
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-//            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
-//            self.present(videoDetailView, animated: false, completion: nil)
-            CustomPopupViewController.showPopup(parentVC: self)
+            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
+            self.present(videoDetailView, animated: false, completion: nil)
+//            CustomPopupViewController.showPopup(parentVC: self)
         }
         else{
             CustomPopupViewController.showPopup(parentVC: self)
@@ -894,9 +894,6 @@ extension HomeViewController:ScheduleListTableViewCellDelegate{
 //        }
       
     }
-    
-    
-    
     
 }
 extension HomeViewController : PopUpDelegate{

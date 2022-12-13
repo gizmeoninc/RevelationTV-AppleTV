@@ -441,13 +441,14 @@ var menuArray = [String]()
                     }
                     else{
                         commonClass.stopActivityIndicator(onViewController: self)
+                        commonClass.showAlert(viewController: self, messages: errror )
                         UserDefaults.standard.set(email.lowercased(), forKey: "user_email")
-                        let gotohomeView =  self.storyboard?.instantiateViewController(withIdentifier: "otpVerification") as! OTPverificationViewController
-                        gotohomeView.guestRegisterDelegates = self
+//                        let gotohomeView =  self.storyboard?.instantiateViewController(withIdentifier: "otpVerification") as! OTPverificationViewController
+//                        gotohomeView.guestRegisterDelegates = self
                         Application.shared.isFromRegister = false
-                        gotohomeView.userid = responseDictionary["user_id"]! as! String
+//                        gotohomeView.userid = responseDictionary["user_id"]! as! String
                         
-                        self.present(gotohomeView, animated: true, completion: nil)
+//                        self.present(gotohomeView, animated: true, completion: nil)
                         
                         print(responseDictionary["user_id"])
                     }
