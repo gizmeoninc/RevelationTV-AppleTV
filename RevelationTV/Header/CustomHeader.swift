@@ -36,7 +36,8 @@ class CustomHeader: UITableViewHeaderFooterView {
         }
     }
     
-
+    @IBOutlet weak var dividerView: UIView!
+    
     @IBOutlet weak var customLabel: UILabel!{
         didSet{
             customLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 40)
