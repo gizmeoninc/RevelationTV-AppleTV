@@ -95,6 +95,8 @@ struct VideoModel: Mappable {
     let schedule_reminded : Bool?
     let now_playing : nowPlaying?
     let up_next : nowPlaying?
+    let schedule_date : String?
+
     // Implement this initializer
     init(map: Mapper) throws {
         id = map.optionalFrom("id")
@@ -183,7 +185,8 @@ struct VideoModel: Mappable {
         videos = map.optionalFrom("videos")
         shows = map.optionalFrom("shows")
         duration_text = map.optionalFrom("duration_text")
-
+        schedule_date = map.optionalFrom("schedule_date")
+        
     }
     
 }

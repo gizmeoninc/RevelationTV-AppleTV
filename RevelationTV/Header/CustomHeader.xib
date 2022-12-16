@@ -33,11 +33,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTP-tm-TwV" userLabel="dividerView">
-                    <rect key="frame" x="150" y="78" width="1540" height="1"/>
+                    <rect key="frame" x="150" y="78" width="1550" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="R9T-cK-Pcp"/>
-                        <constraint firstAttribute="width" constant="1540" id="cdX-LM-StM"/>
+                        <constraint firstAttribute="width" constant="1550" id="cdX-LM-StM"/>
                     </constraints>
                 </view>
             </subviews>

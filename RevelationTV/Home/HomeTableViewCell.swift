@@ -15,7 +15,8 @@ protocol  HomeTableViewCellDelegate:class {
     func didSelectThemes(passModel :VideoModel?)
     func didSelectDianamicVideos(passModel :VideoModel?)
     func didSelectFilmOfTheDay(passModel :VideoModel?)
-
+    func didSelectDianamicVideosEpisode(passModel :VideoModel?)
+    
     func didSelectPartner(passModel :VideoModel?)
     func didFocusFilmOfTheDay()
     func didFocusNewArrivals(passModel :VideoModel)
@@ -68,6 +69,7 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         mainCollectionView.register(UINib(nibName: "PopularCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PopularCollectionViewCell")
         mainCollectionView.register(UINib(nibName: "BannerCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BannerCollectionCell")
         mainCollectionView.delegate = self
@@ -155,6 +157,7 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
                 }
                 else{
                     cell.videoImageView.sd_setImage(with: URL(string: showUrl + (videoArray![indexPath.row].logo_thumb!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                    print("url",showUrl + (videoArray![indexPath.row].logo_thumb!))
                 }
                 
             }
@@ -227,7 +230,12 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
             delegate.didSelectFreeShows(passModel: videoArray![indexPath.item])
             
         }  else {
-            delegate.didSelectDianamicVideos(passModel: videoArray![indexPath.item])
+            if self.TitleLabel.text == "Shows"{
+                delegate.didSelectDianamicVideos(passModel: videoArray![indexPath.item])
+            }
+            else{
+                delegate.didSelectDianamicVideosEpisode(passModel: videoArray![indexPath.item])
+            }
         }
     }
     
@@ -292,9 +300,11 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
             return CGSize(width: width, height: height)
         }
         else{
-            let width =  bounds.width / 4.5
-            let height = (9 * width) / 16 + 30
-            return CGSize(width: width, height: height)
+//            let width =  bounds.width / 4.5
+            let width =  bounds.width / 4
+//            let height = (9 * width) / 16 + 30
+            let height = (width * 9)/16
+            return CGSize(width: width - 30, height: height + 30)
 //            let width = (2 *  bounds.height - cellOffset) / 3
 //            let itemSize = CGSize(width: width, height: bounds.height - cellOffset)
 //            return CGSize(width: width, height: bounds.height)

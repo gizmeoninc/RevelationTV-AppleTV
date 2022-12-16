@@ -219,7 +219,6 @@ class CatchupViewController: UIViewController {
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
             playButton.backgroundColor = .clear
-
         }
         else{
             playButton.backgroundColor = .clear
@@ -765,8 +764,10 @@ extension CatchupViewController:CatchupTableViewCellDelegate{
 }
 extension CatchupViewController : PopUpDelegate{
     func handleAccountButtonAction(action: Bool) {
-        let accountVC =  self.storyboard?.instantiateViewController(withIdentifier: "AccountVC") as! AccountViewController
-        self.present(accountVC, animated: false, completion: nil)
+        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "WatchListVC") as! WatchListViewController
+        self.present(videoDetailView, animated: false, completion: nil)
+//        let accountVC =  self.storyboard?.instantiateViewController(withIdentifier: "AccountVC") as! AccountViewController
+//        self.present(accountVC, animated: false, completion: nil)
     }
     
     func handleLogoutAction(action: Bool) {

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 protocol DemandShowsListingTableCellDelegate:class {
     func didSelectDemandShows(passModel :VideoModel)
+    func didSelectDianamicVideos(passModel :VideoModel?)
 }
 class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     
@@ -106,8 +107,6 @@ class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateF
     
     func updateUI(){
         let width = (mainCollectionView.bounds.width)/4
-//        let height = ((width-30) * 9 / 16) + 60
-//        mainCollectionViewHeight.constant = height
         print("cccccccccc",videoArrayCount)
         let height = ((width-30) * 9 / 16) * CGFloat(self.videoArrayCount! / 4)
         mainCollectionViewHeight.constant = height + 60
@@ -131,6 +130,9 @@ class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateF
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate.didSelectDianamicVideos(passModel: videoArray![indexPath.item])
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath as IndexPath) as! SearchCollectionCell
         cell.backgroundColor = .clear

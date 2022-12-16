@@ -13,8 +13,6 @@ import Reachability
 
 class HomeViewController: UIViewController {
 
-    
-
     @IBOutlet weak var HomeTableView: UITableView!
     @IBOutlet weak var menuCollectionView: UICollectionView!{
         didSet{
@@ -58,7 +56,7 @@ class HomeViewController: UIViewController {
     var filmVideos = [VideoModel]()
     var liveVideos = [VideoModel]()
     var featuredVideos = [VideoModel]()
-
+    var fetauredItem: VideoModel?
     var item = UITabBarItem()
     
     var lastFocusedIndexPath: IndexPath?
@@ -473,7 +471,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if dianamicVideos[indexPath.section].type == "TOP_BANNERS" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TopBannerTableCell", for: indexPath) as! TopBannerTableViewCell
-                        cell.featuredVideos = dianamicVideos[indexPath.section].shows
+                    cell.featuredVideos = dianamicVideos[indexPath.section].shows
 //                        cell.delegate = self
                         cell.selectionStyle = .none
                         cell.layer.cornerRadius = 8
@@ -523,6 +521,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             cell.videoArray = dianamicVideos[indexPath.section].shows
             cell.TitleLabel.text = dianamicVideos[indexPath.section].category_name
             cell.TitleLabel.textColor = .white
+//            self.fetauredItem = dianamicVideos[indexPath.row]
+
 //            cell.TitleLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 100)
 //            let data = dianamicVideos[indexPath.section].shows
 //            if (data?.count)! >= 10 {
@@ -619,6 +619,34 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
   
 }
 extension HomeViewController: HomeTableViewCellDelegate  {
+    func didSelectDianamicVideosEpisode(passModel: VideoModel?) {
+        if let passModel = passModel  {
+            
+            if passModel.video_id != nil{
+                let episodeVC =  self.storyboard?.instantiateViewController(withIdentifier: "EpisodeDetailsVC") as! EpisodeViewController
+                let id = Int(passModel.video_id!)
+                episodeVC.video_Id = String(id)
+                self.present(episodeVC, animated: true, completion: nil)
+            }
+            else{
+                    let showsOverlayView = self.storyboard?.instantiateViewController(withIdentifier: "ShowsOverlayVC") as! ShowsOverlayViewController
+                    let id = Int(passModel.show_id!)
+//                    showsOverlayView.MoreInfoButton.isHidden = true
+//                    showsOverlayView.playButton.isHidden = false
+                    showsOverlayView.showFlag = false
+                    showsOverlayView.show_Id = String(id)
+                    self.present(showsOverlayView, animated: true, completion: nil)
+//                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
+//                let id = Int(passModel.show_id!)
+//                videoDetailView.show_Id = String(id)
+//    //                videoDetailView.fromCategories = false
+//                self.present(videoDetailView, animated: true, completion: nil)
+            }
+           
+        }
+    
+    }
+    
     func didSelectFilmOfTheDay(passModel: VideoModel?) {
         if let passModel = passModel  {
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController
@@ -673,11 +701,18 @@ extension HomeViewController: HomeTableViewCellDelegate  {
                 self.present(episodeVC, animated: true, completion: nil)
             }
             else{
-                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
-                let id = Int(passModel.show_id!)
-                videoDetailView.show_Id = String(id)
-    //                videoDetailView.fromCategories = false
-                self.present(videoDetailView, animated: true, completion: nil)
+                    let showsOverlayView = self.storyboard?.instantiateViewController(withIdentifier: "ShowsOverlayVC") as! ShowsOverlayViewController
+                    let id = Int(passModel.show_id!)
+//                    showsOverlayView.playButton.isHidden = false
+//                    showsOverlayView.MoreInfoButton.isHidden = true
+                    showsOverlayView.showFlag = true
+                    showsOverlayView.show_Id = String(id)
+                    self.present(showsOverlayView, animated: true, completion: nil)
+//                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
+//                let id = Int(passModel.show_id!)
+//                videoDetailView.show_Id = String(id)
+//    //                videoDetailView.fromCategories = false
+//                self.present(videoDetailView, animated: true, completion: nil)
             }
            
         }
