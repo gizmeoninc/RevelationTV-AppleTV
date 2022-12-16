@@ -56,10 +56,13 @@ class WatchListViewController: UIViewController {
         watchlistTableView.register(UINib(nibName:"CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: CustomHeader.reuseIdentifier)
         watchlistTableView.delegate = self
         watchlistTableView.dataSource = self
-        watchlistTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        watchlistTableView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         watchlistTableView.contentInsetAdjustmentBehavior = .never
-     
+        watchlistTableView.sectionFooterHeight = 0
+        watchlistTableView.separatorInset = .zero
+        watchlistTableView.sectionHeaderHeight = 0
+        watchlistTableView.contentInset = .zero
         reachability.whenUnreachable = { _ in
             commonClass.showAlert(viewController:self, messages: "Network connection lost!")
             print("Not reachable")
@@ -212,11 +215,14 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
             return  dianamicVideos.count
         }
        return 0
-        
     }
 
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if dianamicVideos.count > 0{
+//            return  dianamicVideos.count
+//        }
+//       return 0
         if section == 1 {
             print("section 1",dianamicVideos[section].data!.count)
             return dianamicVideos[section].data!.count
@@ -226,13 +232,18 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       
         if dianamicVideos[indexPath.section].type == "REMINDERS" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReminderTableCell", for: indexPath) as! ReminderListingTableViewCell
+            //            tableView.tableFooterView = UIView(frame: CGRectZero)
+//            let width = UIScreen.main.bounds.width / 4
+//            let height = (width * 9)/16
+//            tableView.rowHeight = height + 60
             cell.scheduleVideos = dianamicVideos[indexPath.section].data
             cell.scheduleItem = cell.scheduleVideos?[indexPath.row]
             cell.delegate = self
-            cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            cell.backgroundColor =
+                .blue
+//            ThemeManager.currentTheme().buttonColorDark
             cell.selectionStyle = .none
             cell.layer.cornerRadius = 8
             return cell
@@ -241,10 +252,11 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableCell", for: indexPath) as! HomeTableViewCell
             cell.selectionStyle = .none
             cell.delegate = self
-            cell.backgroundColor = .clear
+            cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             cell.videoType = "Dianamic"
             let data = dianamicVideos[indexPath.section].data
             cell.TitleLabel.text = "Favourites"
+            cell.moreIconButton.isHidden = true
             cell.TitleLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
             cell.iconImage.image = UIImage(named: "favouritesIcon")
             cell.iconImageWidth.constant = 30
@@ -264,9 +276,9 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if dianamicVideos[indexPath.section].type == "REMINDERS" {
-            let width = UIScreen.main.bounds.width / 3
+            let width = UIScreen.main.bounds.width / 4
             let height = (width * 9)/16
-            return height + 100
+            return height + 80
             
         }
         let width =  UIScreen.main.bounds.width / 4.5
@@ -276,21 +288,29 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
 //      return rowHeight
 
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if dianamicVideos[section].type == "REMINDERS" {
-          return 80
-            
+          return 60
         }
-        return 60
+        return 0
     }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        if dianamicVideos[section].type == "REMINDERS" {
+//          return 10
+//        }
+//        return 10
+//    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+        headerView.contentView.backgroundColor = .red
 
         if dianamicVideos[section].type == "REMINDERS" {
+            headerView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             headerView.customLabel.text =  "Show Library"
             headerView.customLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
+            headerView.customLabel.isHidden = false
             headerView.moreButton.isHidden = true
             headerView.dividerView.isHidden = false
         }

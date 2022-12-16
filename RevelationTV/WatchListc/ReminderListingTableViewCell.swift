@@ -109,21 +109,7 @@ class ReminderListingTableViewCell: UITableViewCell {
             else {
                 self.ImageView.image = UIImage(named: "landscape_placeholder")
             }
-//            if  scheduleItem?.thumbnail != nil {
-//                let image =  scheduleItem?.thumbnail
-//                if image!.starts(with: "https"){
-//                    self.ImageView.sd_setImage(with: URL(string: ((scheduleItem?.thumbnail)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
-//
-//                }
-//                else{
-//                    self.ImageView.sd_setImage(with: URL(string: showUrl + (scheduleItem?.thumbnail!)!),placeholderImage:UIImage(named: "landscape_placeholder"))
-//                    print("gggg",showUrl + (scheduleItem?.thumbnail!)!)
-//                }
-                
-//            }
-//            else {
-//                self.ImageView.image = UIImage(named: "landscape_placeholder")
-//            }
+
             if scheduleItem?.video_title != nil{
                 self.nameLabel.text = scheduleItem?.video_title
             }
@@ -176,11 +162,7 @@ class ReminderListingTableViewCell: UITableViewCell {
         let width =  (UIScreen.main.bounds.width/3)
         self.imageViewWidth.constant = width
         self.imageViewHeight.constant = ((width)*9)/16
-//        self.scheduleItem = scheduleVideos?[indexPath.row]
-//        scheduleCollectionView.register(UINib(nibName: "SheduleListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ScheduleListCollectionCell")
-//        scheduleCollectionView.delegate = self
-//        scheduleCollectionView.dataSource = self
-//        scheduleCollectionView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+
     }
     func convertStringTimeToDate(item: String) -> Date {
         let dateFormatter = DateFormatter()

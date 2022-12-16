@@ -27,7 +27,7 @@ class DayFilterCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 8
-        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderColor = UIColor.clear.cgColor
         self.layer.borderWidth = 2
        
         // Initialization code
@@ -37,7 +37,7 @@ class DayFilterCollectionViewCell: UICollectionViewCell {
             self.backgroundColor = ThemeManager.currentTheme().focusedColor
         }
         else{
-            self.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            self.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
             
         }
     }
