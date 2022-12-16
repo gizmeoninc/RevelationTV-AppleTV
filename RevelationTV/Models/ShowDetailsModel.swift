@@ -24,6 +24,8 @@ struct ShowDetailsModel: Mappable {
     let video_title : String?
     let watchlist_flag : Int?
   var videos :[VideoModel]?
+    var schedule :[ScheduleModel]?
+    var rerun :[ScheduleModel]?
   var metadata : [VideoModel]?
   var categories : [categoriesModel]?
   var languages : [languagesModel]?
@@ -48,6 +50,8 @@ struct ShowDetailsModel: Mappable {
     categories = map.optionalFrom("categories")
     languages = map.optionalFrom("languages")
       watchlist_flag = map.optionalFrom("watchlist_flag")
+      schedule = map.optionalFrom("schedule")
+      rerun = map.optionalFrom("rerun")
 
   }
 }

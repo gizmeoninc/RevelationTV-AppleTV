@@ -71,7 +71,7 @@ class ShowDetailsViewController : UIViewController{
     @IBOutlet weak var episodeHeaderLabel: UILabel!{
         didSet{
             episodeHeaderLabel.text = "Episodes"
-            episodeHeaderLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 30)
+            episodeHeaderLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 30)
             episodeHeaderLabel.textAlignment = .left
             episodeHeaderLabel.numberOfLines = 1
             episodeHeaderLabel.textColor = .white
@@ -93,13 +93,13 @@ class ShowDetailsViewController : UIViewController{
     }
     @IBOutlet weak var watchListButton: UIButton!{
         didSet{
-            watchListButton.setTitle("Add to List", for: .normal)
-            watchListButton.setImage(UIImage(named: "plus-icon"), for: .normal)
+            watchListButton.setTitle("Play", for: .normal)
+            watchListButton.setImage(UIImage(named: "icons8-play-26"), for: .normal)
             watchListButton.backgroundColor = UIColor().colorFromHexString("#010915")
             watchListButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             watchListButton.layer.borderWidth = 3.0
             watchListButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 25)
-            watchListButton.layer.cornerRadius = 30
+            watchListButton.layer.cornerRadius = 8
             watchListButton.titleLabel?.textAlignment = .center
             watchListButton.layer.masksToBounds = true
             watchListButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
@@ -151,6 +151,73 @@ class ShowDetailsViewController : UIViewController{
     }
     
     @IBOutlet weak var videoListingCollectionViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var ScheduleHeaderLabel: UILabel!{
+        didSet{
+            self.ScheduleHeaderLabel.textColor = ThemeManager.currentTheme().headerTextColor
+            self.ScheduleHeaderLabel.font = UIFont.init(name: ThemeManager.currentTheme().fontRegular, size: 30)
+        }
+    }
+    
+    @IBOutlet weak var scheduleTableHeaderLabel: UILabel!{
+        didSet{
+            self.scheduleTableHeaderLabel.textColor = ThemeManager.currentTheme().headerTextColor
+            self.scheduleTableHeaderLabel.font = UIFont.init(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            self.scheduleTableHeaderLabel.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    
+    @IBOutlet weak var rerunTableViewHeaderLabel: UILabel!
+    {
+        didSet{
+            self.rerunTableViewHeaderLabel.textColor = ThemeManager.currentTheme().headerTextColor
+            self.rerunTableViewHeaderLabel.font = UIFont.init(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            self.rerunTableViewHeaderLabel.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    
+    @IBOutlet weak var ScheduleSepearatorView: UIView!
+    
+    @IBOutlet weak var scheduleView: UIView!{
+        didSet{
+            scheduleView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    @IBOutlet weak var scheduleViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var scheduleViewWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var scheduleTableView: UITableView!{
+        didSet{
+            scheduleTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    @IBOutlet weak var rerunView: UIView!{
+        didSet{
+            rerunView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    @IBOutlet weak var rerunViewWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var rerunViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var rerunTableView: UITableView!{
+        didSet{
+            rerunTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    var scheduleArray = [ScheduleModel]()
+    var rerunArray = [ScheduleModel]()
+    
+    
+    
+    
+    
     let reachability = try! Reachability()
     var dianamicVideos = [showByCategoryModel]()
     var menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
@@ -175,9 +242,19 @@ class ShowDetailsViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-     
         
+        // Register Schedule TableView
+        let nibSchedule =  UINib(nibName: "VideoDetailsScheduleTableViewCell", bundle: nil)
+        scheduleTableView.register(nibSchedule, forCellReuseIdentifier: "VideoScheduleTableCell")
+        self.scheduleTableView.delegate = self
+        self.scheduleTableView.dataSource = self
         
+        // Register Rerun TableView
+        let nibRerun =  UINib(nibName: "VideoDetailsScheduleTableViewCell", bundle: nil)
+        rerunTableView.register(nibRerun, forCellReuseIdentifier: "VideoScheduleTableCell")
+        self.rerunTableView.delegate = self
+        self.rerunTableView.dataSource = self
+       
         videoListingCollectionView.register(UINib(nibName: "SearchCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "searchCell")
        let flowlayout = UICollectionViewFlowLayout()
         videoListingCollectionView.dataSource = self
@@ -194,11 +271,14 @@ class ShowDetailsViewController : UIViewController{
         } catch {
             print("Unable to start notifier")
         }
+        let outerViewWidth = UIScreen.main.bounds.width - 100
+       
+        let outerViewHeight = (outerViewWidth * 3) / 8
         let width = UIScreen.main.bounds.width / 3
         let height = (width*9)/16
         self.innerImageViewWidth.constant = width
         self.innerImageViewHeight.constant = height
-        self.metadataViewHeight.constant = height + 100
+        self.metadataViewHeight.constant = outerViewHeight
         self.getShowData()
         
     }
@@ -225,8 +305,26 @@ class ShowDetailsViewController : UIViewController{
         self.setNeedsFocusUpdate()
     }
     
+    override weak var preferredFocusedView: UIView? {
+        return self.watchListButton
+//        if selectCollectionView{
+//            return playButton
+//        }
+//        else{
+//            return menuCollectionView
+//        }
+      
+    }
     override var preferredFocusEnvironments : [UIFocusEnvironment] {
         return [self.watchListButton]
+
+//        if selectCollectionView{
+//            return [playButton]
+//
+//        }
+//        else{
+//            return [menuCollectionView]
+//        }
     }
     let scale = 1.0
 
@@ -288,8 +386,9 @@ class ShowDetailsViewController : UIViewController{
         if self.show_Id != "" {
             var parameterDict: [String: String?] = [ : ]
             parameterDict["show-id"] = show_Id
-            commonClass.startActivityIndicator(onViewController: self);
             ApiCommonClass.getvideoAccordingToShows(parameterDictionary: parameterDict as? Dictionary<String, String>) { (responseDictionary: Dictionary) in
+                commonClass.stopActivityIndicator(onViewController: self)
+
                 if responseDictionary["error"] != nil {
                     DispatchQueue.main.async {
                         commonClass.showAlert(viewController:self, messages: "Server error")
@@ -312,6 +411,51 @@ class ShowDetailsViewController : UIViewController{
                                 self.updateUI()
                                 self.videoListingCollectionView.reloadData()
                                 
+                            }
+                            if let scheduleArrayValue = self.ShowData[0].schedule, let rerunArrayValue = self.ShowData[0].rerun{
+                                self.scheduleArray = scheduleArrayValue
+                                self.rerunArray = rerunArrayValue
+                                if self.rerunArray.count > 0{
+                                    DispatchQueue.main.async {
+                                        self.scheduleTableView.reloadData()
+                                        self.rerunTableView.reloadData()
+                                        let rerunArrayCount =  self.rerunArray.count
+                                        let scheduleArrayCount =  self.scheduleArray.count
+
+                                        if rerunArrayCount >  scheduleArrayCount{
+                                            let headerHeight = 60 * 2
+                                            self.rerunViewHeight.constant = CGFloat(rerunArrayCount*40)  + CGFloat(headerHeight)
+                                            self.scheduleViewHeight.constant = CGFloat(rerunArrayCount*40)  + CGFloat(headerHeight)
+                                            print(" self.rerunViewHeight.constant", self.rerunViewHeight.constant)
+                                        }
+                                        else{
+                                            let headerHeight = 60 * 2
+                                            self.rerunViewHeight.constant = CGFloat(scheduleArrayCount*40)  + CGFloat(headerHeight)
+                                            self.scheduleViewHeight.constant = CGFloat(scheduleArrayCount*40)  + CGFloat(headerHeight)
+                                            print(" self.rerunViewHeight.constant", self.rerunViewHeight.constant)
+                                        }
+                                        
+//                                        print("headerHeight",headerHeight)
+//                                        print("height of schedule view",self.scheduleTableViewHeight.constant)
+                                        
+                                    }
+                                }
+                             
+                                else{
+                                
+                                    self.scheduleViewHeight.constant = 0
+                                    self.rerunViewHeight.constant = 0
+                                    self.ScheduleHeaderLabel.isHidden = true
+                                    self.ScheduleSepearatorView.isHidden = true
+                                     
+                                }
+                               
+                            }
+                            else{
+                                self.scheduleViewHeight.constant = 0
+                                self.rerunViewHeight.constant = 0
+                                self.ScheduleHeaderLabel.isHidden = true
+                                self.ScheduleSepearatorView.isHidden = true
                             }
                             
                         }
@@ -378,7 +522,7 @@ class ShowDetailsViewController : UIViewController{
        
         self.metadataView.isHidden = false
         self.videoListingCollectionView.isHidden = false
-        self.seasonButton.isHidden = false
+        self.seasonButton.isHidden = true
         self.episodeHeaderLabel.isHidden = false
         self.mainViewHeight.constant = metadataViewHeight.constant + videoListingCollectionViewHeight.constant + 200 + 100
     }
@@ -419,8 +563,9 @@ class ShowDetailsViewController : UIViewController{
       }
     }
     
-    
+   
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        
         if self.seasonButton.isFocused{
             seasonButton.backgroundColor = ThemeManager.currentTheme().focusedColor
         }
@@ -501,25 +646,25 @@ extension ShowDetailsViewController:UICollectionViewDelegateFlowLayout,UICollect
         
         return true
     }
-    func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
-        if collectionView == menuCollectionView{
-            if let previouslyFocusedIndexPath = context.previouslyFocusedIndexPath, let cell = collectionView.cellForItem(at: previouslyFocusedIndexPath) {
-                let collectionViewWidth = menuCollectionView.frame.width
-                let cellWidth = cell.frame.width
-                let rowCount = Int(ceil(collectionViewWidth / cellWidth))
-                let remender = previouslyFocusedIndexPath.row % rowCount
-                let nextIndex = previouslyFocusedIndexPath.row - remender + rowCount
-                if let nextFocusedInndexPath = context.nextFocusedIndexPath {
-                    if context.focusHeading == .down {
-                        moveFocus(to: IndexPath(row: nextIndex, section: 0))
-                        return true
-                    }
-                }
-            }
-            return true
-        }
-        return true
-    }
+//    func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
+//        if collectionView == menuCollectionView{
+//            if let previouslyFocusedIndexPath = context.previouslyFocusedIndexPath, let cell = collectionView.cellForItem(at: previouslyFocusedIndexPath) {
+//                let collectionViewWidth = menuCollectionView.frame.width
+//                let cellWidth = cell.frame.width
+//                let rowCount = Int(ceil(collectionViewWidth / cellWidth))
+//                let remender = previouslyFocusedIndexPath.row % rowCount
+//                let nextIndex = previouslyFocusedIndexPath.row - remender + rowCount
+//                if let nextFocusedInndexPath = context.nextFocusedIndexPath {
+//                    if context.focusHeading == .down {
+//                        moveFocus(to: IndexPath(row: nextIndex, section: 0))
+//                        return true
+//                    }
+//                }
+//            }
+//            return true
+//        }
+//        return true
+//    }
 
     private func moveFocus(to indexPath: IndexPath) {
         
@@ -533,7 +678,65 @@ extension ShowDetailsViewController:UICollectionViewDelegateFlowLayout,UICollect
     func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
         return lastFocusedIndexPath
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if collectionView == videoListingCollectionView{
+            if let previousIndexPath = context.previouslyFocusedIndexPath ,
+               let cell = videoListingCollectionView.cellForItem(at: previousIndexPath) {
+                print("previousIndexPath")
+                cell.contentView.layer.borderWidth = 0.0
+                cell.contentView.layer.shadowRadius = 0.0
+                cell.contentView.layer.shadowOpacity = 0
+                if context.focusHeading == .up {
+                    print("up clicked")
+                    self.setNeedsFocusUpdate()
+                    self.updateFocusIfNeeded()
+                }
+                if context.focusHeading == .down {
+                   print("down clicked")
+                }
+            }
+            if let indexPath = context.nextFocusedIndexPath,
+               let cell = videoListingCollectionView.cellForItem(at: indexPath) {
+                print("nextFocusedIndexPath")
+                cell.contentView.layer.borderWidth = 2.0
+                cell.contentView.layer.cornerRadius = 10
+                cell.contentView.layer.borderColor = ThemeManager.currentTheme().viewBackgroundColor.cgColor
+                
+            }
+        }
+        
+        
+        if collectionView == menuCollectionView{
+            if let previousIndexPath = context.previouslyFocusedIndexPath ,
+               let cell = menuCollectionView.cellForItem(at: previousIndexPath) {
+                print(" menu previousIndexPath")
+                cell.contentView.layer.borderWidth = 0.0
+                cell.contentView.layer.shadowRadius = 0.0
+                cell.contentView.layer.shadowOpacity = 0
+                if context.focusHeading == .up {
+                    print("up  menu clicked")
+//                    selectCollectionView = true
+                    
+                    self.setNeedsFocusUpdate()
+                    self.updateFocusIfNeeded()
+                }
+                if context.focusHeading == .down {
+//                    selectCollectionView = false
+                   print("down menu  clicked")
+                }
+            }
+
+            if let indexPath = context.nextFocusedIndexPath,
+               let cell = menuCollectionView.cellForItem(at: indexPath) {
+                print(" menu nextFocusedIndexPath")
+                cell.contentView.layer.borderWidth = 2.0
+                cell.contentView.layer.cornerRadius = 10
+                cell.contentView.layer.borderColor = ThemeManager.currentTheme().viewBackgroundColor.cgColor
+               
+                
+            }
+        }
+    }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == menuCollectionView{
@@ -697,5 +900,90 @@ extension ShowDetailsViewController : PopUpDelegate{
     }
     
    
+    
+}
+extension ShowDetailsViewController: UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate {
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView == scheduleTableView{
+            return 1
+        }
+        return 1
+    }
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      if tableView == scheduleTableView{
+          if scheduleArray.count>0{
+              return scheduleArray.count
+          }
+         return 0
+      }else{
+          if rerunArray.count > 0{
+              return rerunArray.count
+          }
+        return 0
+      }
+     
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      if tableView == scheduleTableView{
+          let cell = tableView.dequeueReusableCell(withIdentifier: "VideoScheduleTableCell", for: indexPath) as! VideoDetailsScheduleTableViewCell
+          if scheduleArray.count > 0{
+              cell.scheduleListArray = scheduleArray[indexPath.row]
+          }
+          cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+          return cell
+      }
+      else{
+          let cell = tableView.dequeueReusableCell(withIdentifier: "VideoScheduleTableCell", for: indexPath) as! VideoDetailsScheduleTableViewCell
+          if rerunArray.count > 0{
+              cell.scheduleListArray = rerunArray[indexPath.row]
+          }
+          cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+          return cell
+      }
+      
+  }
+    
+  
+  public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+      if tableView == scheduleTableView{
+          if scheduleArray.count > 0{
+              return  40
+          }
+          return 0
+      }else{
+          if rerunArray.count > 0 {
+              return  40
+          }
+          return 0
+      }
+      
+  }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+       return 0
+     
+    }
+ 
+        // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = ThemeManager.currentTheme().backgroundColor
+         let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        if tableView == scheduleTableView{
+            label.text = "New Episodes"
+
+        }
+        else{
+            label.text = "Rerun"
+
+        }
+        label.textColor = ThemeManager.currentTheme().headerTextColor
+        label.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 30)
+         headerView.addSubview(label)
+        return headerView
+    }
     
 }

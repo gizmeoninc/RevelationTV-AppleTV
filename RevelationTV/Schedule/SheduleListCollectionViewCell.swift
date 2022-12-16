@@ -51,7 +51,7 @@ class SheduleListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var descriptionLabel: UILabel!{
         didSet{
-            descriptionLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            descriptionLabel.font = UIFont(name: ThemeManager.currentTheme().fontLight, size: 20)
             descriptionLabel.textColor = ThemeManager.currentTheme().descriptionTextColor
             descriptionLabel.numberOfLines = 6
         }
