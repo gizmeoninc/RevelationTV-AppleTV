@@ -48,7 +48,6 @@ class WatchListViewController: UIViewController {
         super.viewDidLoad()
         let nibVideoList =  UINib(nibName: "HomeTableViewCell", bundle: nil)
         watchlistTableView.register(nibVideoList, forCellReuseIdentifier: "HomeTableCell")
-       
         let nibSchedule =  UINib(nibName: "ReminderListingTableViewCell", bundle: nil)
         watchlistTableView.register(nibSchedule, forCellReuseIdentifier: "ReminderTableCell")
         
@@ -212,11 +211,14 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
             return  dianamicVideos.count
         }
        return 0
-        
     }
 
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if dianamicVideos.count > 0{
+//            return  dianamicVideos.count
+//        }
+//       return 0
         if section == 1 {
             print("section 1",dianamicVideos[section].data!.count)
             return dianamicVideos[section].data!.count
@@ -226,13 +228,14 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       
         if dianamicVideos[indexPath.section].type == "REMINDERS" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReminderTableCell", for: indexPath) as! ReminderListingTableViewCell
             cell.scheduleVideos = dianamicVideos[indexPath.section].data
             cell.scheduleItem = cell.scheduleVideos?[indexPath.row]
             cell.delegate = self
-            cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            cell.contentView.backgroundColor =
+                ThemeManager.currentTheme().buttonColorDark
+//            cell.footer
             cell.selectionStyle = .none
             cell.layer.cornerRadius = 8
             return cell
@@ -241,10 +244,11 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableCell", for: indexPath) as! HomeTableViewCell
             cell.selectionStyle = .none
             cell.delegate = self
-            cell.backgroundColor = .clear
+            cell.contentView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             cell.videoType = "Dianamic"
             let data = dianamicVideos[indexPath.section].data
             cell.TitleLabel.text = "Favourites"
+            cell.moreIconButton.isHidden = true
             cell.TitleLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
             cell.iconImage.image = UIImage(named: "favouritesIcon")
             cell.iconImageWidth.constant = 30
@@ -264,9 +268,9 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if dianamicVideos[indexPath.section].type == "REMINDERS" {
-            let width = UIScreen.main.bounds.width / 3
+            let width = UIScreen.main.bounds.width / 4
             let height = (width * 9)/16
-            return height + 100
+            return height + 80
             
         }
         let width =  UIScreen.main.bounds.width / 4.5
@@ -274,23 +278,30 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
         
       return height + 90
 //      return rowHeight
-
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if dianamicVideos[section].type == "REMINDERS" {
-          return 80
-            
+          return 60
         }
-        return 60
+        return 0
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        if dianamicVideos[section].type == "REMINDERS" {
+//          return 60
+//        }
+        return 0
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
 
         if dianamicVideos[section].type == "REMINDERS" {
+            headerView.contentView.backgroundColor =
+            ThemeManager.currentTheme().buttonColorDark
             headerView.customLabel.text =  "Show Library"
             headerView.customLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
+            headerView.customLabel.isHidden = false
             headerView.moreButton.isHidden = true
             headerView.dividerView.isHidden = false
         }
@@ -302,12 +313,38 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
         }
 
 
-
         return headerView
     }
 
 }
 extension WatchListViewController: HomeTableViewCellDelegate  {
+    func didSelectDianamicVideosEpisode(passModel: VideoModel?) {
+            if let passModel = passModel  {
+                
+                if passModel.video_id != nil{
+                    let episodeVC =  self.storyboard?.instantiateViewController(withIdentifier: "EpisodeDetailsVC") as! EpisodeViewController
+                    let id = Int(passModel.video_id!)
+                    episodeVC.video_Id = String(id)
+                    self.present(episodeVC, animated: true, completion: nil)
+                }
+                else{
+                        let showsOverlayView = self.storyboard?.instantiateViewController(withIdentifier: "ShowsOverlayVC") as! ShowsOverlayViewController
+                        let id = Int(passModel.show_id!)
+    //                    showsOverlayView.MoreInfoButton.isHidden = true
+    //                    showsOverlayView.playButton.isHidden = false
+                        showsOverlayView.showFlag = false
+                        showsOverlayView.show_Id = String(id)
+                        self.present(showsOverlayView, animated: true, completion: nil)
+    //                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
+    //                let id = Int(passModel.show_id!)
+    //                videoDetailView.show_Id = String(id)
+    //    //                videoDetailView.fromCategories = false
+    //                self.present(videoDetailView, animated: true, completion: nil)               
+            }
+        
+        }
+    }
+    
     func didSelectFilmOfTheDay(passModel: VideoModel?) {
         if let passModel = passModel  {
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController

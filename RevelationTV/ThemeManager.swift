@@ -60,9 +60,9 @@ enum Theme: Int {
     var fontLight: String {
       return "Helvetica-Light"
     }
-//    var fontDefault: String {
-//        return "ITCAvantGardePro-Bk"
-//    }
+    var fontDefault: String {
+        return "ITCAvantGardePro-Bk"
+    }
   var secondaryColor: UIColor {
     switch self {
     case .theme1:

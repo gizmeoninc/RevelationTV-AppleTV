@@ -595,7 +595,6 @@ extension ShowDetailsViewController:UICollectionViewDelegateFlowLayout,UICollect
             return cell
         }
         else{
-            
                 let cell: SearchCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as! SearchCollectionCell
                 cell.backgroundColor = .clear
                 cell.imageView.layer.masksToBounds = true

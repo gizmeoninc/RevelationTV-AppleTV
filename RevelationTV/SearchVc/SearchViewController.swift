@@ -244,7 +244,10 @@ extension HomeSearchViewController: UITableViewDataSource, UITableViewDelegate,U
   
 }
 extension HomeSearchViewController: HomeTableViewCellDelegate  {
-    
+    func didSelectDianamicVideosEpisode(passModel: VideoModel?) {
+        
+    }
+
     
     func didSelectDianamicVideos(passModel: VideoModel?) {
         if let passModel = passModel  {
