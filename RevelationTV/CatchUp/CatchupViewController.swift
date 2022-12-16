@@ -68,6 +68,74 @@ class CatchupViewController: UIViewController {
     @IBOutlet weak var videoListingTableView: UITableView!
     
     @IBOutlet weak var videoListingTableViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var metaDataView: UIView!{
+        didSet{
+            metaDataView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        }
+    }
+    
+    @IBOutlet weak var metaDataViewWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var metaDataViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var seperatorLine: UIView!{
+        didSet{
+            seperatorLine.backgroundColor = ThemeManager.currentTheme().headerTextColor
+        }
+    }
+    @IBOutlet weak var nowPlayingTimeLabel: UILabel!{
+        didSet{
+            nowPlayingTimeLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            nowPlayingTimeLabel.textColor = ThemeManager.currentTheme().headerTextColor
+        }
+    }
+    
+    @IBOutlet weak var imageViewLive: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!{
+    
+        didSet{
+            timeLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)
+            timeLabel.textColor = ThemeManager.currentTheme().buttonTextColor
+        }
+    }
+    @IBOutlet weak var nowPlayingTitle: UILabel!{
+        didSet{
+            nowPlayingTitle.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
+            nowPlayingTitle.textColor = ThemeManager.currentTheme().headerTextColor
+        }
+    }
+    
+    @IBOutlet weak var nowPlayingDescription: UILabel!{
+        didSet{
+            nowPlayingDescription.font = UIFont(name: ThemeManager.currentTheme().fontLight, size: 20)
+            nowPlayingDescription.textColor = ThemeManager.currentTheme().descriptionTextColor
+            nowPlayingDescription.numberOfLines = 6
+        }
+    }
+    
+    @IBOutlet weak var demandButton: UIButton!{
+    didSet{
+        demandButton.setTitle("On Demand", for: .normal)
+        demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+        demandButton.layer.borderColor = ThemeManager.currentTheme().buttonTextColor.cgColor
+        demandButton.layer.borderWidth = 3.0
+        demandButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 20)
+        demandButton.layer.cornerRadius = 10
+        demandButton.titleLabel?.textAlignment = .center
+        demandButton.titleLabel?.textColor = UIColor.white
+        demandButton.layer.masksToBounds = true
+       
+    }
+}
+    @IBOutlet weak var timeImage: UIImageView!
+    
+    @IBOutlet weak var videoImageHeight: NSLayoutConstraint!
+    @IBOutlet weak var videoImageViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
+    
     fileprivate let rowHeight = UIScreen.main.bounds.height * 0.3
 
     var catchupVideoArray = [VideoModel?]()
@@ -78,25 +146,38 @@ class CatchupViewController: UIViewController {
     var videoUrl = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nibVideoLIst =  UINib(nibName: "CatchupTableViewCell", bundle: nil)
-        videoListingTableView.register(nibVideoLIst, forCellReuseIdentifier: "catchUpTableCell")
+        let nibVideoLIst =  UINib(nibName: "ReminderListingTableViewCell", bundle: nil)
+        videoListingTableView.register(nibVideoLIst, forCellReuseIdentifier: "ReminderTableCell")
         videoListingTableView.delegate = self
         videoListingTableView.dataSource = self
         videoListingTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         videoListingTableView.contentInsetAdjustmentBehavior = .never
+        videoListingTableView.contentInset = .zero
+        videoListingTableView.separatorInset = .zero
         filterCollectionView.register(UINib(nibName: "DayFilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "dayFilterCollectionCell")
         filterCollectionView.delegate = self
         filterCollectionView.dataSource = self
         filterCollectionView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         
         filterCollectionViewHeight.constant = 120
-        let width = UIScreen.main.bounds.width - 100
-        let height = (9*width)/16 - 200
-        playerViewHeight.constant = height
-        view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-        self.getCatchUpList()
-        
        
+        
+        
+        
+        
+        let width = UIScreen.main.bounds.width - 100
+        self.videoImageViewWidth.constant = width - (width/3)
+         let height = (self.videoImageViewWidth.constant*9)/16
+        self.playerViewHeight.constant = height
+        self.videoImageHeight.constant = height
+        self.metaDataViewWidth.constant = width / 3
+        self.metaDataViewHeight.constant =  height
+        self.imageViewWidth.constant = self.metaDataViewWidth.constant/2
+        self.imageViewHeight.constant = (imageViewWidth.constant * 9)/16
+        view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        getWeekDays()
+        self.getLiveChannel()
+
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
             swipeRight.direction = .right
             self.view.addGestureRecognizer(swipeRight)
@@ -199,10 +280,91 @@ class CatchupViewController: UIViewController {
 //            return [menuCollectionView]
 //        }
     }
+    var allLiveVideos : [VideoModel]?
+    var todayFeaturedVideos : [VideoModel]?
+    var scheduleVideos : [VideoModel]?
+    var selectedIndex = 0
+    var selectedFilter = 0
+    var selectedDateArrayIndex = 0
+    var selectedDateStringIndex = 0
+    var dayArray = [String?]()
+    var dateArray = [Date?]()
+    var liveVideos = [VideoModel]()
+
+    func getLiveChannel() {
+        print("getLiveGuide")
+        commonClass.startActivityIndicator(onViewController: self)
+
+        ApiCommonClass.getAllChannels { (responseDictionary: Dictionary) in
+            if responseDictionary["error"] != nil {
+                DispatchQueue.main.async {
+                    DispatchQueue.main.async {
+                        commonClass.stopActivityIndicator(onViewController: self)
+
+//                        self.getLiveGuide()
+                    }
+                }
+            } else {
+                self.liveVideos.removeAll()
+                if let videos = responseDictionary["data"] as? [VideoModel]? {
+                    self.liveVideos = videos!
+                    if self.liveVideos.count == 0 {
+                        self.imageViewLive.image = UIImage(named: "landscape_placeholder")
+                    }else{
+                        self.setupNowPlayingView()
+                    }
+                }
+                self.getCatchUpList()
+            }
+        }
+    }
+    func setupNowPlayingView(){
+        if let nowplayingVideoArray = liveVideos[0].now_playing{
+            if nowplayingVideoArray.video_title != nil{
+                self.nowPlayingTitle.text = nowplayingVideoArray.video_title
+            }else{
+                self.nowPlayingTitle.text = ""
+            }
+            if nowplayingVideoArray.video_description != nil{
+                self.nowPlayingDescription.text = nowplayingVideoArray.video_description
+            }else{
+                self.nowPlayingDescription.text = ""
+            }
+            let formatter = DateFormatter()
+              formatter.timeZone = TimeZone.current
+              formatter.dateFormat = "h:mm a"
+              formatter.amSymbol = "AM"
+              formatter.pmSymbol = "PM"
+            if  let startTime = nowplayingVideoArray.start_time {
+                let startTimeConverted = self.convertStringTimeToDate(item: startTime)
+                let timeStart = formatter.string(from: startTimeConverted)
+                self.nowPlayingTimeLabel.text = timeStart
+                
+            }else{
+                self.nowPlayingTimeLabel.text = ""
+            }
+            if  nowplayingVideoArray.thumbnail_350_200 != nil {
+                let image =  nowplayingVideoArray.thumbnail_350_200
+                if image!.starts(with: "https"){
+                    self.imageViewLive.sd_setImage(with: URL(string: ((nowplayingVideoArray.thumbnail_350_200)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                    
+                }
+                else{
+                    self.imageViewLive.sd_setImage(with: URL(string: showUrl + (nowplayingVideoArray.thumbnail_350_200!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                }
+                
+            }
+            else {
+                self.imageViewLive.image = UIImage(named: "landscape_placeholder")
+            }
+            
+        }
+        
+    }
     func getCatchUpList(){
         var parameterDict: [String: String?] = [ : ]
         commonClass.startActivityIndicator(onViewController: self)
-        ApiCommonClass.getCactchUpList { (responseDictionary: Dictionary) in
+        ApiCommonClass.getLiveGuide { (responseDictionary: Dictionary) in
             if responseDictionary["error"] != nil {
                 DispatchQueue.main.async {
                     self.videoListingTableView.isHidden = true
@@ -211,8 +373,9 @@ class CatchupViewController: UIViewController {
                     self.mainView.isHidden = false
                 }
             } else {
-                self.catchupFilterArray.removeAll()
-                if let data = responseDictionary["data"] as? [showByCategoryModel]{
+                self.scheduleVideos?.removeAll()
+                  self.allLiveVideos?.removeAll()
+                if let data = responseDictionary["data"] as? [VideoModel]{
                     if data.count == 0{
                         DispatchQueue.main.async {
                             commonClass.showAlert(viewController:self, messages: "No Result Found")
@@ -222,59 +385,72 @@ class CatchupViewController: UIViewController {
                         }
                     }
                     else{
-                        
-                        self.catchupFilterArray.append(contentsOf: data)
-                        if data[0].data?.count != 0{
-                            self.catchupVideoArray.append(contentsOf: data[0].data!)
-                            if let video = self.catchupVideoArray[0]{
-                                
-                                                           }
-                            DispatchQueue.main.async {
-                                let width = (UIScreen.main.bounds.width) - 30//some width
-                                let height =   (self.catchupVideoArray.count * ((9 * Int(width)) / 16)) + 140
-                                let spaceHeight = (self.catchupVideoArray.count * 25)
-                                self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
-                             
-                               self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
-                                self.videoListingTableView.reloadData()
-                                self.filterCollectionView.reloadData()
-                                commonClass.stopActivityIndicator(onViewController: self)
-                                self.videoListingTableView.isHidden = false
-                                self.videoUrl = (self.catchupVideoArray[0]?.url)!
-
-                            }
-                            self.mainView.isHidden = false
+                        DispatchQueue.main.async {
+                            //                                self.getListByFilterDay(date: self.dateArray[self.selectedDateArrayIndex]!, dateString: self.dayArray[self.selectedDateArrayIndex]!)
+                            self.scheduleVideos = data
+                            self.allLiveVideos = data
+                            self.videoListingTableView.reloadData()
+                            commonClass.stopActivityIndicator(onViewController: self)
+                            let width = (UIScreen.main.bounds.width) - 30//some width
+                            let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
+                            let spaceHeight = (self.scheduleVideos!.count * 25)
+                            self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
+                            self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
                         }
-                        else{
-                            DispatchQueue.main.async {
-                                
-                                self.videoListingTableViewHeight.constant = 0
-                             
-                               self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
-                                self.videoListingTableView.reloadData()
-                                self.filterCollectionView.reloadData()
-                                commonClass.stopActivityIndicator(onViewController: self)
-                                self.videoListingTableView.isHidden = false
-                            }
-                            self.mainView.isHidden = false
-                        }
-                       
-                     
-                        
-                    }
-                    
-                }
-                else{
-                    DispatchQueue.main.async {
-                        commonClass.showAlert(viewController:self, messages: "No Result Found")
-                        commonClass.stopActivityIndicator(onViewController: self)
-                        self.videoListingTableView.isHidden = true
                         self.mainView.isHidden = false
-                       
                     }
                 }
             }
+            }
         }
+    
+    func getWeekDays(){
+        var calendar = Calendar.autoupdatingCurrent
+        let today = calendar.startOfDay(for: Date())
+        var days = [Date]()
+        for i in 0...6 {
+            if let day = calendar.date(byAdding: .day, value: i, to: today) {
+                days += [day]
+            }
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE"
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
+        for date in days {
+            print(formatter.string(from: date))
+            if date == today{
+                self.dayArray.append("Today")
+                let formattedDate = dateFormatter.string(from: date)
+                let covertedDate  = dateFormatter.date(from: formattedDate)
+                self.dateArray.append(covertedDate)
+                
+            }
+            else{
+                self.dayArray.append(formatter.string(from: date))
+                let formattedDate = dateFormatter.string(from: date)
+                let covertedDate = self.convertStringTimeToDate(item:formattedDate)
+                self.dateArray.append(covertedDate)
+            }
+            
+        }
+        if self.dayArray.count != 0{
+            DispatchQueue.main.async {
+                self.filterCollectionView.reloadData()
+                //                self.getLiveGuide()
+            }
+        }
+        
+        print(days)
+    }
+    
+    func convertStringTimeToDate(item: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
+        let date = dateFormatter.date(from:item)!
+        return date
     }
     func skipLogin() {
       let deviceID =  UserDefaults.standard.string(forKey:"UDID")!
@@ -335,25 +511,25 @@ extension CatchupViewController: UITableViewDataSource, UITableViewDelegate,UISc
         return false
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        if catchupVideoArray.count > 0{
-            return catchupVideoArray.count
-        }
-        return 0
+        return scheduleVideos?.count ?? 0
         
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if scheduleVideos!.count > 0{
+            return scheduleVideos!.count
+        }
         return 1
         
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "catchUpTableCell", for: indexPath) as! CatchupTableViewCell
-            cell.liveGuideArray = catchupVideoArray[indexPath.section]
-            cell.delegate = self
-            cell.selectionStyle = .none
-            cell.layer.cornerRadius = 8
-            cell.remindMeButton.isHidden = true
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReminderTableCell", for: indexPath) as! ReminderListingTableViewCell
+        cell.scheduleItem =  scheduleVideos?[indexPath.row]
+//        cell.delegate = self
+        cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        cell.selectionStyle = .none
+        cell.layer.cornerRadius = 8
             return cell
         
     }
@@ -386,8 +562,8 @@ extension CatchupViewController: UITableViewDataSource, UITableViewDelegate,UISc
 extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == filterCollectionView{
-            if catchupFilterArray.count > 0{
-                return catchupFilterArray.count
+            if dayArray.count > 0{
+                return dayArray.count
             }
             return 0
         }
@@ -398,7 +574,6 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        
         return true
     }
     func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
@@ -410,6 +585,7 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
             let nextIndex = previouslyFocusedIndexPath.row - remender + rowCount
             if let nextFocusedInndexPath = context.nextFocusedIndexPath {
                 if context.focusHeading == .down {
+                    print("focus move")
                     moveFocus(to: IndexPath(row: nextIndex, section: 0))
                     return true
                 }
@@ -427,9 +603,15 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
                 cell.contentView.layer.shadowRadius = 0.0
                 cell.contentView.layer.shadowOpacity = 0
                 if context.focusHeading == .up {
+                    print("up clicked")
                     selectCollectionView = true
+                    
                     self.setNeedsFocusUpdate()
                     self.updateFocusIfNeeded()
+                }
+                if context.focusHeading == .down {
+                    selectCollectionView = false
+                   print("down clicked")
                 }
             }
 
@@ -437,8 +619,8 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
                let cell = filterCollectionView.cellForItem(at: indexPath) {
                 print("nextFocusedIndexPath")
                 cell.contentView.layer.borderWidth = 2.0
-                cell.contentView.layer.cornerRadius = 25
-                cell.contentView.layer.borderColor = UIColor.white.cgColor
+                cell.contentView.layer.cornerRadius = 10
+                cell.contentView.layer.borderColor = ThemeManager.currentTheme().viewBackgroundColor.cgColor
                 selectCollectionView = false
                 
             }
@@ -505,7 +687,7 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
 //            let indexpathItem = IndexPath(row: 0, section: 0)
             mainScrollView.setContentOffset(videoListingTableView.frame.origin, animated: true)
 //            videoListingTableView.scrollToRow(at:indexpathItem, at: .top, animated: true)
-            videoListingTableView.reloadData()
+//            videoListingTableView.reloadData()
              self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + playerViewHeight.constant
           
         }
@@ -514,10 +696,10 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == filterCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayFilterCollectionCell", for: indexPath as IndexPath) as! DayFilterCollectionViewCell
-            cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-            cell.layer.cornerRadius = 25
+            cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            cell.layer.cornerRadius = 10
             cell.layer.masksToBounds = true
-        cell.dayItem = catchupFilterArray[indexPath.row].key
+            cell.dayItem = dayArray[indexPath.row]
             return cell
         }
         else{
@@ -535,7 +717,7 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
         }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == filterCollectionView{
-            return CGSize(width: 250, height: 50)
+            return CGSize(width: 230, height: 60)
         }
         return CGSize(width: 150, height: 80)
         

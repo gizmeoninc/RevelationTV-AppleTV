@@ -141,7 +141,6 @@ class CatchupVideoPlayer: UIViewController,IMAAdsLoaderDelegate ,IMAAdsManagerDe
         ])
         subTitleLabel.isHidden = true
       
-        generateToken()
     }
     @objc func menuButtonAction() {
         print("menu pressed")

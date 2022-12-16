@@ -55,10 +55,10 @@ enum Theme: Int {
         return "Helvetica-Bold"
     }
     var fontRegular: String {
-      return "Helvetica"
+      return "ITCAvantGardePro-Bk"
     }
     var fontLight: String {
-      return "Helvetica-Light"
+      return "Montserrat-Light"
     }
     var fontDefault: String {
         return "ITCAvantGardePro-Bk"
@@ -110,7 +110,7 @@ enum Theme: Int {
     }
     
     var descriptionTextColor: UIColor {
-        return UIColor().colorFromHexString("#E3E3E3")
+        return UIColor().colorFromHexString("#F8F8F8")
     }
     var headerTextColor: UIColor {
         return UIColor().colorFromHexString("#FBFBFB")

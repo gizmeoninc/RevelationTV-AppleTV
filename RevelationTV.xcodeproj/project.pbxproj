@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0332928B294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03329289294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.swift */; };
+		0332928C294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0332928A294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.xib */; };
+		0332928E294B1A7600A13030 /* ChannelHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332928D294B1A7600A13030 /* ChannelHeader.swift */; };
+		03329291294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332928F294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.swift */; };
+		03329292294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03329290294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib */; };
 		0380EAC22926640B0083978E /* ReminderListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EAC02926640B0083978E /* ReminderListingTableViewCell.swift */; };
 		0380EAC32926640B0083978E /* ReminderListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0380EAC12926640B0083978E /* ReminderListingTableViewCell.xib */; };
 		03D2E58D291EB38B00391DC9 /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2E58C291EB38B00391DC9 /* EpisodeViewController.swift */; };
@@ -132,6 +137,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03329289294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailsScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		0332928A294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailsScheduleTableViewCell.xib; sourceTree = "<group>"; };
+		0332928D294B1A7600A13030 /* ChannelHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeader.swift; sourceTree = "<group>"; };
+		0332928F294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailsScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		03329290294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailsScheduleCollectionViewCell.xib; sourceTree = "<group>"; };
 		0380EAC02926640B0083978E /* ReminderListingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListingTableViewCell.swift; sourceTree = "<group>"; };
 		0380EAC12926640B0083978E /* ReminderListingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderListingTableViewCell.xib; sourceTree = "<group>"; };
 		03D2E58C291EB38B00391DC9 /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
@@ -554,6 +564,11 @@
 			children = (
 				9B7F44E3291CB3E8008FECF2 /* ShowDetailsViewController.swift */,
 				03D2E58C291EB38B00391DC9 /* EpisodeViewController.swift */,
+				03329289294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.swift */,
+				0332928A294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.xib */,
+				0332928D294B1A7600A13030 /* ChannelHeader.swift */,
+				0332928F294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.swift */,
+				03329290294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib */,
 			);
 			path = "Show Details";
 			sourceTree = "<group>";
@@ -724,6 +739,7 @@
 				871FD6D92935DF12003E5366 /* OnDemandCollectionViewCell.xib in Resources */,
 				0380EAC32926640B0083978E /* ReminderListingTableViewCell.xib in Resources */,
 				9B240718258CC91A004D2BA3 /* CategoryTableView.xib in Resources */,
+				0332928C294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.xib in Resources */,
 				8798B41A293485B80000098C /* TopBannerCollectionViewCell.xib in Resources */,
 				878D1B15292F765F00B0BE1F /* Pods-RevelationTV.release.xcconfig in Resources */,
 				9B7546A126DDF9BD007BCD4B /* BannerCollectionViewCell.xib in Resources */,
@@ -731,6 +747,7 @@
 				9B7F5327291A78F80022D34B /* CatchupTableViewCell.xib in Resources */,
 				9BA3DC58291101B600637136 /* DemandTableViewCell.xib in Resources */,
 				9B520E21258891280035F0B0 /* SearchCollectionViewCell.xib in Resources */,
+				03329292294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib in Resources */,
 				8798B41829347DB80000098C /* TopBannerTableViewCell.xib in Resources */,
 				9B7EE1EE2912409000168B42 /* SheduleListCollectionViewCell.xib in Resources */,
 				9BD2B13D23506709005B71EF /* CommonTableViewCell.xib in Resources */,
@@ -808,6 +825,7 @@
 				9B7EE1F12912ADF600168B42 /* DayFilterCollectionViewCell.swift in Sources */,
 				9B8D5626235477300033EFD6 /* SplashViewController.swift in Sources */,
 				9BB3266926D76874003C60A0 /* HomeTableViewCell.swift in Sources */,
+				03329291294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.swift in Sources */,
 				9B240712258CAD93004D2BA3 /* CategoryViewController.swift in Sources */,
 				9B5C909B2590762200FE345D /* CategoryListingViewController.swift in Sources */,
 				9B20C91E25A4D11E000AD1E4 /* NetworkManager.swift in Sources */,
@@ -871,6 +889,7 @@
 				87990A3A22E96D4E005B3A3A /* ApiCommonClass.swift in Sources */,
 				9B02BC4D231EA39F00A3590F /* SecondViewController.swift in Sources */,
 				9B011D2425CD1BC8000CD3C6 /* NewLoginViewController.swift in Sources */,
+				0332928E294B1A7600A13030 /* ChannelHeader.swift in Sources */,
 				9B477D192598EFC6006DD4CD /* videoPlayingController.swift in Sources */,
 				9B94295325873208004AE114 /* UserSession.swift in Sources */,
 				8798B41629347D8C0000098C /* TopBannerTableViewCell.swift in Sources */,
@@ -891,6 +910,7 @@
 				9B79E57C231FDC63005611E3 /* CustomFlowLayout.swift in Sources */,
 				9BA226E4236177E500E2171A /* VideoPlayerViewController.swift in Sources */,
 				9B335E9B23558C69001B9486 /* CommonClass.swift in Sources */,
+				0332928B294B1A0C00A13030 /* VideoDetailsScheduleTableViewCell.swift in Sources */,
 				9B5C90A12590976000FE345D /* LogoutViewController.swift in Sources */,
 				9B02BC4F231EA3B800A3590F /* HomeViewController.swift in Sources */,
 			);

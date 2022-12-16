@@ -197,7 +197,7 @@ struct nowPlaying: Mappable {
     var end_time : String?
     var thumbnail : String?
     var video_description : String?
-
+    var thumbnail_350_200 : String?
 
   init(map: Mapper) throws {
     video_title  = map.optionalFrom("video_title")
@@ -205,6 +205,7 @@ struct nowPlaying: Mappable {
     start_time = map.optionalFrom("start_time")
     end_time = map.optionalFrom("end_time")
       video_description = map.optionalFrom("video_description")
+      thumbnail_350_200 = map.optionalFrom("thumbnail_350_200")
 
   }
 }
@@ -288,4 +289,13 @@ struct LiveGuideModel:Mappable {
         
 //       ad_link = map.optionalFrom("ad_link")
     }
+}
+struct ScheduleModel : Mappable {
+  var weekday : String?
+  var times : [String]?
+
+  init(map: Mapper) throws {
+      weekday = map.optionalFrom("weekday")
+      times = map.optionalFrom("times")
+  }
 }
