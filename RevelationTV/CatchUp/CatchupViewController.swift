@@ -79,6 +79,12 @@ class CatchupViewController: UIViewController {
     
     @IBOutlet weak var metaDataViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var nowPlayingHeaderLabel: UILabel!{
+        didSet{
+            nowPlayingHeaderLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            nowPlayingHeaderLabel.textColor = ThemeManager.currentTheme().headerTextColor
+        }
+    }
     @IBOutlet weak var seperatorLine: UIView!{
         didSet{
             seperatorLine.backgroundColor = ThemeManager.currentTheme().headerTextColor
@@ -86,19 +92,13 @@ class CatchupViewController: UIViewController {
     }
     @IBOutlet weak var nowPlayingTimeLabel: UILabel!{
         didSet{
-            nowPlayingTimeLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            nowPlayingTimeLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)
             nowPlayingTimeLabel.textColor = ThemeManager.currentTheme().headerTextColor
         }
     }
     
     @IBOutlet weak var imageViewLive: UIImageView!
-    @IBOutlet weak var timeLabel: UILabel!{
-    
-        didSet{
-            timeLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)
-            timeLabel.textColor = ThemeManager.currentTheme().buttonTextColor
-        }
-    }
+   
     @IBOutlet weak var nowPlayingTitle: UILabel!{
         didSet{
             nowPlayingTitle.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)

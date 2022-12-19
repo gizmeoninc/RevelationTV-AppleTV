@@ -372,6 +372,8 @@ extension DemandViewController: HomeTableViewCellDelegate  {
 
                         showsOverlayView.showFlag = false
                         showsOverlayView.show_Id = String(id)
+                    showsOverlayView.modalPresentationStyle = .custom
+                    showsOverlayView.modalTransitionStyle = .crossDissolve
                         self.present(showsOverlayView, animated: true, completion: nil)
             }
         
@@ -436,6 +438,8 @@ extension DemandViewController: HomeTableViewCellDelegate  {
                     let id = Int(passModel.show_id!)
                     showsOverlayView.showFlag = true
                     showsOverlayView.show_Id = String(id)
+                showsOverlayView.modalPresentationStyle = .custom
+                showsOverlayView.modalTransitionStyle = .crossDissolve
                     self.present(showsOverlayView, animated: true, completion: nil)
             }
            

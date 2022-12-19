@@ -244,7 +244,7 @@ class CatchupVideoPlayer: UIViewController,IMAAdsLoaderDelegate ,IMAAdsManagerDe
             subtitleSelection.subtileOn = self
 
             self.dummyarray.append(dummyList!)
-            subtitleSelection.languages = dummyarray + self.subtitleListArray
+//            subtitleSelection.languages = dummyarray + self.subtitleListArray
             subtitleSelection.selectedRow = self.selectedIndex
             playerViewController.customInfoViewController = subtitleSelection
 

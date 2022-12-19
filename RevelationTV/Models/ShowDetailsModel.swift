@@ -23,6 +23,7 @@ struct ShowDetailsModel: Mappable {
     let thumbnail_350_200 : String?
     let video_title : String?
     let watchlist_flag : Int?
+    let logo_thumb : String?
   var videos :[VideoModel]?
     var schedule :[ScheduleModel]?
     var rerun :[ScheduleModel]?
@@ -44,7 +45,9 @@ struct ShowDetailsModel: Mappable {
     director = map.optionalFrom("director")
     show_cast = map.optionalFrom("show_cast")
     premium_flag = map.optionalFrom("premium_flag")
+      logo_thumb = map.optionalFrom("logo_thumb")
 
+      
     metadata = map.optionalFrom("metadata")
     videos = map.optionalFrom("videos")
     categories = map.optionalFrom("categories")
