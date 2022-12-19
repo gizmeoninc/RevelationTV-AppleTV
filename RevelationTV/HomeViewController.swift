@@ -79,7 +79,8 @@ var menuArray = [String]()
         HomeTableView.register(nibSchedule, forCellReuseIdentifier: "ScheduleListTableCell")
         HomeTableView.delegate = self
         HomeTableView.dataSource = self
-        HomeTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        HomeTableView.backgroundColor =
+        ThemeManager.currentTheme().buttonColorDark
         view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         HomeTableView.contentInsetAdjustmentBehavior = .never
         reachability.whenUnreachable = { _ in
@@ -400,10 +401,12 @@ var menuArray = [String]()
         return [menuCollectionView]
     }
     @IBAction func moreButtonClicked(_ sender: Any) {
-        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController
-        videoDetailView.videoItem = filmVideos[0]
-            videoDetailView.fromCategories = false
-        self.present(videoDetailView, animated: true, completion: nil)
+//        delegate.didSelectMoreInfo(passModel: fetauredItem)
+        
+//        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController
+//        videoDetailView.videoItem = filmVideos[0]
+//            videoDetailView.fromCategories = false
+//        self.present(videoDetailView, animated: true, completion: nil)
     }
     
     func skipLogin() {
@@ -475,6 +478,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
 //                        cell.delegate = self
                         cell.selectionStyle = .none
                         cell.layer.cornerRadius = 8
+                cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
                         return cell
         }
        
@@ -518,6 +522,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             cell.delegate = self
             cell.backgroundColor = .clear
             cell.videoType = "Dianamic"
+            cell.iconImage.isHidden = false
+            cell.moreIconButton.isHidden = false
+            cell.TitleLabel.isHidden = false
             cell.videoArray = dianamicVideos[indexPath.section].shows
             cell.TitleLabel.text = dianamicVideos[indexPath.section].category_name
             cell.TitleLabel.textColor = .white
@@ -547,16 +554,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if dianamicVideos[indexPath.section].type == "TOP_BANNERS" {
-            let width =  UIScreen.main.bounds.width / 4.5
-            let height = (9 * width) / 32
-            return height
+            let width =  UIScreen.main.bounds.width / 2.63736
+            let height = (9 * width) / 64
+            print("height",height)
+            return height - 12.375
         }
         else if dianamicVideos[indexPath.section].type == "FEATURED" {
 //            let height = (UIScreen.main.bounds.height - ((UIScreen.main.bounds.height)/3))
 //            return height + 40
             let width =  UIScreen.main.bounds.width / 4.5
             let height = (9 * width) / 16 + 35
-            return height + 90
+            return height + 75
         }
         else if dianamicVideos[indexPath.section].type == "LIVE" {
             let width = UIScreen.main.bounds.width
@@ -572,7 +580,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
         let width =  UIScreen.main.bounds.width / 4.5
         let height = (9 * width) / 16 + 35
         
-      return height + 90
+      return height + 75
 
     }
     
@@ -631,7 +639,6 @@ extension HomeViewController: HomeTableViewCellDelegate  {
             else{
                     let showsOverlayView = self.storyboard?.instantiateViewController(withIdentifier: "ShowsOverlayVC") as! ShowsOverlayViewController
                     let id = Int(passModel.show_id!)
-
                     showsOverlayView.showFlag = false
                     showsOverlayView.show_Id = String(id)
                 showsOverlayView.modalPresentationStyle = .custom
@@ -704,6 +711,8 @@ extension HomeViewController: HomeTableViewCellDelegate  {
             else{
                     let showsOverlayView = self.storyboard?.instantiateViewController(withIdentifier: "ShowsOverlayVC") as! ShowsOverlayViewController
                     let id = Int(passModel.show_id!)
+                showsOverlayView.modalPresentationStyle = .custom
+                showsOverlayView.modalTransitionStyle = .crossDissolve
 //                    showsOverlayView.playButton.isHidden = false
 //                    showsOverlayView.MoreInfoButton.isHidden = true
                     showsOverlayView.showFlag = true

@@ -37,6 +37,7 @@ class ShowsOverlayViewController:UIViewController {
         didSet{
             backButton.setImage(UIImage(named: "back Icon"), for: .normal)
             backButton.tintColor = UIColor.white
+            backButton.isHidden = true
         }
     }
     
@@ -65,6 +66,7 @@ class ShowsOverlayViewController:UIViewController {
         didSet{
             iconImage.contentMode = .scaleToFill
             iconImage.tintColor = ThemeManager.currentTheme().buttonTextColor
+            iconImage.isHidden = true
         }
     }
     
@@ -87,6 +89,7 @@ class ShowsOverlayViewController:UIViewController {
         didSet{
             favouritesIcon.tintColor = UIColor.white
             favouritesIcon.setImage(UIImage(named: "favouritesIcon"), for: .normal)
+            favouritesIcon.isHidden = true
         }
     }
     
@@ -141,6 +144,7 @@ class ShowsOverlayViewController:UIViewController {
 
     @IBOutlet weak var MoreInfoButton: UIButton!{
         didSet{
+            MoreInfoButton.isHidden = true
             MoreInfoButton.setTitle("More Info", for: .normal)
             MoreInfoButton.setImage(UIImage(named: "plus-icon"), for: .normal)
             MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
@@ -357,6 +361,10 @@ class ShowsOverlayViewController:UIViewController {
                  self.favouritesIcon.setImage(UIImage(named: "favouritesIcon"), for: .normal)
              }
          }
+        self.favouritesIcon.isHidden = false
+        self.backButton.isHidden = false
+        self.iconImage.isHidden = false
+        self.MoreInfoButton.isHidden = false
          
 //         var spaceHeight = CGFloat()
 //         let width = (videoListingCollectionView.bounds.width)/4
@@ -438,6 +446,20 @@ class ShowsOverlayViewController:UIViewController {
                 MoreInfoButton.layer.borderColor = ThemeManager.currentTheme().buttonTextColor.cgColor
                 MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().headerTextColor
                 MoreInfoButton.tintColor = ThemeManager.currentTheme().headerTextColor
+            }
+        }
+        else if MoreInfoButton.isFocused{
+            if showFlag == true{
+                MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                MoreInfoButton.layer.borderColor = ThemeManager.currentTheme().focusedColor.cgColor
+                MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().focusedColor
+                MoreInfoButton.tintColor = ThemeManager.currentTheme().focusedColor
+            }
+            else{
+                MoreInfoButton.backgroundColor = ThemeManager.currentTheme().headerTextColor
+                MoreInfoButton.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
+                MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().ButtonBorderColor
+                MoreInfoButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
             }
         }
         else{

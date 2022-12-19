@@ -20,6 +20,7 @@ class TopBannerTableViewCell: UITableViewCell,UICollectionViewDelegateFlowLayout
     @IBOutlet weak var topBannerCollectionViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var topBannerCollectionViewWidth: NSLayoutConstraint!
+    
     weak var delegate: TopBannerTableViewCellDelegate!
     
     var channelType = ""
@@ -45,6 +46,10 @@ class TopBannerTableViewCell: UITableViewCell,UICollectionViewDelegateFlowLayout
         topBannerCollectionView.delegate = self
         topBannerCollectionView.backgroundColor = ThemeManager.currentTheme().newBackgrondColor
         featuredVideos = []
+        let width  = UIScreen.main.bounds.width
+        let widthBanner =  UIScreen.main.bounds.width / 2.63736
+        let height = (9 * widthBanner) / 64
+        self.topBannerCollectionViewWidth.constant = widthBanner + 2
 //        mainCollectionView.isPagingEnabled = true
 //        startTimer()
     }
@@ -65,9 +70,12 @@ func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection s
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         let width  = UIScreen.main.bounds.width
-        let widthBanner =  UIScreen.main.bounds.width / 2.424
-        let height = (9 * widthBanner) / 16
-            return CGSize(width: widthBanner, height: height)
+        print("width",width)
+        let widthBanner =  UIScreen.main.bounds.width / 2.63736
+        print("widthbanner",widthBanner)
+        let height = (9 * widthBanner) / 64
+        print("height",height)
+        return CGSize(width: widthBanner + 2, height: height - 12.375)
     }
 
 func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,8 +97,6 @@ func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath:
             cell.topBannerImageView.image = UIImage(named: "landscape_placeholder")
         }
     }
-//  self.pageControl.numberOfPages = featuredVideos!.count
-//      self.pageControl.currentPage = indexPath.row
   let width = (UIScreen.main.bounds.width - 2)//some width
   let  height = (45 * width) / 364
     

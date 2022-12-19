@@ -46,6 +46,14 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
         }
     }
     
+    @IBAction func moreIconButtonAction(_ sender: Any) {
+//        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController
+//        videoDetailView.videoItem = filmVideos[0]
+//            videoDetailView.fromCategories = false
+//        self.present(videoDetailView, animated: true, completion: nil)
+
+    }
+
     @IBOutlet weak var rightArrowIcon: UIImageView!{
         didSet{
             rightArrowIcon.tintColor = .red
@@ -303,7 +311,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
             let width =  (UIScreen.main.bounds.width/4.5)
 //            let height = (9 * width) / 16 + 30
             let height = ((width) * 9)/16
-            return CGSize(width: width - 60, height: height + 30)
+            return CGSize(width: width - 60, height: height + 38)
 //            let width = (2 *  bounds.height - cellOffset) / 3
 //            let itemSize = CGSize(width: width, height: bounds.height - cellOffset)
 //            return CGSize(width: width, height: bounds.height)

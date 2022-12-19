@@ -1254,7 +1254,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iF-SS-KFw">
-                                <rect key="frame" x="316" y="180" width="231" height="31"/>
+                                <rect key="frame" x="316" y="180" width="248" height="31"/>
                                 <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1270,7 +1270,7 @@
                                 <rect key="frame" x="297" y="220" width="1327" height="725"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register to Revelation TV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsm-Qm-GEf">
-                                        <rect key="frame" x="100" y="80.5" width="272" height="25"/>
+                                        <rect key="frame" x="100" y="80.5" width="286" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="zZO-5K-MA6"/>
                                         </constraints>
@@ -3422,7 +3422,7 @@ Just Watch Me
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC4-Qe-BQe">
-                                <rect key="frame" x="50" y="180" width="1820" height="900"/>
+                                <rect key="frame" x="50" y="66" width="1820" height="1014"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <sections/>
                             </tableView>
@@ -3522,6 +3522,13 @@ Just Watch Me
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="top" constant="10" id="qHO-Iw-YJQ"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-RE-2cc" userLabel="dividerView">
+                                <rect key="frame" x="126" y="100" width="1668" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Hcr-xL-UNb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -3529,9 +3536,12 @@ Just Watch Me
                             <constraint firstItem="AZc-2d-E3c" firstAttribute="top" secondItem="kGG-bI-VjZ" secondAttribute="top" id="LL5-gT-yXQ"/>
                             <constraint firstAttribute="bottom" secondItem="RC4-Qe-BQe" secondAttribute="bottom" id="LZZ-Xh-yuS"/>
                             <constraint firstItem="AZc-2d-E3c" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leading" id="Ovb-rv-VMd"/>
+                            <constraint firstItem="b9S-RE-2cc" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leadingMargin" constant="30" id="aEF-yA-t5p"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="b9S-RE-2cc" secondAttribute="trailing" constant="30" id="ssn-J5-ttF"/>
+                            <constraint firstItem="b9S-RE-2cc" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="bottom" id="vYj-ic-fRq"/>
                             <constraint firstItem="RC4-Qe-BQe" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leading" constant="50" id="x4q-ZG-ZDT"/>
                             <constraint firstAttribute="trailing" secondItem="AZc-2d-E3c" secondAttribute="trailing" id="z8C-yQ-mW1"/>
-                            <constraint firstItem="RC4-Qe-BQe" firstAttribute="top" secondItem="HzP-B5-hD9" secondAttribute="bottom" constant="120" id="zjv-qz-Ojq"/>
+                            <constraint firstItem="RC4-Qe-BQe" firstAttribute="top" secondItem="HzP-B5-hD9" secondAttribute="bottom" constant="6" id="zjv-qz-Ojq"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Now Showing" image="HomeTabBarOne" id="IO8-R2-hGI"/>
@@ -4489,7 +4499,7 @@ Just Watch Me
         <image name="Profile_icon.png" width="70" height="70"/>
         <image name="TVExcelSchedule" width="50" height="50"/>
         <image name="TVExcelSearchImage" width="30" height="30"/>
-        <image name="TVExcelSearchImage-1" width="30" height="30"/>
+        <image name="TVExcelSearchImage-1" width="29" height="29"/>
         <image name="app_logo" width="288" height="61"/>
         <image name="back Icon" width="37" height="36"/>
         <image name="bg" width="1920" height="1080"/>

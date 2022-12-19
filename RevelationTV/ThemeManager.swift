@@ -32,7 +32,7 @@ enum Theme: Int {
   }
     
   var focusedColor: UIColor {
-    return UIColor().colorFromHexString("#E72A31")
+    return UIColor().colorFromHexString("#ef2002")
   }
     var backgroundColor: UIColor {
       return UIColor().colorFromHexString("#011E4E")

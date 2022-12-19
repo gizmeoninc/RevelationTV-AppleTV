@@ -12,7 +12,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var menuLabel: UILabel!{
         didSet{
             menuLabel.textColor = .white
-            menuLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            menuLabel.font = UIFont(name: ThemeManager.currentTheme().fontDefault, size: 25)
         }
     }
     var menuItem: String? {
