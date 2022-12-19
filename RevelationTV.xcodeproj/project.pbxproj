@@ -14,6 +14,7 @@
 		03329292294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03329290294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib */; };
 		0380EAC22926640B0083978E /* ReminderListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380EAC02926640B0083978E /* ReminderListingTableViewCell.swift */; };
 		0380EAC32926640B0083978E /* ReminderListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0380EAC12926640B0083978E /* ReminderListingTableViewCell.xib */; };
+		03C61E1F294C403B0043571E /* ShowsOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C61E1E294C403B0043571E /* ShowsOverlayViewController.swift */; };
 		03D2E58D291EB38B00391DC9 /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2E58C291EB38B00391DC9 /* EpisodeViewController.swift */; };
 		03E550362922055B00418EFB /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E550352922055B00418EFB /* CustomHeader.xib */; };
 		03E550382922056B00418EFB /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E550372922056B00418EFB /* CustomHeader.swift */; };
@@ -144,6 +145,7 @@
 		03329290294B1B0B00A13030 /* VideoDetailsScheduleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailsScheduleCollectionViewCell.xib; sourceTree = "<group>"; };
 		0380EAC02926640B0083978E /* ReminderListingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListingTableViewCell.swift; sourceTree = "<group>"; };
 		0380EAC12926640B0083978E /* ReminderListingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderListingTableViewCell.xib; sourceTree = "<group>"; };
+		03C61E1E294C403B0043571E /* ShowsOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsOverlayViewController.swift; sourceTree = "<group>"; };
 		03D2E58C291EB38B00391DC9 /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		03E550352922055B00418EFB /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
 		03E550372922056B00418EFB /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
@@ -284,6 +286,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03C61E1D294C40270043571E /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				03C61E1E294C403B0043571E /* ShowsOverlayViewController.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
 		03E550342922053900418EFB /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +393,7 @@
 		87D939C522E6D3E20085BB05 /* RevelationTV */ = {
 			isa = PBXGroup;
 			children = (
+				03C61E1D294C40270043571E /* Overlay */,
 				87A4F9D82934E92400FA550A /* Fonts */,
 				8798B41429347D720000098C /* Top Banner */,
 				03E550342922053900418EFB /* Header */,
@@ -846,6 +857,7 @@
 				9B58604B25D1A60F00F73DE5 /* LivePlayingViewController.swift in Sources */,
 				9B520E332588D1300035F0B0 /* SearchCollectionCell.swift in Sources */,
 				9BB732EB291B6CCB000A658D /* LiveTabViewController.swift in Sources */,
+				03C61E1F294C403B0043571E /* ShowsOverlayViewController.swift in Sources */,
 				871FD6D52935DE87003E5366 /* OnDemandCollectionViewCell.swift in Sources */,
 				9B4BD62A25B84066008DB812 /* UserActivationViewController.swift in Sources */,
 				9B7546A326DDFA36007BCD4B /* BannerCollectionViewCell.swift in Sources */,

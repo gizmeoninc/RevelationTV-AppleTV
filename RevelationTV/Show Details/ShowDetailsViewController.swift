@@ -50,24 +50,6 @@ class ShowDetailsViewController : UIViewController{
             mainView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         }
     }
-    @IBOutlet weak var metadataView: UIView!{
-        didSet{
-            metadataView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-            metadataView.isHidden = true
-        }
-    }
-    @IBOutlet weak var outerImageView: UIImageView!{
-        didSet{
-//            outerImageView.contentMode = .scaleToFill
-        }
-    }
-    @IBOutlet weak var innerImageView: UIImageView!{
-        didSet{
-            innerImageView.contentMode = .scaleToFill
-            innerImageView.layer.cornerRadius = 20
-            innerImageView.layer.masksToBounds = true
-        }
-    }
     @IBOutlet weak var episodeHeaderLabel: UILabel!{
         didSet{
             episodeHeaderLabel.text = "Episodes"
@@ -79,42 +61,12 @@ class ShowDetailsViewController : UIViewController{
         }
     }
     
-    @IBOutlet weak var showNameLabel: UILabel!{
-        didSet{
-            showNameLabel.font =  UIFont(name: ThemeManager.currentTheme().fontBold, size: 35)
-
-        }
-    }
-    @IBOutlet weak var showDescriptionLabel: UILabel!{
-        didSet{
-            showDescriptionLabel.font =  UIFont(name: ThemeManager.currentTheme().fontRegular, size: 25)
-
-        }
-    }
-    @IBOutlet weak var watchListButton: UIButton!{
-        didSet{
-            watchListButton.setTitle("Play", for: .normal)
-            watchListButton.setImage(UIImage(named: "icons8-play-26"), for: .normal)
-            watchListButton.backgroundColor = UIColor().colorFromHexString("#010915")
-            watchListButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
-            watchListButton.layer.borderWidth = 3.0
-            watchListButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 25)
-            watchListButton.layer.cornerRadius = 8
-            watchListButton.titleLabel?.textAlignment = .center
-            watchListButton.layer.masksToBounds = true
-            watchListButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            watchListButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            watchListButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            watchListButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50)
-        }
-    }
+    @IBOutlet weak var scheduleHeaderlabelHeight: NSLayoutConstraint!
     
     @IBOutlet weak var seasonButtonWidth: NSLayoutConstraint!
     @IBOutlet weak var seasonButtonHeight: NSLayoutConstraint!
-    @IBOutlet weak var metadataViewHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var innerImageViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var innerImageViewWidth: NSLayoutConstraint!
+   
     @IBOutlet weak var seasonButton: UIButton!{
     didSet{
         seasonButton.setTitle("Season", for: .normal)
@@ -138,11 +90,7 @@ class ShowDetailsViewController : UIViewController{
 }
 
     
-    @IBOutlet weak var gradientView: UIView!{
-        didSet{
-            gradientView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        }
-    }
+   
     @IBOutlet weak var videoListingCollectionView: UICollectionView!{
         didSet{
             videoListingCollectionView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
@@ -211,6 +159,16 @@ class ShowDetailsViewController : UIViewController{
             rerunTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         }
     }
+    
+    @IBOutlet weak var metaDataTableView: UITableView!{
+        didSet{
+            metaDataTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    @IBOutlet weak var metaDataTableViewHeight: NSLayoutConstraint!
+    
+    
     var scheduleArray = [ScheduleModel]()
     var rerunArray = [ScheduleModel]()
     
@@ -243,11 +201,19 @@ class ShowDetailsViewController : UIViewController{
         super.viewDidLoad()
         self.view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         
+       
+        // Register metadata TableView
+        let nibMetadata =  UINib(nibName: "DemandTableViewCell", bundle: nil)
+        metaDataTableView.register(nibMetadata, forCellReuseIdentifier: "DemandTableCell")
+        self.metaDataTableView.delegate = self
+        self.metaDataTableView.dataSource = self
+        self.metaDataTableView.sectionFooterHeight = 0
         // Register Schedule TableView
         let nibSchedule =  UINib(nibName: "VideoDetailsScheduleTableViewCell", bundle: nil)
         scheduleTableView.register(nibSchedule, forCellReuseIdentifier: "VideoScheduleTableCell")
         self.scheduleTableView.delegate = self
         self.scheduleTableView.dataSource = self
+        
         
         // Register Rerun TableView
         let nibRerun =  UINib(nibName: "VideoDetailsScheduleTableViewCell", bundle: nil)
@@ -271,14 +237,7 @@ class ShowDetailsViewController : UIViewController{
         } catch {
             print("Unable to start notifier")
         }
-        let outerViewWidth = UIScreen.main.bounds.width - 100
-       
-        let outerViewHeight = (outerViewWidth * 3) / 8
-        let width = UIScreen.main.bounds.width / 3
-        let height = (width*9)/16
-        self.innerImageViewWidth.constant = width
-        self.innerImageViewHeight.constant = height
-        self.metadataViewHeight.constant = outerViewHeight
+        
         self.getShowData()
         
     }
@@ -306,25 +265,11 @@ class ShowDetailsViewController : UIViewController{
     }
     
     override weak var preferredFocusedView: UIView? {
-        return self.watchListButton
-//        if selectCollectionView{
-//            return playButton
-//        }
-//        else{
-//            return menuCollectionView
-//        }
+        return menuCollectionView
       
     }
     override var preferredFocusEnvironments : [UIFocusEnvironment] {
-        return [self.watchListButton]
-
-//        if selectCollectionView{
-//            return [playButton]
-//
-//        }
-//        else{
-//            return [menuCollectionView]
-//        }
+        return [menuCollectionView]
     }
     let scale = 1.0
 
@@ -342,27 +287,7 @@ class ShowDetailsViewController : UIViewController{
         print("click")
     }
     
-    @IBAction func watchListAction(_ sender: Any) {
-        if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
-            self.present(videoDetailView, animated: false, completion: nil)
-
-        }else{
-            if !watchVideo {
-              self.watchVideo = true
-              self.watchListShow()
-                self.watchListButton.setImage(UIImage(named: ""), for: .normal)
-                self.watchListButton.setTitle("Remove from list", for: .normal)
-            } else {
-              self.watchVideo = false
-              self.watchListShow()
-                self.watchListButton.setImage(UIImage(named: "plus-icon"), for: .normal)
-                self.watchListButton.setTitle("Add to list", for: .normal)
-
-            }
-        }
-       
-    }
+   
     
     @IBAction func seasonButtonAction(_ sender: Any) {
         let seasonName = self.ShowData[0].show_name
@@ -434,19 +359,16 @@ class ShowDetailsViewController : UIViewController{
                                             self.scheduleViewHeight.constant = CGFloat(scheduleArrayCount*40)  + CGFloat(headerHeight)
                                             print(" self.rerunViewHeight.constant", self.rerunViewHeight.constant)
                                         }
-                                        
-//                                        print("headerHeight",headerHeight)
-//                                        print("height of schedule view",self.scheduleTableViewHeight.constant)
-                                        
                                     }
                                 }
-                             
                                 else{
-                                
                                     self.scheduleViewHeight.constant = 0
                                     self.rerunViewHeight.constant = 0
                                     self.ScheduleHeaderLabel.isHidden = true
                                     self.ScheduleSepearatorView.isHidden = true
+                                    self.seasonButtonHeight.constant = 0
+                                    self.scheduleHeaderlabelHeight.constant = 0
+
                                      
                                 }
                                
@@ -456,6 +378,9 @@ class ShowDetailsViewController : UIViewController{
                                 self.rerunViewHeight.constant = 0
                                 self.ScheduleHeaderLabel.isHidden = true
                                 self.ScheduleSepearatorView.isHidden = true
+                                self.seasonButtonHeight.constant = 0
+                                self.scheduleHeaderlabelHeight.constant = 0
+
                             }
                             
                         }
@@ -468,41 +393,8 @@ class ShowDetailsViewController : UIViewController{
     var watchVideo = false
     var watchFlagModel = [LikeWatchListModel]()
     func updateUI(){
-       if self.showVideoList[0].videos![0].thumbnail_350_200 != nil{
-            print("didSelectShowVideos",URL(string: imageUrl + (showVideoList[0].videos![0].thumbnail_350_200)!))
-            self.outerImageView.sd_setImage(with: URL(string: imageUrl + (showVideoList[0].videos![0].thumbnail_350_200)!),placeholderImage:UIImage(named: "lightGrey"))
-           self.innerImageView.sd_setImage(with: URL(string: imageUrl + (showVideoList[0].videos![0].thumbnail_350_200)!),placeholderImage:UIImage(named: "lightGrey"))
-        }
-        if self.ShowData[0].show_name != nil{
-            self.showNameLabel.text = ShowData[0].show_name
-            let text = ShowData[0].show_name
-            let font =  UIFont(name: "Helvetica", size: 25)
-            let fontAttributes = [NSAttributedString.Key.font: font]
-            let size = (text! as NSString).size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
-            self.seasonButtonWidth.constant = size.width + 200
-            
-            let heightOfLabel = size.height + 40
-            self.seasonButtonHeight.constant = heightOfLabel
-            self.seasonButton.setTitle(ShowData[0].show_name, for: .normal)
-        }
-        if ShowData[0].synopsis != nil{
-            self.showDescriptionLabel.text = ShowData[0].synopsis
-        }
-        
-        if let watch_flag = self.ShowData[0].watchlist_flag {
-            if watch_flag == 1 {
-             self.watchVideo = true
-                self.watchListButton.setTitle("Remove from list", for: .normal)
-                self.watchListButton.setImage(UIImage(named: ""), for: .normal)
-
-            } else {
-             self.watchVideo = false
-                self.watchListButton.setTitle("Add to list", for: .normal)
-                self.watchListButton.setImage(UIImage(named: "plus-icon"), for: .normal)
-
-            }
-        }
-        
+      
+      
         var spaceHeight = CGFloat()
         let width = (videoListingCollectionView.bounds.width)/4
         let height = (((width-30) * 9)/16) + 30
@@ -519,62 +411,27 @@ class ShowDetailsViewController : UIViewController{
             spaceHeight = CGFloat(((showVideoList[0].videos!.count / 4) + 1) * 40)
             videoListingCollectionViewHeight.constant = (CGFloat((showVideoList[0].videos!.count / 4) + 1) * height) + spaceHeight
         }
-       
-        self.metadataView.isHidden = false
         self.videoListingCollectionView.isHidden = false
         self.seasonButton.isHidden = true
         self.episodeHeaderLabel.isHidden = false
-        self.mainViewHeight.constant = metadataViewHeight.constant + videoListingCollectionViewHeight.constant + 200 + 100
-    }
-    func watchListShow() {
-      var parameterDict: [String: String?] = [ : ]
-      parameterDict["show-id"] = String(self.show_Id)
-      parameterDict["country_code"] = UserDefaults.standard.string(forKey:"countryCode")
-      parameterDict["device_type"] = "ios-phone"
-      parameterDict["pubid"] = UserDefaults.standard.string(forKey:"pubid")
-      if watchVideo {
-        parameterDict["watchlistflag"] = "1"
-        parameterDict["deletestatus"] = "0"
-      } else {
-        parameterDict["watchlistflag"] = "0"
-        parameterDict["deletestatus"] = "1"
-      }
+        let outerViewWidthNew = UIScreen.main.bounds.width - 400
+        let outerViewHeightNew = (outerViewWidthNew * 3) / 8
+        self.metaDataTableViewHeight.constant =  outerViewHeightNew + 180
+        self.mainViewHeight.constant = metaDataTableViewHeight.constant + videoListingCollectionViewHeight.constant + scheduleViewHeight.constant + 100 + 200 + 100
+        DispatchQueue.main.async {
+            self.metaDataTableView.reloadData()
 
-      parameterDict["userId"] = String(UserDefaults.standard.integer(forKey: "user_id"))
-      ApiCommonClass.WatchlistShows(parameterDictionary: parameterDict as? Dictionary<String, String>) { (responseDictionary: Dictionary) in
-        if responseDictionary["error"] != nil {
-          DispatchQueue.main.async {
-            self.watchVideo = !self.watchVideo
-          }
-        } else {
-          DispatchQueue.main.async {
-            if self.watchVideo  {
-                self.watchListButton.setTitle("Remove from list", for: .normal)
-                self.watchListButton.setImage(UIImage(named: ""), for: .normal)
-
-            } else {
-                self.watchListButton.setTitle("Add to list", for: .normal)
-                self.watchListButton.setImage(UIImage(named: "plus-icon"), for: .normal)
-
-
-            }
-          }
         }
-      }
     }
     
-   
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         
         if self.seasonButton.isFocused{
             seasonButton.backgroundColor = ThemeManager.currentTheme().focusedColor
         }
-        else  if self.watchListButton.isFocused{
-            watchListButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-        }
+       
         else{
             seasonButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-            watchListButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
 
         }
         if accountButton.isFocused {
@@ -686,14 +543,7 @@ extension ShowDetailsViewController:UICollectionViewDelegateFlowLayout,UICollect
                 cell.contentView.layer.borderWidth = 0.0
                 cell.contentView.layer.shadowRadius = 0.0
                 cell.contentView.layer.shadowOpacity = 0
-                if context.focusHeading == .up {
-                    print("up clicked")
-                    self.setNeedsFocusUpdate()
-                    self.updateFocusIfNeeded()
-                }
-                if context.focusHeading == .down {
-                   print("down clicked")
-                }
+                
             }
             if let indexPath = context.nextFocusedIndexPath,
                let cell = videoListingCollectionView.cellForItem(at: indexPath) {
@@ -906,13 +756,19 @@ extension ShowDetailsViewController: UITableViewDataSource, UITableViewDelegate,
         return false
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        if tableView == scheduleTableView{
+        if tableView == metaDataTableView{
+            return self.showVideoList.count
+        }
+        else if tableView == scheduleTableView{
             return 1
         }
         return 1
     }
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      if tableView == scheduleTableView{
+      if tableView == metaDataTableView{
+          return 1
+      }
+      else if tableView == scheduleTableView{
           if scheduleArray.count>0{
               return scheduleArray.count
           }
@@ -927,7 +783,16 @@ extension ShowDetailsViewController: UITableViewDataSource, UITableViewDelegate,
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      if tableView == scheduleTableView{
+      if tableView == metaDataTableView{
+          let cell = tableView.dequeueReusableCell(withIdentifier: "DemandTableCell", for: indexPath) as! DemandTableViewCell
+          cell.selectionStyle = .none
+          cell.layer.cornerRadius = 8
+          cell.delegate = self
+          cell.videoType = "ShowDetails"
+          cell.showVideos = ShowData
+          return cell
+      }
+     else if tableView == scheduleTableView{
           let cell = tableView.dequeueReusableCell(withIdentifier: "VideoScheduleTableCell", for: indexPath) as! VideoDetailsScheduleTableViewCell
           if scheduleArray.count > 0{
               cell.scheduleListArray = scheduleArray[indexPath.row]
@@ -948,7 +813,14 @@ extension ShowDetailsViewController: UITableViewDataSource, UITableViewDelegate,
     
   
   public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      if tableView == scheduleTableView{
+      if tableView == metaDataTableView{
+              let outerViewWidthNew = UIScreen.main.bounds.width - 400
+              let outerViewHeightNew = (outerViewWidthNew * 3) / 8
+              self.metaDataTableViewHeight.constant =  outerViewHeightNew + 130
+              return  outerViewHeightNew + 130
+        
+      }
+     else  if tableView == scheduleTableView{
           if scheduleArray.count > 0{
               return  40
           }
@@ -965,7 +837,9 @@ extension ShowDetailsViewController: UITableViewDataSource, UITableViewDelegate,
        return 0
      
     }
- 
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
         // Make the background color show through
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
@@ -984,5 +858,20 @@ extension ShowDetailsViewController: UITableViewDataSource, UITableViewDelegate,
          headerView.addSubview(label)
         return headerView
     }
+    
+}
+extension ShowDetailsViewController:DemandTableViewCellDelegate{
+    func didSelectWatchlist(passModel: VideoModel?) {
+        
+    }
+    
+    func didSelectPlayIcon(passModel: VideoModel?) {
+        
+    }
+    
+    func didSelectMoreInfo(passModel: VideoModel?) {
+        
+    }
+    
     
 }

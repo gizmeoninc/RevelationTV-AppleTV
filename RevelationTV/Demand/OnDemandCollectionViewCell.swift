@@ -24,6 +24,7 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    @IBOutlet weak var outerImageHeight: NSLayoutConstraint!
     @IBOutlet weak var innerImageViewWidth: NSLayoutConstraint!
     
     @IBOutlet weak var innerImageViewHeight: NSLayoutConstraint!
@@ -115,10 +116,13 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-//        let width = (UIScreen.main.bounds.width/3)
-//        let height = (width*9)/16
-//        innerImageViewHeight.constant = height
-//        innerImageViewWidth.constant = width
+        let width = (UIScreen.main.bounds.width/3)
+        let height = (width*9)/16
+        innerImageViewHeight.constant = height
+        innerImageViewWidth.constant = width
+        let outerWidth = UIScreen.main.bounds.width - 400
+        let outerHeight = (outerWidth * 3 / 8) 
+        outerImageHeight.constant = outerHeight
         // self.layoutIfNeeded()
     }
     
@@ -136,12 +140,19 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
     var fetauredItem: VideoModel? {
         didSet{
             if fetauredItem?.logo_thumb != nil {
-                self.outerImageView.sd_setImage(with: URL(string: ((fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
-                self.innerImageView.sd_setImage(with: URL(string: ((fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
-            } else {
+                self.outerImageView.sd_setImage(with: URL(string: ( imageUrl + (fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                self.innerImageView.sd_setImage(with: URL(string: (imageUrl + (fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                
+            }
+            else if  fetauredItem?.thumbnail_350_200 != nil{
+                self.outerImageView.sd_setImage(with: URL(string: imageUrl + (fetauredItem?.thumbnail_350_200)!),placeholderImage:UIImage(named: "landscape_placeholder"))
+                self.innerImageView.sd_setImage(with: URL(string: (  imageUrl + ( fetauredItem?.thumbnail_350_200)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+             }
+            else {
                 self.outerImageView.image = UIImage(named: "landscape_placeholder")
                 self.innerImageView.image = UIImage(named: "landscape_placeholder")
             }
+            
             if fetauredItem?.show_name != nil{
                 self.showTitleLabel.text = fetauredItem?.show_name
             }
@@ -151,6 +162,37 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
             
                if self.once {
                    if let video = self.fetauredItem{
+//                      watchFlag()
+               }
+            }
+        }
+    }
+    
+    var showItem: ShowDetailsModel? {
+        didSet{
+            if showItem?.logo_thumb != nil {
+                self.outerImageView.sd_setImage(with: URL(string: ( imageUrl + (showItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                self.innerImageView.sd_setImage(with: URL(string: (imageUrl + (showItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                
+            }
+            else if  showItem?.thumbnail_350_200 != nil{
+                self.outerImageView.sd_setImage(with: URL(string: imageUrl + (showItem?.thumbnail_350_200)!),placeholderImage:UIImage(named: "landscape_placeholder"))
+                self.innerImageView.sd_setImage(with: URL(string: (  imageUrl + ( showItem?.thumbnail_350_200)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+             }
+            else {
+                self.outerImageView.image = UIImage(named: "landscape_placeholder")
+                self.innerImageView.image = UIImage(named: "landscape_placeholder")
+            }
+            
+            if showItem?.show_name != nil{
+                self.showTitleLabel.text = showItem?.show_name
+            }
+            if showItem?.synopsis != nil{
+                self.showDescriptionLabel.text = showItem?.synopsis
+            }
+            
+               if self.once {
+                   if let video = self.showItem{
 //                      watchFlag()
                }
             }

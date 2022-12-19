@@ -708,6 +708,8 @@ extension HomeViewController: HomeTableViewCellDelegate  {
 //                    showsOverlayView.MoreInfoButton.isHidden = true
                     showsOverlayView.showFlag = true
                     showsOverlayView.show_Id = String(id)
+                showsOverlayView.modalPresentationStyle = .custom
+                showsOverlayView.modalTransitionStyle = .crossDissolve
                     self.present(showsOverlayView, animated: true, completion: nil)
 //                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
 //                let id = Int(passModel.show_id!)
