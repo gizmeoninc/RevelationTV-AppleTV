@@ -13,6 +13,10 @@ class TopBannerCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var topBannerImageView: UIImageView!
     
+    @IBOutlet weak var topBannerWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var topBannerHeight: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

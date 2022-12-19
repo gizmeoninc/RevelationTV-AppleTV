@@ -27,8 +27,9 @@ class PopularCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var videoImageView: UIImageView!{
         didSet {
-               videoImageView.layer.cornerRadius = 16
-             videoImageView.layer.masksToBounds = true
+               videoImageView.layer.cornerRadius = 10
+                videoImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+                videoImageView.layer.masksToBounds = true
         }
     }
     @IBOutlet weak var moreButton: UIButton!{
@@ -50,6 +51,7 @@ class PopularCollectionViewCell: UICollectionViewCell {
             liveLabel.layer.masksToBounds = true
         }
     }
+    
     @IBOutlet weak var timeLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

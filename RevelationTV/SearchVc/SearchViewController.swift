@@ -209,10 +209,12 @@ extension HomeSearchViewController: UITableViewDataSource, UITableViewDelegate,U
             cell.delegate = self
             cell.backgroundColor = .clear
         cell.videoType = "Dianamic"
+        cell.iconImage.isHidden = true
+        cell.TitleLabel.isHidden = false
+        cell.TitleLabel.text = searchArray[indexPath.section].category_name
+        cell.moreIconButton.isHidden = true
         cell.videoArray = searchArray[indexPath.section].shows
             return cell
-        
-       
         
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -220,27 +222,31 @@ extension HomeSearchViewController: UITableViewDataSource, UITableViewDelegate,U
         
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      
-      return rowHeight
+        
+        let width =  UIScreen.main.bounds.width / 4.5
+        let height = (9 * width) / 16 + 35
+        
+      return height + 75
+//      return rowHeight
 
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = UIView()
-        let titleLabel = UILabel()
-        titleLabel.textColor = ThemeManager.currentTheme().headerTextColor
-        titleLabel.textAlignment = .left
-        titleLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 40)
-                titleLabel.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: (rowHeight) * 0.2 - 20).integral
-        titleLabel.text =  searchArray[section].category_name
-        headerView.backgroundColor = .clear
-        headerView.addSubview(titleLabel)
-        return headerView
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let headerView = UIView()
+//        let titleLabel = UILabel()
+//        titleLabel.textColor = ThemeManager.currentTheme().headerTextColor
+//        titleLabel.textAlignment = .left
+//        titleLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 40)
+//                titleLabel.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: (rowHeight) * 0.2 - 20).integral
+//        titleLabel.text = searchArray[section].category_name
+//        headerView.backgroundColor = .clear
+//        headerView.addSubview(titleLabel)
+//        return headerView
+//    }
   
 }
 extension HomeSearchViewController: HomeTableViewCellDelegate  {
