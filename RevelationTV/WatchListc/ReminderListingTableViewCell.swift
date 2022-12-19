@@ -147,8 +147,8 @@ class ReminderListingTableViewCell: UITableViewCell {
                 watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                 watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                 watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-                watchlistButton.imageEdgeInsets = UIEdgeInsets(top: -15, left: -30, bottom: -15, right: 0)
-                self.watchlistButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -50, bottom: 0, right: -40)
+                watchlistButton.imageEdgeInsets = UIEdgeInsets(top: -15, left: -17, bottom: -15, right: 0)
+                self.watchlistButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -35, bottom: 0, right: -40)
             }
             else{
                 addReminder = false
@@ -171,8 +171,9 @@ class ReminderListingTableViewCell: UITableViewCell {
         // Initialization code
         self.mainView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         let width =  (UIScreen.main.bounds.width/4.5)
-        self.imageViewWidth.constant = width
-        self.imageViewHeight.constant = ((width)*9)/16
+        let height = (9 * (width)) / 16
+        self.imageViewWidth.constant = width - 60
+        self.imageViewHeight.constant = height
 
     }
     func convertStringTimeToDate(item: String) -> Date {
@@ -258,8 +259,8 @@ class ReminderListingTableViewCell: UITableViewCell {
                             self.watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                             watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                             self.watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-                            self.watchlistButton.imageEdgeInsets = UIEdgeInsets(top: -15, left: -30, bottom: -15, right: 0)
-                            self.watchlistButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -50, bottom: 0, right: -40)
+                            watchlistButton.imageEdgeInsets = UIEdgeInsets(top: -15, left: -17, bottom: -15, right: 0)
+                            self.watchlistButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -35, bottom: 0, right: -40)
                         }
                         else {
                             self.watchlistButton.setTitle("Remind Me", for: .normal)

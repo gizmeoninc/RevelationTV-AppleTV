@@ -226,7 +226,7 @@ class ShowsOverlayViewController:UIViewController {
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = view.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurView)
+//        self.view.addSubview(blurView)
         
 //        let blurredEffectViews = self.mainView.filter{$0 is UIVisualEffectView}
 //        blurredEffectViews.forEach{ blurView in
@@ -403,9 +403,14 @@ class ShowsOverlayViewController:UIViewController {
         self.present(gotohomeView, animated: true, completion: nil)
         
     }
+    override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
+        return true
+    }
+    let scale = 1.0
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if self.backButton.isFocused{
             backButton.tintColor = ThemeManager.currentTheme().buttonTextColor
+            self.backButton.transform = CGAffineTransformMakeScale(scale, scale)
             favouritesIcon.tintColor = UIColor.white
             if showFlag == true{
                 MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
