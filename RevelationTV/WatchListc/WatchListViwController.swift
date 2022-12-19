@@ -55,13 +55,14 @@ class WatchListViewController: UIViewController {
         watchlistTableView.register(UINib(nibName:"CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: CustomHeader.reuseIdentifier)
         watchlistTableView.delegate = self
         watchlistTableView.dataSource = self
-        watchlistTableView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        watchlistTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         watchlistTableView.contentInsetAdjustmentBehavior = .never
         watchlistTableView.sectionFooterHeight = 0
         watchlistTableView.separatorInset = .zero
         watchlistTableView.sectionHeaderHeight = 0
         watchlistTableView.contentInset = .zero
+        
         reachability.whenUnreachable = { _ in
             commonClass.showAlert(viewController:self, messages: "Network connection lost!")
             print("Not reachable")
@@ -279,7 +280,7 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
         if dianamicVideos[indexPath.section].type == "REMINDERS" {
             let width = UIScreen.main.bounds.width / 4
             let height = (width * 9)/16
-            return height + 80
+            return height + 65
             
         }
         let width =  UIScreen.main.bounds.width / 4.5
@@ -343,11 +344,13 @@ extension WatchListViewController: HomeTableViewCellDelegate  {
                 else{
                         let showsOverlayView = self.storyboard?.instantiateViewController(withIdentifier: "ShowsOverlayVC") as! ShowsOverlayViewController
                         let id = Int(passModel.show_id!)
-    //                    showsOverlayView.MoreInfoButton.isHidden = true
-    //                    showsOverlayView.playButton.isHidden = false
+
                         showsOverlayView.showFlag = false
                         showsOverlayView.show_Id = String(id)
+                    showsOverlayView.modalPresentationStyle = .custom
+                    showsOverlayView.modalTransitionStyle = .crossDissolve
                         self.present(showsOverlayView, animated: true, completion: nil)
+//                    navigationController?.pushViewController(showsOverlayView, animated: true)
     //                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
     //                let id = Int(passModel.show_id!)
     //                videoDetailView.show_Id = String(id)

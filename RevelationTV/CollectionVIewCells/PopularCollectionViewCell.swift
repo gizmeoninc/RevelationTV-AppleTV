@@ -54,7 +54,8 @@ class PopularCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let width =  UIScreen.main.bounds.width / 4.5
-        let height = (9 * width) / 16
+        let height = (9 * (width - 30)) / 16
+        
         self.videoImageHeight.constant = height
       
         // self.layoutIfNeeded()

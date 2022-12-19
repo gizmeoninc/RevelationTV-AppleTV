@@ -117,7 +117,7 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCollectionViewCell", for: indexPath as IndexPath) as! PopularCollectionViewCell
 //        cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-        cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        cell.contentView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
 
         cell.videoImageView.contentMode = .scaleToFill
         if videoArray![indexPath.row].type == "CONTINUE_WATCHING"  {
@@ -147,8 +147,7 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
         }
        
         else {
-            
-            
+
             if  videoArray![indexPath.row].logo_thumb != nil {
                 let image =  videoArray![indexPath.row].logo_thumb
                 if image!.starts(with: "https"){
@@ -281,7 +280,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
 
         }
         else{
-            return 20
+            return 30
 
         }
     }
@@ -301,10 +300,10 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
         }
         else{
 //            let width =  bounds.width / 4.5
-            let width =  bounds.width / 4
+            let width =  (UIScreen.main.bounds.width/4.5)
 //            let height = (9 * width) / 16 + 30
-            let height = (width * 9)/16
-            return CGSize(width: width - 30, height: height + 30)
+            let height = ((width) * 9)/16
+            return CGSize(width: width - 60, height: height + 30)
 //            let width = (2 *  bounds.height - cellOffset) / 3
 //            let itemSize = CGSize(width: width, height: bounds.height - cellOffset)
 //            return CGSize(width: width, height: bounds.height)

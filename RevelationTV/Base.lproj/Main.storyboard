@@ -1254,7 +1254,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iF-SS-KFw">
-                                <rect key="frame" x="316" y="180" width="248" height="31"/>
+                                <rect key="frame" x="316" y="180" width="231" height="31"/>
                                 <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1270,7 +1270,7 @@
                                 <rect key="frame" x="297" y="220" width="1327" height="725"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register to Revelation TV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsm-Qm-GEf">
-                                        <rect key="frame" x="100" y="80.5" width="286" height="25"/>
+                                        <rect key="frame" x="100" y="80.5" width="272" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="zZO-5K-MA6"/>
                                         </constraints>
@@ -3422,18 +3422,18 @@ Just Watch Me
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC4-Qe-BQe">
-                                <rect key="frame" x="50" y="110" width="1820" height="970"/>
+                                <rect key="frame" x="50" y="180" width="1820" height="900"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <sections/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZc-2d-E3c">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-ud-NQa" userLabel="Search Button">
-                                        <rect key="frame" x="465" y="-25" width="150" height="150"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-ud-NQa" userLabel="Search Button">
+                                        <rect key="frame" x="1620" y="-25" width="110" height="150"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="eCT-K3-rnG"/>
+                                            <constraint firstAttribute="width" constant="110" id="eCT-K3-rnG"/>
                                             <constraint firstAttribute="height" constant="150" id="jcK-B8-G2u"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3509,6 +3509,7 @@ Just Watch Me
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
+                                    <constraint firstItem="5aD-Ud-e0q" firstAttribute="trailing" secondItem="8W8-ud-NQa" secondAttribute="leading" id="1uD-r3-vh5"/>
                                     <constraint firstItem="LdD-Hh-0Lr" firstAttribute="leading" secondItem="AZc-2d-E3c" secondAttribute="leading" constant="50" id="5am-Iy-Nah"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="trailing" secondItem="Y2d-o3-RW9" secondAttribute="leading" constant="-100" id="FJr-Yz-SZ6"/>
                                     <constraint firstItem="8W8-ud-NQa" firstAttribute="centerY" secondItem="AZc-2d-E3c" secondAttribute="centerY" id="Hg8-v1-UAF"/>
@@ -3528,9 +3529,9 @@ Just Watch Me
                             <constraint firstItem="AZc-2d-E3c" firstAttribute="top" secondItem="kGG-bI-VjZ" secondAttribute="top" id="LL5-gT-yXQ"/>
                             <constraint firstAttribute="bottom" secondItem="RC4-Qe-BQe" secondAttribute="bottom" id="LZZ-Xh-yuS"/>
                             <constraint firstItem="AZc-2d-E3c" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leading" id="Ovb-rv-VMd"/>
-                            <constraint firstItem="RC4-Qe-BQe" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="bottom" constant="10" id="rko-3W-r0p"/>
                             <constraint firstItem="RC4-Qe-BQe" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leading" constant="50" id="x4q-ZG-ZDT"/>
                             <constraint firstAttribute="trailing" secondItem="AZc-2d-E3c" secondAttribute="trailing" id="z8C-yQ-mW1"/>
+                            <constraint firstItem="RC4-Qe-BQe" firstAttribute="top" secondItem="HzP-B5-hD9" secondAttribute="bottom" constant="120" id="zjv-qz-Ojq"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Now Showing" image="HomeTabBarOne" id="IO8-R2-hGI"/>
@@ -4121,9 +4122,7 @@ Just Watch Me
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wo-5N-2l0">
-
                                 <rect key="frame" x="50" y="110" width="1820" height="970"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BU9-nL-Afh">

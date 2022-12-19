@@ -631,10 +631,11 @@ extension HomeViewController: HomeTableViewCellDelegate  {
             else{
                     let showsOverlayView = self.storyboard?.instantiateViewController(withIdentifier: "ShowsOverlayVC") as! ShowsOverlayViewController
                     let id = Int(passModel.show_id!)
-//                    showsOverlayView.MoreInfoButton.isHidden = true
-//                    showsOverlayView.playButton.isHidden = false
+
                     showsOverlayView.showFlag = false
                     showsOverlayView.show_Id = String(id)
+                showsOverlayView.modalPresentationStyle = .custom
+                showsOverlayView.modalTransitionStyle = .crossDissolve
                     self.present(showsOverlayView, animated: true, completion: nil)
 //                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
 //                let id = Int(passModel.show_id!)
