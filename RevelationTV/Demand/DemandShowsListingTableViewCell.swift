@@ -15,19 +15,17 @@ protocol DemandShowsListingTableCellDelegate:class {
 class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    var dataArray: [VideoModel]? {
-        didSet{
-            mainCollectionView.reloadData()
-//            mainCollectionView.backgroundColor = .red
-        }
-    }
+//    var dataArray: [VideoModel]? {
+//        didSet{
+//            mainCollectionView.reloadData()
+////            mainCollectionView.backgroundColor = .red
+//        }
+//    }
     var videoArrayCount: Int?
     var videoArray: [VideoModel]? {
         didSet{
             mainCollectionView.reloadData()
             self.videoArrayCount = videoArray?.count
-//            print("ggggg",videoArrayCount)
-//            mainCollectionView.backgroundColor = .red
         }
     }
     
@@ -56,24 +54,24 @@ class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateF
         }
       }
     
-    @IBAction func showMoreAction(_ sender: Any) {
-        self.videoArrayCount = videoArray!.count
-        self.videoArray = dataArray
-        print("dataArrayCount",dataArray?.count)
-        print("videoArrayCount",videoArrayCount)
-        if videoArrayCount == dataArray?.count {
-            self.showMoreButton.isHidden = true
-        }
-        else{
-            if ((videoArrayCount! + 8) - 1) <= dataArray!.count {
-                videoArray = Array(dataArray![0...((videoArrayCount! + 8) - 1)])
-            }
-            else {
-                print("showmorebutton hidden")
-                self.showMoreButton.isHidden = true
-            }
-        }
-    }
+//    @IBAction func showMoreAction(_ sender: Any) {
+//        self.videoArrayCount = videoArray!.count
+//        self.videoArray = dataArray
+//        print("dataArrayCount",dataArray?.count)
+//        print("videoArrayCount",videoArrayCount)
+//        if videoArrayCount == dataArray?.count {
+//            self.showMoreButton.isHidden = true
+//        }
+//        else{
+//            if ((videoArrayCount! + 8) - 1) <= dataArray!.count {
+//                videoArray = Array(dataArray![0...((videoArrayCount! + 8) - 1)])
+//            }
+//            else {
+//                print("showmorebutton hidden")
+//                self.showMoreButton.isHidden = true
+//            }
+//        }
+//    }
     
     weak var delegate: DemandShowsListingTableCellDelegate!
     
@@ -90,9 +88,9 @@ class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateF
         self.videoArrayCount = videoArray!.count
         print("ddd",videoArrayCount)
 //        self.updateUI()
-        if videoArrayCount == dataArray?.count{
-            self.showMoreButton.isHidden = true
-        }
+//        if videoArrayCount == dataArray?.count{
+//            self.showMoreButton.isHidden = true
+//        }
     }
     
     override func layoutSubviews() {
@@ -106,12 +104,22 @@ class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateF
     }
     
     func updateUI(){
+        var spaceHeight = CGFloat()
         let width = (mainCollectionView.bounds.width)/4
-        print("cccccccccc",videoArrayCount)
-        let height = ((width-30) * 9 / 16) * CGFloat(self.videoArrayCount! / 4)
-        mainCollectionViewHeight.constant = height + 60
-//        let height = (((width-30) * 9)/16) + 30
-//        mainCollectionViewHeight.constant = height
+        let height = (((width-30) * 9)/16) + 30
+        if videoArray!.count == 1 || videoArray!.count == 4 {
+            spaceHeight = 40
+            mainCollectionViewHeight.constant = height + spaceHeight
+        }
+        else if (videoArray!.count%4) == 0{
+            spaceHeight = CGFloat(((videoArray!.count / 4)) * 40)
+            mainCollectionViewHeight.constant = (CGFloat(videoArray!.count / 4 ) * height) + spaceHeight
+        }
+        else{
+            spaceHeight = CGFloat(((videoArray!.count / 4) + 1) * 40)
+            mainCollectionViewHeight.constant = (CGFloat((videoArray!.count / 4) + 1) * height) + spaceHeight
+        }
+        self.mainCollectionView.isHidden = false
     }
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -162,6 +170,9 @@ class DemandShowsListingTableViewCell: UITableViewCell,UICollectionViewDelegateF
          let width = (mainCollectionView.bounds.width)/4
          let height = ((width-30) * 9)/16
          return CGSize(width: width - 30, height: height + 30);
+//        let width =  (mainCollectionView.bounds.width/4.5)
+//        let height = ((width) * 9)/16
+//        return CGSize(width: width - 30, height: height + 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

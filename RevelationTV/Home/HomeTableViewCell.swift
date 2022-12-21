@@ -47,6 +47,7 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     }
     
     @IBAction func moreIconButtonAction(_ sender: Any) {
+//        delegate?.customHeader(self, didTapButtonInSection: sectionNumber)
 //        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController
 //        videoDetailView.videoItem = filmVideos[0]
 //            videoDetailView.fromCategories = false
@@ -67,6 +68,7 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
 //    let focusedSize = CGSize(width: 400, height: 250)
     var videoType = ""
     weak var delegate: HomeTableViewCellDelegate!
+    var sectionNumber: Int!
     fileprivate let cellOffset: CGFloat = 100
     var videoArray: [VideoModel]? {
         didSet{

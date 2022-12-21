@@ -37,6 +37,7 @@ class ShowsOverlayViewController:UIViewController {
         didSet{
             backButton.setImage(UIImage(named: "back Icon"), for: .normal)
             backButton.tintColor = UIColor.white
+            backButton.isHidden = true
         }
     }
     
@@ -65,6 +66,7 @@ class ShowsOverlayViewController:UIViewController {
         didSet{
             iconImage.contentMode = .scaleToFill
             iconImage.tintColor = ThemeManager.currentTheme().buttonTextColor
+            iconImage.isHidden = true
         }
     }
     
@@ -87,6 +89,7 @@ class ShowsOverlayViewController:UIViewController {
         didSet{
             favouritesIcon.tintColor = UIColor.white
             favouritesIcon.setImage(UIImage(named: "favouritesIcon"), for: .normal)
+            favouritesIcon.isHidden = true
         }
     }
     
@@ -141,6 +144,7 @@ class ShowsOverlayViewController:UIViewController {
 
     @IBOutlet weak var MoreInfoButton: UIButton!{
         didSet{
+            MoreInfoButton.isHidden = true
             MoreInfoButton.setTitle("More Info", for: .normal)
             MoreInfoButton.setImage(UIImage(named: "plus-icon"), for: .normal)
             MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
@@ -216,29 +220,28 @@ class ShowsOverlayViewController:UIViewController {
         self.present(signupPageView, animated: true, completion: nil)
     }
    
-    fileprivate func vibrancyEffectView(forBlurEffectView blurEffectView:UIVisualEffectView) -> UIVisualEffectView {
-         let vibrancy = UIVibrancyEffect(blurEffect: blurEffectView.effect as! UIBlurEffect)
-         let vibrancyView = UIVisualEffectView(effect: vibrancy)
-         vibrancyView.frame = blurEffectView.bounds
-         vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-         return vibrancyView
-     }
+//    fileprivate func vibrancyEffectView(forBlurEffectView blurEffectView:UIVisualEffectView) -> UIVisualEffectView {
+//         let vibrancy = UIVibrancyEffect(blurEffect: blurEffectView.effect as! UIBlurEffect)
+//         let vibrancyView = UIVisualEffectView(effect: vibrancy)
+//         vibrancyView.frame = blurEffectView.bounds
+//         vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//         return vibrancyView
+//     }
     override func viewDidLoad() {
         super.viewDidLoad()
         let width = UIScreen.main.bounds.width / 3.5
         let height = (width*9)/16
         self.getShowData()
         self.view.backgroundColor = UIColor.clear
-        self.view.isOpaque = false
+//        self.view.isOpaque = false
         
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = view.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurView)
-          self.view.bringSubviewToFront(mainView)
+//        self.view.addSubview(blurView)
+//          self.view.bringSubviewToFront(mainView)
         
-    
         self.imageViewWidth.constant = width
         self.imageViewHeight.constant = height
         let focusGuide = UIFocusGuide()
@@ -363,6 +366,12 @@ class ShowsOverlayViewController:UIViewController {
                  self.favouritesIcon.setImage(UIImage(named: "favouritesIcon"), for: .normal)
              }
          }
+        
+        self.favouritesIcon.isHidden = false
+        self.backButton.isHidden = false
+        self.iconImage.isHidden = false
+        self.MoreInfoButton.isHidden = false
+
 //         var spaceHeight = CGFloat()
 //         let width = (videoListingCollectionView.bounds.width)/4
 //         let height = (((width-30) * 9)/16) + 30
@@ -396,7 +405,6 @@ class ShowsOverlayViewController:UIViewController {
               UserDefaults.standard.set("Guest User", forKey: "first_name")
               Application.shared.userSubscriptionStatus = false
                 self.goToHomeVC()
-              
             }
           }
         }
@@ -405,7 +413,6 @@ class ShowsOverlayViewController:UIViewController {
     func goToHomeVC(){
         let gotohomeView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
         self.present(gotohomeView, animated: true, completion: nil)
-        
     }
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if self.backButton.isFocused{

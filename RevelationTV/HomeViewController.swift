@@ -490,7 +490,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             cell.videoType = "Dianamic"
             cell.TitleLabel.text = "Featured"
             cell.TitleLabel.textColor = .white
+            cell.moreIconButton.tag = indexPath.section
             
+            cell.moreIconButton.addTarget(self, action: #selector(goToMoreIconAction), for: .primaryActionTriggered)
+            
+//            cell.moreIconButton.addTarget(self, action: #selector(goToMoreIconAction(section:indexPath.section)), for: .touchUpInside)
 //            cell.TitleLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size: 40)
             cell.videoArray = dianamicVideos[indexPath.section].shows
             return cell
@@ -525,6 +529,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             cell.iconImage.isHidden = false
             cell.moreIconButton.isHidden = false
             cell.TitleLabel.isHidden = false
+            cell.moreIconButton.tag = indexPath.section
+            
+            cell.moreIconButton.addTarget(self, action: #selector(goToMoreIconAction), for: .primaryActionTriggered)
             cell.videoArray = dianamicVideos[indexPath.section].shows
             cell.TitleLabel.text = dianamicVideos[indexPath.section].category_name
             cell.TitleLabel.textColor = .white
@@ -1004,4 +1011,47 @@ extension HomeViewController:DemandShowsListingTableCellDelegate{
             self.MoveTOLoginPage()
         }
     }
+    
+    @objc func goToMoreIconAction(sender:Any){
+        let section = sender as? UIButton
+        print("button section",section!.tag)
+        if dianamicVideos[section!.tag].type == "CATEGORY_SHOWS" {
+            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryListVC") as! CategoryListingViewController
+            let id = Int(dianamicVideos[section!.tag].category_id!)
+            videoDetailView.categoryID = String(id)
+            videoDetailView.categoryName = dianamicVideos[section!.tag].category_name!
+            self.present(videoDetailView, animated: true, completion: nil)
+       }
+        else if dianamicVideos[section!.tag].type == "FEATURED" {
+            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryListVC") as! CategoryListingViewController
+            let id = Int(dianamicVideos[section!.tag].category_id!)
+            videoDetailView.categoryID = String(id)
+            videoDetailView.categoryName = dianamicVideos[section!.tag].category_name!
+            self.present(videoDetailView, animated: true, completion: nil)
+       }
+       print("row column ",section)
+       
+   }
+    
 }
+//extension HomeViewController : CustomHeaderDelegate{
+//    func customHeader(_ customHeader: CustomHeader, didTapButtonInSection section: Int) {
+//         if dianamicVideos[section].type == "CATEGORY_SHOWS" {
+//             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryListVC") as! CategoryListingViewController
+//             let id = Int(dianamicVideos[section].category_id!)
+//             videoDetailView.categoryID = String(id)
+//             videoDetailView.categoryName = dianamicVideos[section].category_name!
+//             self.present(videoDetailView, animated: true, completion: nil)
+//        }
+//        else if dianamicVideos[section].type == "SHOW" {
+//            let episodeVC =  self.storyboard?.instantiateViewController(withIdentifier: "EpisodeDetailsVC") as! EpisodeViewController
+//            let id = Int((dianamicVideos[section].shows?[0].video_id!)!)
+//            episodeVC.video_Id = String(id)
+//            self.present(episodeVC, animated: true, completion: nil)
+//        }
+//        print("row column ",section)
+//
+//    }
+//
+//
+//}

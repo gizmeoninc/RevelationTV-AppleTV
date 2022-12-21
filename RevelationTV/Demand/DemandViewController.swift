@@ -13,7 +13,6 @@ import Reachability
 
 class DemandViewController: UIViewController, DemandShowsListingTableCellDelegate {
     func didSelectDemandShows(passModel: VideoModel) {
-    
     }
 //    func didSelectDianamicVideos(passModel :VideoModel?){
 //
@@ -58,6 +57,7 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
     var menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
     var lastFocusedIndexPath: IndexPath?
     fileprivate let rowHeight = UIScreen.main.bounds.height * 0.3
+    var maincollectionviewheight = CGFloat()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -227,7 +227,6 @@ extension DemandViewController: UITableViewDataSource, UITableViewDelegate,UIScr
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return  dianamicVideos.count
-        
     }
 //    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
 //        if context.nextFocusedView == moreButton {
@@ -266,19 +265,20 @@ extension DemandViewController: UITableViewDataSource, UITableViewDelegate,UIScr
             cell.delegate = self
 //            cell.videoType = "Dianamic"
             let data = dianamicVideos[indexPath.section].shows
-            let width = UIScreen.main.bounds.width / 4
-            let height = width * 9 / 16
-            cell.dataArray = dianamicVideos[indexPath.section].shows
-            if data!.count < 8 {
+            let width = UIScreen.main.bounds.width / 4.5
+            let height = width * 9 / 16 + 10
+//            cell.dataArray = dianamicVideos[indexPath.section].shows
+//            if data!.count < 8 {
+            print("data count",data!.count)
                 cell.showMoreButton.isHidden = true
                 cell.videoArray = dianamicVideos[indexPath.section].shows
-                demandListingTableViewHeight.constant = height * CGFloat(dianamicVideos[indexPath.section].shows!.count/4)
-            }
-            else{
-                cell.videoArray = Array(dianamicVideos[indexPath.section].shows![0...7])
-                cell.showMoreButton.isHidden = false
-                demandListingTableViewHeight.constant = height * 2
-            }
+                demandListingTableViewHeight.constant = height * CGFloat(data!.count/4)
+//            }
+//            else{
+//                cell.videoArray = Array(dianamicVideos[indexPath.section].shows![0...7])
+//                cell.showMoreButton.isHidden = false
+//                demandListingTableViewHeight.constant = height * 2
+//            }
 
 //            demandListingTableViewHeight.constant = cell.mainCollectionViewHeight.constant * CGFloat(Int(cell.videoArray!.count/4))
             return cell
@@ -304,9 +304,31 @@ extension DemandViewController: UITableViewDataSource, UITableViewDelegate,UIScr
             return height + 120
         }
         else{
-            let width = UIScreen.main.bounds.width / 4
-            let height = width * 9 / 16
-            let demandListTableHeight = height * CGFloat(dianamicVideos[indexPath.section].shows!.count/4)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DemandShowsListingTableCell")
+            as! DemandShowsListingTableViewCell
+            let data = dianamicVideos[indexPath.section].shows
+            var spaceHeight = CGFloat()
+            let width = (cell.mainCollectionView.bounds.width)/4
+            let height = (((width-30) * 9)/16) + 30
+            if data!.count == 1 || data!.count == 4 {
+                spaceHeight = 40
+                self.maincollectionviewheight = height + spaceHeight
+            }
+            else if (data!.count%4) == 0{
+                spaceHeight = CGFloat(((data!.count / 4)) * 40)
+                self.maincollectionviewheight = CGFloat(data!.count / 4 ) * height + spaceHeight
+            }
+            else{
+                spaceHeight = CGFloat(((data!.count / 4) + 1) * 40)
+                self.maincollectionviewheight = CGFloat((data!.count / 4) + 1) * height + spaceHeight
+            }
+//            cell.videoArray = dianamicVideos[indexPath.section].shows
+            
+
+//            let width = UIScreen.main.bounds.width / 4
+//            let height = width * 9 / 16
+//            let demandListTableHeight = height * CGFloat(dianamicVideos[indexPath.section].shows!.count/4)
+            let demandListTableHeight = self.maincollectionviewheight + 50
             return demandListTableHeight
         }
 //      return rowHeight
@@ -357,6 +379,10 @@ extension DemandViewController: UITableViewDataSource, UITableViewDelegate,UIScr
   
 }
 extension DemandViewController: HomeTableViewCellDelegate  {
+    func didSelectMoreIcon(_didSelectMoreIcon: HomeTableViewCell, didTapMoreIconInSection section: Int) {
+        
+    }
+    
     func didSelectDianamicVideosEpisode(passModel: VideoModel?) {
             if let passModel = passModel  {
                 
@@ -581,7 +607,6 @@ extension DemandViewController:UICollectionViewDelegateFlowLayout,UICollectionVi
     }
 }
 
-
 extension DemandViewController:DemandTableViewCellDelegate{
     func didSelectMoreInfo(passModel: VideoModel?) {
         if let passModel = passModel  {
@@ -610,7 +635,6 @@ extension DemandViewController:DemandTableViewCellDelegate{
             self.present(videoDetailView, animated: true, completion: nil)
         }
     }
-    
     
 }
 extension DemandViewController : CustomHeaderDelegate{
