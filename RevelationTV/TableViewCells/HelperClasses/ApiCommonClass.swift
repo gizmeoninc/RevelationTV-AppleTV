@@ -1873,6 +1873,56 @@ print("registerMobile",url)
         }
       }
     }
+    static func getFeaturedShowsList(parameterDictionary: Dictionary<String, String>!, callback: @escaping(Dictionary<String, AnyObject?>) -> Void) {
+      var channelResponse = Dictionary<String, AnyObject>()
+      let accesToken = UserDefaults.standard.string(forKey:"access_token")!
+      let user_id = UserDefaults.standard.string(forKey:"user_id")!
+      let country_code = UserDefaults.standard.string(forKey:"countryCode")!
+      let pubid = UserDefaults.standard.string(forKey:"pubid")!
+     let device_type = "apple-tv"
+      let dev_id = UserDefaults.standard.string(forKey:"UDID")!
+      let ipAddress = UserDefaults.standard.string(forKey:"IPAddress")!
+      let channelid = UserDefaults.standard.string(forKey:"channelid")!
+      let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as! String
+        let userAgent = UserDefaults.standard.string(forKey:"userAgent")
+        let encodeduserAgent = String(format: "%@", userAgent!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+      if let getTokenApi = ApiRESTUrlString().getFeaturedShowsList(parameterDictionary: parameterDictionary) {
+        var mutableURLRequest = URLRequest(url: URL(string: getTokenApi)!)
+        mutableURLRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
+        mutableURLRequest.httpMethod = "GET"
+        mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        mutableURLRequest.allHTTPHeaderFields = ["access-token": accesToken,"uid":user_id,"country_code":country_code,"pubid":pubid,"device_type":device_type,"dev_id":dev_id,"ip":ipAddress,"channelid":channelid,"version":version,"ua":encodeduserAgent]
+        AF.request(mutableURLRequest).validate().responseJSON{ response in
+          
+          switch(response.result) {
+          case .success(let value):
+            let responseDict = value as! [String: AnyObject]
+            var channelResponseArray = [VideoModel]()
+  //          guard let status = responseDict["success"] as? NSNumber  else {
+  //            return
+  //          }
+  //          if status == 1 {
+              let dataArray = responseDict["data"] as! [Dictionary<String, Any>]
+            if !dataArray.isEmpty{
+              for videoItem in dataArray {
+                let JSON: NSDictionary = videoItem as NSDictionary
+                let videoModel: VideoModel = VideoModel.from(JSON)! // This is a 'User?'
+                channelResponseArray.append(videoModel)
+              }
+              channelResponse["data"] = channelResponseArray as AnyObject
+            } else {
+              channelResponse["error"] = responseDict["message"]
+            }
+            callback(channelResponse)
+            break
+          case .failure(let error):
+            channelResponse["error"] = error as AnyObject
+            callback(channelResponse)
+            break
+          }
+        }
+      }
+    }
     static func logOutAction( parameterDictionary: Dictionary<String, String>!,completion: @escaping(_ result: Bool)->()) {
         if let accesToken = UserDefaults.standard.string(forKey:"access_token") {
             let user_id = UserDefaults.standard.string(forKey:"user_id")!

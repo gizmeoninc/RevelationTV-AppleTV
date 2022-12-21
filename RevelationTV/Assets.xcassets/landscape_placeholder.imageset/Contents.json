@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "carousel thumbnail.png",
+      "filename" : "landscape placeholder.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "carousel thumbnail@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

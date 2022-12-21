@@ -42,17 +42,23 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     
     @IBOutlet weak var moreIconButton: UIButton!{
         didSet{
-            moreIconButton.setImage(UIImage(named: "moreButtonUnfocused"), for: .normal)
+            moreIconButton.setTitle("", for: .normal)
+            let image = UIImage(named: "moreButtonUnfocused")?.withRenderingMode(.alwaysTemplate)
+            moreIconButton.setImage(image, for: .normal)
+            moreIconButton.tintColor = UIColor.white
+            moreIconButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            moreIconButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            moreIconButton.layer.borderWidth = 0.0
+            moreIconButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            moreIconButton.titleLabel?.textColor = UIColor.white
+            moreIconButton.layer.cornerRadius = 10
+            moreIconButton.titleLabel?.textAlignment = .center
+            moreIconButton.layer.masksToBounds = true
+//            moreIconButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//            moreIconButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//            moreIconButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            moreIconButton.imageEdgeInsets = UIEdgeInsets(top: -20, left: -20, bottom: -20, right: -20)
         }
-    }
-    
-    @IBAction func moreIconButtonAction(_ sender: Any) {
-//        delegate?.customHeader(self, didTapButtonInSection: sectionNumber)
-//        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController
-//        videoDetailView.videoItem = filmVideos[0]
-//            videoDetailView.fromCategories = false
-//        self.present(videoDetailView, animated: true, completion: nil)
-
     }
 
     @IBOutlet weak var rightArrowIcon: UIImageView!{

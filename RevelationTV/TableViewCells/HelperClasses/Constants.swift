@@ -123,6 +123,7 @@ let GetvideoByCategory = commonBkAPI + "category/id/shows/list"
 let GetLogOUtUrl = commonBkAPI +  "account/logout?"
 let GetHomeChannelvideo = commonBkAPI + "channel/id?"
 let GetPartnerByCategory1 = commonBkAPI + "partner/partner_id/videos"
+let GetFeaturedShows = commonBkAPI + "show/featured"
 
 let GenerateVideoToken = commonAPI + "api/GenerateToken?"
 let GetShowNameData = commonBkAPI + "show/id?"

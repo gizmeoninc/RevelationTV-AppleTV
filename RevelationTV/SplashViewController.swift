@@ -17,7 +17,10 @@ class SplashViewController: UIViewController,AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
-        self.view.backgroundColor = ThemeManager.currentTheme().backgroundColor
+        self.view.backgroundColor = .clear
+//        ThemeManager.currentTheme().backgroundColor
+        self.view.setGradientBackground(colorTop: UIColor.black, colorBottom: ThemeManager.currentTheme().splashGradientColorRed, height: UIScreen.main.bounds.height)
+
         //declare this property where it won't go out of scope relative to your listener
         reachability.whenReachable = { reachability in
             if reachability.connection != .unavailable {

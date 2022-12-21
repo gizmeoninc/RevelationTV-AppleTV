@@ -573,3 +573,12 @@ class VideoPlayerViewController: AVPlayerViewController,IMAAdsLoaderDelegate ,IM
 
 
 }
+extension UIView{
+    func setGradientBackground(colorTop: UIColor, colorBottom: UIColor,height: CGFloat) {
+     let gradientLayer = CAGradientLayer()
+     gradientLayer.colors = [colorTop.cgColor,colorBottom.cgColor]
+     gradientLayer.locations = [0.0, 1.0]
+     gradientLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: height)
+     layer.insertSublayer(gradientLayer, at: 0)
+   }
+}

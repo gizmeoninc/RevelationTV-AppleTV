@@ -40,20 +40,15 @@
                             <constraint firstAttribute="width" constant="45" id="Xn9-mk-ubN"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-a0-m43" userLabel="moreIconButton">
-                        <rect key="frame" x="1895" y="0.0" width="48" height="48"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-a0-m43" userLabel="moreIconButton">
+                        <rect key="frame" x="1893" y="-2" width="50" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="48" id="Ewu-tt-vgc"/>
-                            <constraint firstAttribute="height" constant="48" id="wLd-9R-01q"/>
+                            <constraint firstAttribute="width" constant="50" id="Ewu-tt-vgc"/>
+                            <constraint firstAttribute="height" constant="50" id="wLd-9R-01q"/>
                         </constraints>
                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" image="moreButtonUnfocused"/>
-                        <buttonConfiguration key="configuration" style="plain" image="moreButtonUnfocused" imagePadding="0.0"/>
-                        <connections>
-                            <action selector="moreIconButtonAction:" destination="a0A-T8-YF5" eventType="primaryActionTriggered" id="g6D-yu-EHp"/>
-                        </connections>
+                        <state key="normal" title="Morebutton" image="moreButtonUnfocused"/>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftArrow" translatesAutoresizingMaskIntoConstraints="NO" id="wlj-DX-ZKl" userLabel="leftArrowImage">
                         <rect key="frame" x="35" y="240" width="30" height="30"/>
