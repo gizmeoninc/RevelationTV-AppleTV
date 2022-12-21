@@ -12,347 +12,171 @@ protocol ScheduleListTableViewCellDelegate:class {
     func didSelectReminder(passModel :VideoModel?)
     func didSelectEarlierShows()
 }
+
 class ScheduleListTableViewCell: UITableViewCell {
-    @IBOutlet weak var filterButton: UIButton!{
+   
+
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var timeLabel: UILabel!{
         didSet{
-            filterButton.setTitle("Earlier Shows", for: .normal)
-            let image = UIImage(named: "drop-down-arrow")?.withRenderingMode(.alwaysTemplate)
-            filterButton.setImage(image, for: .normal)
-            filterButton.tintColor = UIColor.white
-            filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-            filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
-            filterButton.layer.borderWidth = 3.0
-            filterButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 25)
-            filterButton.titleLabel?.textColor = ThemeManager.currentTheme().buttonTextColor
-            filterButton.layer.cornerRadius = 30
-            filterButton.titleLabel?.textAlignment = .center
-            filterButton.layer.masksToBounds = true
-            filterButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            filterButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            filterButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            filterButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50)
+            timeLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            timeLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }
     }
-//    @IBOutlet weak var filterViewHeight: NSLayoutConstraint!
-//
-//    @IBOutlet weak var filterView: UIView!{
-//        didSet{
-//            filterView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-//        }
-//    }
-    @IBOutlet weak var filterButtonHeight: NSLayoutConstraint!
-    @IBOutlet weak var scheduleCollectionView: UICollectionView!
-    @IBOutlet weak var dayListingCollectionView: UICollectionView!{
+    
+    @IBOutlet weak var ImageView: UIImageView!{
         didSet{
-            dayListingCollectionView.backgroundColor = .clear
+            ImageView.layer.cornerRadius = 25
+            ImageView.layer.masksToBounds = true
+            ImageView.contentMode = .scaleToFill
+            ImageView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         }
     }
-    @IBOutlet weak var scheduleCollectionViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     var scheduleVideos: [VideoModel]? {
         didSet{
 //            scheduleCollectionView.reloadData()
-            scheduleCollectionView.backgroundColor = .clear
-//            if scheduleVideos!.count>0{
-//                self.allLiveVideos = scheduleVideos
-//            }
-            if onceFlag{
-                self.getLiveGuide()
-                onceFlag = false
-            }
-          
         }
     }
-    @IBOutlet weak var gradientViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var gradientView: UIView!
-    var allLiveVideos : [VideoModel]?
-    var todayFeaturedVideos : [VideoModel]?
-
-    weak var delegate: ScheduleListTableViewCellDelegate!
-    var selectedIndex = 0
-    var selectedFilter = 0
-    var selectedDateArrayIndex = 0
-    var selectedDateStringIndex = 0
-    var dayArray = [String?]()
-    var dateArray = [Date?]()
-    var onceFlag = true
-    var channelType = ""
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        //schedule list collectionview setup
-        scheduleCollectionView.register(UINib(nibName: "SheduleListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ScheduleListCollectionCell")
-        scheduleCollectionView.delegate = self
-        scheduleCollectionView.dataSource = self
-        let widthnew =  (UIScreen.main.bounds.width/3)
-        let height = ((widthnew)*9)/16
-        self.scheduleCollectionViewHeight.constant = height + 90
-        
-        //day list collectionview setup
-        dayListingCollectionView.register(UINib(nibName: "DayFilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "dayFilterCollectionCell")
-        dayListingCollectionView.delegate = self
-        dayListingCollectionView.dataSource = self
-//        dayListingCollectionView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-        
-        //call function to get day array from today(15 days)
-        self.getWeekDays()
-        self.gradientViewHeight.constant = self.scheduleCollectionViewHeight.constant + 90 + 80
-        self.gradientView.setDianamicGradientBackground(colorTop: ThemeManager.currentTheme().viewBackgroundColor.withAlphaComponent(0.4), colorBottom: ThemeManager.currentTheme().buttonColorDark.withAlphaComponent(0.5), height: self.gradientViewHeight.constant)
-        
-        
-      
-      
+    
+    @IBOutlet weak var imageViewWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var playButton: UIButton!{
+        didSet{
+            playButton.setTitle("On Demand", for: .normal)
+            playButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            playButton.layer.borderColor = ThemeManager.currentTheme().buttonTextColor.cgColor
+            playButton.layer.borderWidth = 3.0
+            playButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            playButton.layer.cornerRadius = 10
+            playButton.titleLabel?.textAlignment = .center
+            playButton.titleLabel?.textColor = UIColor.white
+            playButton.layer.masksToBounds = true
+           
+        }
+    }
+    @IBOutlet weak var nameLabel: UILabel!{
+        didSet{
+            nameLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 30)
+            nameLabel.textColor = ThemeManager.currentTheme().headerTextColor
+        }
+    }
+    
+    @IBOutlet weak var descriptionLabel: UILabel!{
+        didSet{
+            descriptionLabel.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            descriptionLabel.textColor = ThemeManager.currentTheme().descriptionTextColor
+            descriptionLabel.numberOfLines = 6
+        }
+    }
+    
+    @IBOutlet weak var watchListButtonWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var watchListButtonHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var watchlistButton: UIButton!{
+        didSet{
+            watchlistButton.setTitle("Remind Me", for: .normal)
+            let image = UIImage(named: "icon-notification-24")?.withRenderingMode(.alwaysTemplate)
+            watchlistButton.setImage(image, for: .normal)
+            watchlistButton.tintColor = UIColor.white
+            watchlistButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            watchlistButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            watchlistButton.layer.borderWidth = 3.0
+            watchlistButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            watchlistButton.titleLabel?.textColor = UIColor.white
+            watchlistButton.layer.cornerRadius = 10
+            watchlistButton.titleLabel?.textAlignment = .center
+            watchlistButton.layer.masksToBounds = true
+            watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            watchlistButton.imageEdgeInsets = UIEdgeInsets(top: -12, left: 0, bottom: -12, right: 0)
+        }
     }
     override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        
-        if self.filterButton.isFocused {
-            self.filterButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-            self.filterButton.setTitleColor(UIColor.white, for: .focused)
-                // handle focus appearance changes
-            }
-            else {
-                self.filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-
-                // handle unfocused appearance changes
-            }
-    }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    //
-    func getWeekDays(){
-        var calendar = Calendar.autoupdatingCurrent
-        let today = calendar.startOfDay(for: Date())
-        var days = [Date]()
-            for i in 0...6 {
-                if let day = calendar.date(byAdding: .day, value: i, to: today) {
-                    days += [day]
-                }
-        }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE"
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
-        for date in days {
-            print(formatter.string(from: date))
-            if date == today{
-                self.dayArray.append("Today")
-                let formattedDate = dateFormatter.string(from: date)
-                let covertedDate  = dateFormatter.date(from: formattedDate)
-                self.dateArray.append(covertedDate)
-
-            }
-            else{
-                self.dayArray.append(formatter.string(from: date))
-                let formattedDate = dateFormatter.string(from: date)
-                let covertedDate = self.convertStringTimeToDate(item:formattedDate)
-                self.dateArray.append(covertedDate)
-            }
+       // Set the width of the cell
+//       self.bounds = CGRect(x: self.bounds.origin.x, y: self.bounds.origin.y, width: self.bounds.size.width - 40, height: self.bounds.size.height)
+       super.layoutSubviews()
+   }
+    var scheduleItem: VideoModel? {
+        didSet{
             
-        }
-        if self.dayArray.count != 0{
-            DispatchQueue.main.async {
-                self.dayListingCollectionView.reloadData()
-//                self.getLiveGuide()
-            }
-                 }
-        
-        print(days)
-    }
-    func getLiveGuide() {
-          print("getLiveGuide")
-        let widthnew =  (UIScreen.main.bounds.width/3)
-        let height = ((widthnew)*9)/16
-        if channelType == "HomeSchedule"{
-            self.filterButtonHeight.constant = 0
-            self.scheduleCollectionViewHeight.constant = height + 90
-        }
-        else{
-            self.filterButtonHeight.constant = 60
-            self.scheduleCollectionViewHeight.constant = height + 150
-
-        }
-          ApiCommonClass.getLiveGuide { (responseDictionary: Dictionary) in
-            if responseDictionary["error"] != nil {
-              DispatchQueue.main.async {
-                DispatchQueue.main.async {
-                }
-              }
-            } else {
-              self.scheduleVideos?.removeAll()
-                self.allLiveVideos?.removeAll()
-               if let videos = responseDictionary["data"] as? [VideoModel]? {
-                  self.scheduleVideos = videos
-                  self.allLiveVideos = videos
-                  if self.scheduleVideos?.count == 0 {
-                }else{
-                    DispatchQueue.main.async {
-                        self.getListByFilterDay(date: self.dateArray[self.selectedDateArrayIndex]!, dateString: self.dayArray[self.selectedDateArrayIndex]!)
-                    }
-                }
-              }
-            }
-          }
-        }
-    func getListByFilterDay(date:Date,dateString:String){
-//        if let value = allLiveVideos?.filter({ Calendar.current.isDate(self.convertStringTimeToDate(item:$0.starttime!), inSameDayAs:date)}){
-//            if value.count > 0{
-//                self.scheduleVideos?.removeAll()
-//                self.scheduleVideos = value
-//                DispatchQueue.main.async {
-//                    self.scheduleCollectionView.reloadData()
-//                }
-//            }
-//
-//        }
-        if let value = allLiveVideos?.filter({ Calendar.current.isDate(self.convertStringTimeToDate(item:$0.starttime!), inSameDayAs:date)}){
-            self.scheduleVideos?.removeAll()
-            self.scheduleVideos = value
-            if dateString == "Today"{
-                self.todayFeaturedVideos = value
-                print("top featured getListByFilterDay",self.todayFeaturedVideos?.count)
-                if let array = self.todayFeaturedVideos?.filter({$0.status == "NOW_PLAYING"}){
-                    if array.count > 0{
-                        let endTime = array[0].endtime
-                        let startTime = array[0].starttime
-                        if let upcomingArray =  self.todayFeaturedVideos?.filter({endTime!<=$0.starttime!}){
-                            self.scheduleVideos? = upcomingArray
-                            DispatchQueue.main.async {
-                                self.scheduleCollectionView.reloadData()
-                            }
-                            print("upcoming guide array",self.scheduleVideos?.count)
-                        }
-                        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime! <= startTime!}){
-                            print("previous guide array",previousArray.count)
-                        }
-                    }
-                    else{
-                        setupUpcoming()
-                    }
+            if  scheduleItem?.thumbnail_350_200 != nil {
+                let image =  scheduleItem?.thumbnail_350_200
+                if image!.starts(with: "https"){
+                    self.ImageView.sd_setImage(with: URL(string: ((scheduleItem?.thumbnail_350_200)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
                     
                 }
                 else{
-                    setupUpcoming()
+                    self.ImageView.sd_setImage(with: URL(string: showUrl + (scheduleItem?.thumbnail_350_200!)!),placeholderImage:UIImage(named: "landscape_placeholder"))
+                    print("image",showUrl + ((scheduleItem?.thumbnail_350_200!)!))
                 }
+                
+            }
+            else {
+                self.ImageView.image = UIImage(named: "landscape_placeholder")
+            }
+
+            if scheduleItem?.video_title != nil{
+                self.nameLabel.text = scheduleItem?.video_title
+            }
+            if scheduleItem?.video_description != nil{
+                self.descriptionLabel.text = scheduleItem?.video_description
+            }
+            if let time = scheduleItem?.starttime{
+                let formatter = DateFormatter()
+                  formatter.timeZone = TimeZone.current
+                  formatter.dateFormat = "h:mm a"
+                  formatter.amSymbol = "AM"
+                  formatter.pmSymbol = "PM"
+                  let startTime = self.convertStringTimeToDate(item: time)
+                  let timeStart1 = formatter.string(from: startTime)
+                  self.timeLabel.text = timeStart1
+                
+            }
+            if (scheduleItem?.schedule_reminded)!{
+                addReminder = true
+                self.watchlistButton.setImage(UIImage(named: ""), for: .normal)
+//                self.watchlistButton.setTitle("Remove from list", for: .normal)
+                self.watchlistButton.setTitle("Cancel Reminder", for: .normal)
+                self.watchlistButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+                let image = UIImage(named: "closeButton")?.withRenderingMode(.alwaysTemplate)
+                self.watchlistButton.setImage(image, for: .normal)
+                self.watchListButtonWidth.constant = 240
+                self.watchListButtonHeight.constant = 55
+                watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                watchlistButton.imageEdgeInsets = UIEdgeInsets(top: -15, left: -17, bottom: -15, right: 0)
+                self.watchlistButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -35, bottom: 0, right: -40)
             }
             else{
-                DispatchQueue.main.async {
-                    self.scheduleCollectionView.reloadData()
-                }
+                addReminder = false
+                self.watchlistButton.setTitle("Remind Me", for: .normal)
+                let image = UIImage(named: "icon-notification-24")?.withRenderingMode(.alwaysTemplate)
+                self.watchlistButton.setImage(image, for: .normal)
+                self.watchListButtonWidth.constant = 250
+                self.watchListButtonHeight.constant = 55
             }
         }
     }
-    var upcomingFilterImageClicked = false
 
-    @IBAction func filterAction(_ sender: Any) {
-        if !upcomingFilterImageClicked{
-            scheduleVideos?.removeAll()
-            print("top featured getEarlierShows blue",self.todayFeaturedVideos?.count)
-            if let array = self.todayFeaturedVideos?.filter({$0.status == "NOW_PLAYING"}){
-                if array.count > 0{
-                    let endTime = array[0].endtime
-                    let startTime = array[0].starttime
-                    if let upcomingArray =  self.todayFeaturedVideos?.filter({endTime!<=$0.starttime!}){
-                        
-                    }
-                    if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime!<=startTime!}){
-                        self.scheduleVideos? = previousArray
-                        DispatchQueue.main.async {
-                            self.scheduleCollectionView.reloadData()
-                        }
-                        print("previous guide array",previousArray.count)
-                    }
-                }
-                else{
-                    setupUpPreviusArray()
-                }
-            }
-            else{
-                setupUpPreviusArray()
-            }
-            let image = UIImage(named: "arrow-up")?.withRenderingMode(.alwaysTemplate)
-            filterButton.setImage(image, for: .normal)
-            filterButton.tintColor = UIColor.white
-            filterButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-            let index = IndexPath(item: 0, section: 0)
-            scheduleCollectionView.scrollToItem(at: index, at: .left, animated: true)
-            delegate.didSelectEarlierShows()
-           
-        }
-            else{
-                print("top featured getEarlierShows black",self.todayFeaturedVideos?.count)
+    @IBOutlet weak var showLibrary: UILabel!
+    weak var delegate: ReminderListingTableViewCellDelegate!
 
-                if let array = self.todayFeaturedVideos?.filter({$0.status == "NOW_PLAYING"}){
-                    if array.count > 0{
-                        let endTime = array[0].endtime
-                        let startTime = array[0].starttime
-                        if let upcomingArray =  self.todayFeaturedVideos?.filter({endTime!<=$0.starttime!}){
-                            self.scheduleVideos? = upcomingArray
-                            DispatchQueue.main.async {
-                                self.scheduleCollectionView.reloadData()
-                            }
-                            print("upcoming guide array",self.scheduleVideos?.count)
-                        }
-                        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime!<=startTime!}){
-                            print("previous guide array",previousArray.count)
-                        }
-                    }
-                    else{
-                        self.setupUpcoming()
-                    }
-                }
-                else{
-                    self.setupUpcoming()
-                }
-                let image = UIImage(named: "drop-down-arrow")?.withRenderingMode(.alwaysTemplate)
-                filterButton.setImage(image, for: .normal)
-                filterButton.tintColor = UIColor.white
-                filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-                let index = IndexPath(item: 0, section: 0)
-                scheduleCollectionView.scrollToItem(at: index, at: .left, animated: true)
-                delegate.didSelectEarlierShows()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let margins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.bounds = bounds.inset(by: margins)
+        // Initialization code
+        self.mainView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        let width =  (UIScreen.main.bounds.width/4.5)
+        let height = (9 * (width)) / 16
+        self.imageViewWidth.constant = width - 60
+        self.imageViewHeight.constant = height
 
-//                filterIconImage.image = UIImage(named: "earlier_shows_icon_black")
-            }
-            upcomingFilterImageClicked = !upcomingFilterImageClicked
-      
-    }
-    func setupUpcoming(){
-        let currentTime =  Date()
-        let df = DateFormatter()
-        df.timeZone = TimeZone(abbreviation: "UTC")
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
-        let currentDateString = df.string(from: currentTime)
-        print("date formatted",currentDateString)
-        if let upcomingArray =  self.todayFeaturedVideos?.filter({currentDateString < $0.starttime!}){
-            self.scheduleVideos = upcomingArray
-            self.scheduleCollectionView.reloadData()
-        }
-        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime! <= currentDateString}){
-//             self.upcomingGuideArray = previousArray
-        }
-        
-    }
-    func setupUpPreviusArray(){
-        let currentTime =  Date().localDate()
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
-        df.timeZone = TimeZone(abbreviation: "UTC")
-        let currentDateString = df.string(from: currentTime)
-        print("date formatted",currentDateString)
-        if let upcomingArray =  self.todayFeaturedVideos?.filter({currentDateString < $0.starttime!}){
-            
-        }
-        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime! <= currentDateString}){
-            self.scheduleVideos = previousArray
-            self.scheduleCollectionView.reloadData()
-            print("previous guide array",previousArray.count)
-        }
-        
     }
     func convertStringTimeToDate(item: String) -> Date {
         let dateFormatter = DateFormatter()
@@ -361,143 +185,106 @@ class ScheduleListTableViewCell: UITableViewCell {
         let date = dateFormatter.date(from:item)!
         return date
     }
-    
-   
-
-}
-extension ScheduleListTableViewCell:UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == scheduleCollectionView{
-            print("Schedulevideo cpunt",scheduleVideos?.count)
-            return scheduleVideos?.count ?? 0
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.playButton.isFocused{
+            playButton.backgroundColor = ThemeManager.currentTheme().focusedColor
+            watchlistButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
         }
-        return dayArray.count
-    }
-    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        if collectionView == scheduleCollectionView{
-            return false
-        }
-        return true
-    }
-    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if collectionView == dayListingCollectionView{
-            if let previousIndexPath = context.previouslyFocusedIndexPath ,
-               let cell = dayListingCollectionView.cellForItem(at: previousIndexPath) {
-                print("previousIndexPath")
-                cell.contentView.layer.borderWidth = 0.0
-                cell.contentView.layer.shadowRadius = 0.0
-                cell.contentView.layer.shadowOpacity = 0
-                cell.contentView.layer.cornerRadius = 0
-            }
-
-            if let indexPath = context.nextFocusedIndexPath,
-               let cell = dayListingCollectionView.cellForItem(at: indexPath) {
-                print("nextFocusedIndexPath")
-                cell.contentView.layer.borderWidth = 2.0
-                cell.contentView.layer.borderColor = UIColor.white.cgColor
-                cell.contentView.layer.cornerRadius = 28
-               
-            }
-        }
-       
-       
-    }
-   
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == dayListingCollectionView{
-            selectedDateArrayIndex = indexPath.row
-           getListByFilterDay(date: dateArray[indexPath.item]!, dateString: dayArray[indexPath.item]!)
-            //Need to fix crash when there is  no data at the first cell
-            let index = IndexPath(item: 0, section: 0)
-            scheduleCollectionView.scrollToItem(at: index, at: .left, animated: true)
-            if let cell = collectionView.cellForItem(at: indexPath) as! DayFilterCollectionViewCell?{
-                cell.backgroundColor = ThemeManager.currentTheme().focusedColor
-            }
-            if dayArray[indexPath.row] == "Today"{
-                self.todayFeaturedVideos = scheduleVideos
-                self.filterButton.isHidden = false
-                getListByFilterDay(date: dateArray[indexPath.item]!, dateString: dayArray[indexPath.item]!)
-                filterButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-                let image = UIImage(named: "drop-down-arrow")?.withRenderingMode(.alwaysTemplate)
-                filterButton.setImage(image, for: .normal)
-                filterButton.tintColor = UIColor.white
-                filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-                upcomingFilterImageClicked = false
-            }
-            else{
-                self.filterButton.isHidden = true
-                getListByFilterDay(date: dateArray[indexPath.item]!, dateString: dayArray[indexPath.item]!)
-
-            }
-
-
-        }
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == scheduleCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleListCollectionCell", for: indexPath as IndexPath) as! SheduleListCollectionViewCell
-            cell.backgroundColor = .clear
-            cell.delegate = self
-            cell.scheduleItem = scheduleVideos?[indexPath.row]
-            return cell
+        else if self.watchlistButton.isFocused{
+            watchlistButton.backgroundColor = ThemeManager.currentTheme().focusedColor
+            playButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
         }
         else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayFilterCollectionCell", for: indexPath as IndexPath) as! DayFilterCollectionViewCell
-            cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
-            cell.layer.cornerRadius = 28
-            cell.layer.masksToBounds = true
-            cell.dayItem = dayArray[indexPath.row]
-            return cell
+            watchlistButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            playButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
         }
-        
+             
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == scheduleCollectionView{
-            if channelType == "HomeSchedule"{
-                let width = (scheduleCollectionView.frame.width - ((scheduleCollectionView.frame.width)/3))
-                let widthnew =  (UIScreen.main.bounds.width/3)
-                let height = ((widthnew)*9)/16
-                return CGSize(width: width + 100, height: height + 90)
-            }
-            else{
-                let width = (scheduleCollectionView.frame.width - ((scheduleCollectionView.frame.width)/3))
-                let widthnew =  (UIScreen.main.bounds.width/3)
-                let height = ((widthnew)*9)/16
-                return CGSize(width: width + 100, height: height + 150)
-            }
 
-        }
-        else{
-            return CGSize(width: 200, height: 60)
-        }
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom:0, right:0)
-    }
-//
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
-       
+    @IBAction func onDemandAction(_ sender: Any) {
+        delegate.didSelectOnDemand(passModel: scheduleItem)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
-    }
-}
-extension ScheduleListTableViewCell : SheduleListCollectionViewCellDelegate{
-    func didSelectOnDemand(passModel: VideoModel?) {
-        delegate.didSelectOnDemand(passModel: passModel)
-    }
-    
-    func didSelectReminder(passModel: VideoModel?) {
+    @IBAction func watchlistAction(_ sender: Any) {
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            delegate.didSelectReminder(passModel: passModel)
+            delegate.didSelectReminder(passModel: scheduleItem)
         }else{
-            self.getLiveGuide()
-            delegate.didSelectReminder(passModel: passModel)
+            self.addToReminderAPI()
+        }
+    }
+    var addReminder = false
+    func addToReminderAPI() {
+        var parameterDict: [String: String?] = [ : ]
+        let accesToken = UserDefaults.standard.string(forKey:"access_token")!
+        let user_id = UserDefaults.standard.string(forKey:"user_id")!
+        let country_code = UserDefaults.standard.string(forKey:"countryCode")!
+        let pubid = UserDefaults.standard.string(forKey:"pubid")!
+        let device_type = "ios-phone"
+        let dev_id = UserDefaults.standard.string(forKey:"UDID")!
+        let ipAddress = UserDefaults.standard.string(forKey:"IPAddress")!
+        let channelid = UserDefaults.standard.string(forKey:"channelid")!
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"]  as! String
+        let userAgent = UserDefaults.standard.string(forKey:"userAgent")
+        let encodeduserAgent = String(format: "%@", userAgent!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+        if let shedule_id =  scheduleItem?.id {
+            parameterDict["schedule_id"] = String(shedule_id)
+            parameterDict["cancel"] = String((scheduleItem?.schedule_reminded)!)
         }
        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try! encoder.encode(parameterDict)
+             ApiCallManager.apiCallREST(mainUrl: GetRemindAPI, httpMethod: "POST", headers: ["Content-Type":"application/json","access-token": accesToken,"uid":user_id,"country_code":country_code,"pubid":pubid,"device_type":device_type,"dev_id":dev_id,"ip":ipAddress,"channelid":channelid,"version":version,"ua":encodeduserAgent], postData: data) { (responseDictionary: Dictionary) in
+                var channelResponse = Dictionary<String, AnyObject>()
+                guard let succes = responseDictionary["success"] as? NSNumber  else {
+                  return
+                }
+//
+                 
+                if succes == 0{
+                    DispatchQueue.main.async {
+                    }
+                }
+                else if succes == 1 {
+                    DispatchQueue.main.async { [self] in
+                        self.addReminder = !self.addReminder
+                        print("remainder",self.addReminder)
+                        if self.addReminder  {
+                            self.watchlistButton.setImage(UIImage(named: ""), for: .normal)
+//                            self.watchlistButton.setTitle("Remove from list", for: .normal)
+                            self.watchlistButton.setTitle("Cancel Reminder", for: .normal)
+                            self.watchlistButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+                            let image = UIImage(named: "closeButton")?.withRenderingMode(.alwaysTemplate)
+                            self.watchlistButton.setImage(image, for: .normal)
+                            self.watchListButtonWidth.constant = 240
+                            self.watchListButtonHeight.constant = 55
+                            self.watchlistButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                            watchlistButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                            self.watchlistButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                            watchlistButton.imageEdgeInsets = UIEdgeInsets(top: -15, left: -17, bottom: -15, right: 0)
+                            self.watchlistButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -35, bottom: 0, right: -40)
+                        }
+                        else {
+                            self.watchlistButton.setTitle("Remind Me", for: .normal)
+                            let image = UIImage(named: "icon-notification-24")?.withRenderingMode(.alwaysTemplate)
+                            self.watchlistButton.setImage(image, for: .normal)
+                            self.watchListButtonWidth.constant = 250
+                            self.watchListButtonHeight.constant = 55
+                        }
+                        self.delegate.didSelectReminder(passModel: self.scheduleItem)
+                    }
+                  }
+                else {
+                  channelResponse["error"]=responseDictionary["message"]
+                }
+            }
+
+        }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
-    
-    
+
 }

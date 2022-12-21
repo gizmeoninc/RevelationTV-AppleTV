@@ -15,6 +15,7 @@ class LiveTabViewController: UIViewController{
     @IBOutlet weak var liveTableView: UITableView!{
         didSet{
             liveTableView.isHidden = true
+            liveTableView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         }
     }
     @IBOutlet weak var menuCollectionView: UICollectionView!{
@@ -41,14 +42,76 @@ class LiveTabViewController: UIViewController{
             dropDownArrowACcount.setImageColor(color: ThemeManager.currentTheme().headerTextColor)
         }
     }
+    
+    @IBOutlet weak var mainScrollView: UIScrollView!{
+        didSet{
+            self.mainScrollView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    @IBOutlet weak var mainView: UIView!
+    {
+        didSet{
+            self.mainView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        }
+    }
+    
+    @IBOutlet weak var comingSoonLabel: UILabel!
+    {
+        didSet{
+            comingSoonLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            comingSoonLabel.textColor = ThemeManager.currentTheme().headerTextColor
+            comingSoonLabel.text = "Coming Up"
+        }
+    }
+    @IBOutlet weak var sepratorView: UIView!
+    
+    @IBOutlet weak var filterCollectionView: UICollectionView!
+    
+    @IBOutlet weak var filterButton: UIButton!{
+        didSet{
+            filterButton.setTitle("Earlier Shows", for: .normal)
+            let image = UIImage(named: "drop-down-arrow")?.withRenderingMode(.alwaysTemplate)
+            filterButton.setImage(image, for: .normal)
+            filterButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
+            filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            filterButton.layer.borderWidth = 3.0
+            filterButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 25)
+            filterButton.titleLabel?.textColor = ThemeManager.currentTheme().ButtonBorderColor
+            filterButton.setTitleColor(ThemeManager.currentTheme().ButtonBorderColor, for: .normal)
+            filterButton.layer.cornerRadius = 8
+            filterButton.titleLabel?.textAlignment = .center
+            filterButton.layer.masksToBounds = true
+            filterButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            filterButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            filterButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            filterButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50)
+        }
+    }
+    @IBOutlet weak var mainViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var filterCollectionViewHeight: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var liveTableViewHeight: NSLayoutConstraint!
+    
     let reachability = try! Reachability()
     fileprivate let rowHeight = UIScreen.main.bounds.height * 0.3
     var dianamicVideos = [showByCategoryModel]()
-    var scheduleVideos = [VideoModel]()
+    var scheduleVideos : [VideoModel]?
     var liveVideos = [VideoModel]()
     var menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
     var lastFocusedIndexPath: IndexPath?
-
+    var allLiveVideos : [VideoModel]?
+    var todayFeaturedVideos : [VideoModel]?
+    var selectedIndex = 0
+    var selectedFilter = 0
+    var selectedDateArrayIndex = 0
+    var selectedDateStringIndex = 0
+    var dayArray = [String?]()
+    var dateArray = [Date?]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let nibVideoList =  UINib(nibName: "HomeTableViewCell", bundle: nil)
@@ -59,13 +122,19 @@ class LiveTabViewController: UIViewController{
 //        liveTableView.register(nibVideoList, forCellReuseIdentifier: "HomeTableCell")
         liveTableView.delegate = self
         liveTableView.dataSource = self
-        liveTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        liveTableView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         liveTableView.contentInsetAdjustmentBehavior = .never
        
         
-       
-        self.getLiveChannel()
+        filterCollectionView.register(UINib(nibName: "DayFilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "dayFilterCollectionCell")
+        filterCollectionView.delegate = self
+        filterCollectionView.dataSource = self
+        filterCollectionView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        
+        filterCollectionViewHeight.constant = 120
+        getWeekDays()
+        self.getLiveGuide()
         reachability.whenUnreachable = { _ in
             commonClass.showAlert(viewController:self, messages: "Network connection lost!")
             print("Not reachable")
@@ -121,12 +190,67 @@ class LiveTabViewController: UIViewController{
             self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
+            self.filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+
+        }
+        else if filterButton.isFocused{
+            self.filterButton.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
         }
         else{
             self.accountButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
+            self.filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+
             
         }
+    }
+    func getWeekDays(){
+        var calendar = Calendar.autoupdatingCurrent
+        let today = calendar.startOfDay(for: Date())
+        var days = [Date]()
+        for i in 0...6 {
+            if let day = calendar.date(byAdding: .day, value: i, to: today) {
+                days += [day]
+            }
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE"
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
+        for date in days {
+            print(formatter.string(from: date))
+            if date == today{
+                self.dayArray.append("Today")
+                let formattedDate = dateFormatter.string(from: date)
+                let covertedDate  = dateFormatter.date(from: formattedDate)
+                self.dateArray.append(covertedDate)
+                
+            }
+            else{
+                self.dayArray.append(formatter.string(from: date))
+                let formattedDate = dateFormatter.string(from: date)
+                let covertedDate = self.convertStringTimeToDate(item:formattedDate)
+                self.dateArray.append(covertedDate)
+            }
+            
+        }
+        if self.dayArray.count != 0{
+            DispatchQueue.main.async {
+                self.filterCollectionView.reloadData()
+                //                self.getLiveGuide()
+            }
+        }
+        
+        print(days)
+    }
+    
+    func convertStringTimeToDate(item: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
+        let date = dateFormatter.date(from:item)!
+        return date
     }
     func getLiveChannel() {
         print("getLiveGuide")
@@ -157,6 +281,8 @@ class LiveTabViewController: UIViewController{
     
     func getLiveGuide() {
         print("getLiveGuide")
+        commonClass.startActivityIndicator(onViewController: self)
+
         ApiCommonClass.getLiveGuide { (responseDictionary: Dictionary) in
             if responseDictionary["error"] != nil {
                 DispatchQueue.main.async {
@@ -168,17 +294,20 @@ class LiveTabViewController: UIViewController{
                     }
                 }
             } else {
-                self.scheduleVideos.removeAll()
+                self.scheduleVideos?.removeAll()
                 if let videos = responseDictionary["data"] as? [VideoModel]? {
                     self.scheduleVideos = videos!
-                    if self.scheduleVideos.count == 0 {
+                    if self.scheduleVideos?.count == 0 {
                         self.liveTableView.isHidden = true
                         commonClass.stopActivityIndicator(onViewController: self)
-
 
                     }else{
                         DispatchQueue.main.async {
                             self.liveTableView.isHidden = false
+                            let width =  (UIScreen.main.bounds.width/4.5)
+                            let height =   self.scheduleVideos!.count * (((9 * Int(width)) / 16) + 70)
+                            self.liveTableViewHeight.constant = CGFloat(height)
+                            self.mainViewHeight.constant = self.filterCollectionViewHeight.constant + self.liveTableViewHeight.constant + 300
                             self.liveTableView.reloadData()
                             commonClass.stopActivityIndicator(onViewController: self)
 
@@ -237,99 +366,45 @@ extension LiveTabViewController: UITableViewDataSource, UITableViewDelegate,UISc
     }
     
     func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0{
-            return true
-        }
+       
         return false
     }
    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return  2
+        return scheduleVideos?.count ?? 0
+
     }
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if liveVideos.count > 0{
-            return 1
-        }else if scheduleVideos.count > 0{
-            return 1
-        }
-        else{
-            return 0
-        }
+        
+        return 1
             
     }
-    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LiveTableCell", for: indexPath) as! LiveTableViewCell
-            cell.selectionStyle = .none
-            if liveVideos.count > 0{
-                cell.scheduleVideos = self.liveVideos
-
-            }
-            cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleListTableCell", for: indexPath) as! ScheduleListTableViewCell
+            cell.scheduleItem =  scheduleVideos?[indexPath.section]
+        cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        cell.selectionStyle = .none
+        cell.layer.cornerRadius = 8
             return cell
-        }
-        else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleListTableCell", for: indexPath) as! ScheduleListTableViewCell
-            cell.channelType = "LiveSchedule"
-            
-            cell.delegate = self
-            if scheduleVideos.count > 0{
-                cell.scheduleVideos = self.scheduleVideos
-            }
-            cell.backgroundColor = .clear
-            return cell
-        }
-        
-       
-        
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("hello")
-        if indexPath.section == 0{
-                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveVC") as! LivePlayingViewController
-                videoDetailView.channelVideo = self.liveVideos[indexPath.row]
-                self.present(videoDetailView, animated: true, completion: nil)
-            
-        }
         
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0  {
-            let width = UIScreen.main.bounds.width
-            let widthNew = width - (width/3)
-            let height = (widthNew*9)/16
-            return height + 30
-        }
-        else {
-            let widthnew =  (UIScreen.main.bounds.width/3)
-            let height = ((widthnew)*9)/16
-            return height + 420
-           
-        }
+            let width =  (UIScreen.main.bounds.width/4.5)
+            let height = (9 * (width)) / 16
+            return height + 70
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
-        return 80
+        return 0
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        let titleLabel = UILabel()
-        titleLabel.textColor = ThemeManager.currentTheme().headerTextColor
-        titleLabel.textAlignment = .left
-        titleLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 40)
-        titleLabel.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height:60).integral
-        if section == 0  {
-            titleLabel.text =  "RevelationTV Live"
-        }
-        else  {
-            titleLabel.text =  "Coming Up"
-        }
-       
-        headerView.addSubview(titleLabel)
         headerView.backgroundColor = .clear
         return headerView
     }
@@ -337,6 +412,12 @@ extension LiveTabViewController: UITableViewDataSource, UITableViewDelegate,UISc
 }
 extension LiveTabViewController:UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == filterCollectionView{
+            if dayArray.count > 0{
+                return dayArray.count
+            }
+            return 0
+        }
        
         return menuArray.count
     }
@@ -414,8 +495,15 @@ extension LiveTabViewController:UICollectionViewDelegateFlowLayout,UICollectionV
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
+        if collectionView == filterCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayFilterCollectionCell", for: indexPath as IndexPath) as! DayFilterCollectionViewCell
+            cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            cell.layer.cornerRadius = 10
+            cell.layer.masksToBounds = true
+            cell.dayItem = dayArray[indexPath.row]
+            return cell
+        }else{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         if indexPath.row == 1{
             cell.menuLabel.textColor = .white
@@ -425,24 +513,40 @@ extension LiveTabViewController:UICollectionViewDelegateFlowLayout,UICollectionV
         }
             cell.menuItem = menuArray[indexPath.row]
             return cell
+        }
+         
         
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-       
+        if collectionView == filterCollectionView{
+            return CGSize(width: 230, height: 60)
+        }
             return CGSize(width: 150, height: 80)
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == filterCollectionView{
+            return UIEdgeInsets(top: 0, left: 0, bottom:0, right:0)
+
+        }
         return UIEdgeInsets(top: 0, left: 25, bottom:0, right:25)
     }
 //
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        if collectionView == filterCollectionView{
+           return 25
+        }
         return 50
        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        if collectionView == filterCollectionView{
+           return 25
+        }
         return 50
     }
 }

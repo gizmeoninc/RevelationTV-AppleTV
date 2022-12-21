@@ -128,6 +128,32 @@ class CatchupViewController: UIViewController {
        
     }
 }
+    
+    @IBOutlet weak var filterButton: UIButton!{
+        didSet{
+            filterButton.setTitle("Earlier Shows", for: .normal)
+            let image = UIImage(named: "drop-down-arrow")?.withRenderingMode(.alwaysTemplate)
+            filterButton.setImage(image, for: .normal)
+            filterButton.tintColor = ThemeManager.currentTheme().buttonTextColor
+            filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            filterButton.layer.borderWidth = 3.0
+            filterButton.titleLabel?.font =  UIFont(name:ThemeManager.currentTheme().fontRegular, size: 25)
+            filterButton.titleLabel?.textColor = ThemeManager.currentTheme().buttonTextColor
+            filterButton.setTitleColor(ThemeManager.currentTheme().buttonTextColor, for: .normal)
+            filterButton.layer.cornerRadius = 8
+            filterButton.titleLabel?.textAlignment = .center
+            filterButton.layer.masksToBounds = true
+            filterButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            filterButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            filterButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            filterButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50)
+        }
+    }
+    
+    
+    
+    
     @IBOutlet weak var timeImage: UIImageView!
     
     @IBOutlet weak var videoImageHeight: NSLayoutConstraint!
@@ -146,11 +172,12 @@ class CatchupViewController: UIViewController {
     var videoUrl = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nibVideoLIst =  UINib(nibName: "ReminderListingTableViewCell", bundle: nil)
-        videoListingTableView.register(nibVideoLIst, forCellReuseIdentifier: "ReminderTableCell")
+        restoresFocusAfterTransition = false
+        let nibVideoLIst =  UINib(nibName: "ScheduleListTableViewCell", bundle: nil)
+        videoListingTableView.register(nibVideoLIst, forCellReuseIdentifier: "ScheduleListTableCell")
         videoListingTableView.delegate = self
         videoListingTableView.dataSource = self
-        videoListingTableView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+        videoListingTableView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         videoListingTableView.contentInsetAdjustmentBehavior = .never
         videoListingTableView.contentInset = .zero
         videoListingTableView.separatorInset = .zero
@@ -165,7 +192,7 @@ class CatchupViewController: UIViewController {
         
         
         
-        let width = UIScreen.main.bounds.width - 100
+        let width = UIScreen.main.bounds.width - 200
         self.videoImageViewWidth.constant = width - (width/3)
          let height = (self.videoImageViewWidth.constant*9)/16
         self.playerViewHeight.constant = height
@@ -211,7 +238,16 @@ class CatchupViewController: UIViewController {
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if playButton.isFocused{
             playButton.backgroundColor = ThemeManager.currentTheme().focusedColor
+            filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
         }
+       else  if self.filterButton.isFocused {
+           
+           filterButton.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
+             playButton.backgroundColor = .clear
+           
+
+                // handle focus appearance changes
+            }
         else if accountButton.isFocused {
             self.accountButton.transform = CGAffineTransformMakeScale(scale, scale)
             self.accountOuterView.layer.borderWidth = 3
@@ -224,6 +260,8 @@ class CatchupViewController: UIViewController {
             playButton.backgroundColor = .clear
             self.accountButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
+            self.filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+
         }
     }
     @objc func click(sender: UIButton) {
@@ -260,7 +298,7 @@ class CatchupViewController: UIViewController {
         }
     }
     override weak var preferredFocusedView: UIView? {
-        return playButton
+        return menuCollectionView
 //        if selectCollectionView{
 //            return playButton
 //        }
@@ -270,7 +308,7 @@ class CatchupViewController: UIViewController {
       
     }
     override var preferredFocusEnvironments : [UIFocusEnvironment] {
-        return [playButton]
+        return [menuCollectionView]
 
 //        if selectCollectionView{
 //            return [playButton]
@@ -512,20 +550,19 @@ extension CatchupViewController: UITableViewDataSource, UITableViewDelegate,UISc
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return scheduleVideos?.count ?? 0
+
         
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if scheduleVideos!.count > 0{
-            return scheduleVideos!.count
-        }
+       
         return 1
         
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReminderTableCell", for: indexPath) as! ReminderListingTableViewCell
-        cell.scheduleItem =  scheduleVideos?[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleListTableCell", for: indexPath) as! ScheduleListTableViewCell
+        cell.scheduleItem =  scheduleVideos?[indexPath.section]
 //        cell.delegate = self
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         cell.selectionStyle = .none
@@ -540,9 +577,9 @@ extension CatchupViewController: UITableViewDataSource, UITableViewDelegate,UISc
         
     }
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let width = UIScreen.main.bounds.width / 3
-        let height = (width * 9)/16
-        return height + 130
+        let width =  (UIScreen.main.bounds.width/4.5)
+        let height = (9 * (width)) / 16
+        return height + 70
 
     }
     
@@ -605,9 +642,9 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
                 if context.focusHeading == .up {
                     print("up clicked")
                     selectCollectionView = true
-                    
-                    self.setNeedsFocusUpdate()
-                    self.updateFocusIfNeeded()
+//
+//                    self.setNeedsFocusUpdate()
+//                    self.updateFocusIfNeeded()
                 }
                 if context.focusHeading == .down {
                     selectCollectionView = false
@@ -685,7 +722,7 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
             let spaceHeight = (self.catchupVideoArray.count * 25)
             self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
 //            let indexpathItem = IndexPath(row: 0, section: 0)
-            mainScrollView.setContentOffset(videoListingTableView.frame.origin, animated: true)
+//            mainScrollView.setContentOffset(videoListingTableView.frame.origin, animated: true)
 //            videoListingTableView.scrollToRow(at:indexpathItem, at: .top, animated: true)
 //            videoListingTableView.reloadData()
              self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + playerViewHeight.constant

@@ -34,7 +34,7 @@ class DayFilterCollectionViewCell: UICollectionViewCell {
     }
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if self.isFocused{
-            self.backgroundColor = ThemeManager.currentTheme().focusedColor
+            self.backgroundColor = ThemeManager.currentTheme().ButtonBorderColor
         }
         else{
             self.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor

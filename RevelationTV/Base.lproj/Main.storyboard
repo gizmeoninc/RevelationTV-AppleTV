@@ -2231,17 +2231,17 @@ Just Watch Me
                                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a29-iD-fJf">
-                                                <rect key="frame" x="0.0" y="0.0" width="1920" height="400"/>
+                                                <rect key="frame" x="100" y="0.0" width="1720" height="400"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player image - home" translatesAutoresizingMaskIntoConstraints="NO" id="PCX-qG-8GT">
-                                                        <rect key="frame" x="50" y="0.0" width="800" height="250"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="800" height="250"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="800" id="WKq-Y6-uV9"/>
                                                             <constraint firstAttribute="height" constant="250" id="Yy7-w5-l4I"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9U-PB-zg8">
-                                                        <rect key="frame" x="410" y="85" width="80" height="80"/>
+                                                        <rect key="frame" x="360" y="85" width="80" height="80"/>
                                                         <color key="backgroundColor" red="0.12941176470588234" green="0.22745098039215686" blue="0.43375764860139859" alpha="0.0" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="pyI-F3-ACV"/>
@@ -2257,7 +2257,7 @@ Just Watch Me
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OU-UZ-fcP" userLabel="MetadataView">
-                                                        <rect key="frame" x="850" y="0.0" width="779" height="400"/>
+                                                        <rect key="frame" x="800" y="0.0" width="779" height="400"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now Playing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uz6-wB-lz4" userLabel="nowPlayingLabel">
                                                                 <rect key="frame" x="16" y="25" width="747" height="46"/>
@@ -2346,7 +2346,7 @@ Just Watch Me
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="8OU-UZ-fcP" firstAttribute="top" secondItem="a29-iD-fJf" secondAttribute="top" id="DvV-u1-bgb"/>
-                                                    <constraint firstItem="PCX-qG-8GT" firstAttribute="leading" secondItem="a29-iD-fJf" secondAttribute="leading" constant="50" id="Nqm-ss-v0c"/>
+                                                    <constraint firstItem="PCX-qG-8GT" firstAttribute="leading" secondItem="a29-iD-fJf" secondAttribute="leading" id="Nqm-ss-v0c"/>
                                                     <constraint firstItem="8OU-UZ-fcP" firstAttribute="leading" secondItem="PCX-qG-8GT" secondAttribute="trailing" id="UhF-en-XFi"/>
                                                     <constraint firstAttribute="height" constant="400" id="UnK-1y-I5I"/>
                                                     <constraint firstItem="Y9U-PB-zg8" firstAttribute="centerX" secondItem="PCX-qG-8GT" secondAttribute="centerX" id="g7G-sI-ihh"/>
@@ -2354,7 +2354,7 @@ Just Watch Me
                                                     <constraint firstItem="Y9U-PB-zg8" firstAttribute="centerY" secondItem="PCX-qG-8GT" secondAttribute="centerY" id="vt1-3I-DTJ"/>
                                                 </constraints>
                                             </view>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XDe-5d-NeI">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XDe-5d-NeI">
                                                 <rect key="frame" x="100" y="416" width="1720" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -2378,23 +2378,34 @@ Just Watch Me
                                                 </cells>
                                             </collectionView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ch-hq-jQU">
-                                                <rect key="frame" x="50" y="560" width="1870" height="670"/>
+                                                <rect key="frame" x="200" y="649" width="1520" height="670"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="670" id="DiX-R8-uwa"/>
                                                 </constraints>
                                             </tableView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyk-mH-pIn">
+                                                <rect key="frame" x="810" y="569" width="300" height="55"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="LHg-In-MdV"/>
+                                                    <constraint firstAttribute="width" constant="300" id="Y78-Au-G8M"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="XDe-5d-NeI" secondAttribute="trailing" constant="100" id="F2O-Hq-Fbe"/>
                                             <constraint firstItem="a29-iD-fJf" firstAttribute="top" secondItem="hgF-A2-ne5" secondAttribute="top" id="Lgp-Cw-sUL"/>
-                                            <constraint firstAttribute="trailing" secondItem="1ch-hq-jQU" secondAttribute="trailing" id="Q6o-aK-YXR"/>
+                                            <constraint firstAttribute="trailing" secondItem="1ch-hq-jQU" secondAttribute="trailing" constant="200" id="Q6o-aK-YXR"/>
                                             <constraint firstItem="XDe-5d-NeI" firstAttribute="top" secondItem="a29-iD-fJf" secondAttribute="bottom" constant="16" id="VUk-zd-Yob"/>
-                                            <constraint firstItem="1ch-hq-jQU" firstAttribute="top" secondItem="XDe-5d-NeI" secondAttribute="bottom" constant="16" id="aEG-Sn-JeU"/>
-                                            <constraint firstAttribute="trailing" secondItem="a29-iD-fJf" secondAttribute="trailing" id="b7c-ye-uPs"/>
+                                            <constraint firstItem="1ch-hq-jQU" firstAttribute="top" secondItem="Cyk-mH-pIn" secondAttribute="bottom" constant="25" id="aEG-Sn-JeU"/>
+                                            <constraint firstItem="a29-iD-fJf" firstAttribute="trailing" secondItem="hgF-A2-ne5" secondAttribute="trailing" constant="-100" id="b7c-ye-uPs"/>
+                                            <constraint firstItem="Cyk-mH-pIn" firstAttribute="top" secondItem="XDe-5d-NeI" secondAttribute="bottom" constant="25" id="bnU-0r-rtE"/>
+                                            <constraint firstItem="Cyk-mH-pIn" firstAttribute="centerX" secondItem="XDe-5d-NeI" secondAttribute="centerX" id="gPj-7B-urZ"/>
                                             <constraint firstItem="XDe-5d-NeI" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="100" id="qZJ-2r-Z6w"/>
-                                            <constraint firstItem="a29-iD-fJf" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" id="qtU-Cg-xvJ"/>
-                                            <constraint firstItem="1ch-hq-jQU" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="50" id="rUp-nb-svO"/>
+                                            <constraint firstItem="a29-iD-fJf" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="100" id="qtU-Cg-xvJ"/>
+                                            <constraint firstItem="1ch-hq-jQU" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="200" id="rUp-nb-svO"/>
                                             <constraint firstAttribute="height" constant="1200" id="tY3-8V-Rd2"/>
                                         </constraints>
                                     </view>
@@ -2501,6 +2512,7 @@ Just Watch Me
                         <outlet property="accountOuterView" destination="X5D-Jd-EVm" id="FH7-3I-W1H"/>
                         <outlet property="demandButton" destination="NIZ-xx-ktw" id="BLO-Kj-0zc"/>
                         <outlet property="dropDownArrowACcount" destination="jHv-iF-qet" id="VXf-AR-eKY"/>
+                        <outlet property="filterButton" destination="Cyk-mH-pIn" id="O2Y-qN-UfD"/>
                         <outlet property="filterCollectionView" destination="XDe-5d-NeI" id="2IM-Cg-Ifk"/>
                         <outlet property="filterCollectionViewHeight" destination="pOE-rl-W7B" id="8YY-92-ZdU"/>
                         <outlet property="imageViewHeight" destination="tWv-kf-sp6" id="gs2-Zh-519"/>
@@ -2531,7 +2543,7 @@ Just Watch Me
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2208" y="3091"/>
+            <point key="canvasLocation" x="2798" y="3049"/>
         </scene>
         <!--Live-->
         <scene sceneID="jsR-fC-tB2">
@@ -2545,9 +2557,6 @@ Just Watch Me
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="NWw-qS-q93">
-                                <rect key="frame" x="0.0" y="120" width="1920" height="960"/>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-df-UAe">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
@@ -2639,25 +2648,120 @@ Just Watch Me
                                     <constraint firstItem="2xR-yM-kiS" firstAttribute="leading" secondItem="brq-7I-2pG" secondAttribute="trailing" constant="100" id="vtH-wn-zCS"/>
                                 </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFu-zd-A1a" userLabel="mainScrollView">
+                                <rect key="frame" x="0.0" y="120" width="1920" height="960"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4R-EX-x6J" userLabel="mainView">
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="2000"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2d-cK-1ix">
+                                                <rect key="frame" x="200" y="20" width="1520" height="46"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kl0-0b-8pL">
+                                                <rect key="frame" x="200" y="82" width="1520" height="1"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="I2X-ft-7fd"/>
+                                                </constraints>
+                                            </view>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JPX-pH-JIp">
+                                                <rect key="frame" x="200" y="108" width="1520" height="128"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="kAD-u7-5Fw"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J1Q-Se-nbf">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="Wzp-X8-axD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pYi-M4-fWT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncW-dL-S5B" userLabel="Earlier show button">
+                                                <rect key="frame" x="810" y="261" width="300" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="eS8-HO-gT2"/>
+                                                    <constraint firstAttribute="height" constant="60" id="xlb-KK-Eu8"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            </button>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="NWw-qS-q93">
+                                                <rect key="frame" x="200" y="346" width="1520" height="960"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="960" id="MYq-3i-rAx"/>
+                                                </constraints>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="E2d-cK-1ix" firstAttribute="top" secondItem="z4R-EX-x6J" secondAttribute="top" constant="20" id="5u7-KJ-KhG"/>
+                                            <constraint firstItem="Kl0-0b-8pL" firstAttribute="top" secondItem="E2d-cK-1ix" secondAttribute="bottom" constant="16" id="6vD-H3-1Q4"/>
+                                            <constraint firstItem="ncW-dL-S5B" firstAttribute="top" secondItem="JPX-pH-JIp" secondAttribute="bottom" constant="25" id="7p2-nC-Nxx"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kl0-0b-8pL" secondAttribute="trailing" constant="200" id="8gx-EX-ZEG"/>
+                                            <constraint firstItem="Kl0-0b-8pL" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="AFA-BT-oF3"/>
+                                            <constraint firstAttribute="trailing" secondItem="JPX-pH-JIp" secondAttribute="trailing" constant="200" id="DEb-A8-j0E"/>
+                                            <constraint firstAttribute="trailing" secondItem="NWw-qS-q93" secondAttribute="trailing" constant="200" id="DPY-w1-iTc"/>
+                                            <constraint firstAttribute="height" constant="2000" id="FYY-Gd-pqU"/>
+                                            <constraint firstAttribute="trailing" secondItem="E2d-cK-1ix" secondAttribute="trailing" constant="200" id="G86-By-gRX"/>
+                                            <constraint firstItem="NWw-qS-q93" firstAttribute="top" secondItem="ncW-dL-S5B" secondAttribute="bottom" constant="25" id="QjU-Jk-W1H"/>
+                                            <constraint firstItem="ncW-dL-S5B" firstAttribute="centerX" secondItem="z4R-EX-x6J" secondAttribute="centerX" id="YSX-QC-RYF"/>
+                                            <constraint firstItem="JPX-pH-JIp" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="eP2-nX-LvT"/>
+                                            <constraint firstItem="JPX-pH-JIp" firstAttribute="top" secondItem="Kl0-0b-8pL" secondAttribute="bottom" constant="25" id="pUC-cq-dFI"/>
+                                            <constraint firstItem="E2d-cK-1ix" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="v61-Nj-1Eu"/>
+                                            <constraint firstItem="NWw-qS-q93" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="zdb-yd-Tdd"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="z4R-EX-x6J" firstAttribute="leading" secondItem="mFu-zd-A1a" secondAttribute="leading" id="IGn-Uc-1jb"/>
+                                    <constraint firstAttribute="trailing" secondItem="z4R-EX-x6J" secondAttribute="trailing" id="N0w-64-5pb"/>
+                                    <constraint firstItem="z4R-EX-x6J" firstAttribute="top" secondItem="mFu-zd-A1a" secondAttribute="top" id="UY7-Ms-AXa"/>
+                                    <constraint firstAttribute="bottom" secondItem="z4R-EX-x6J" secondAttribute="bottom" id="dES-ds-28a"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="NWw-qS-q93" firstAttribute="top" secondItem="4iL-Aa-6lS" secondAttribute="top" constant="120" id="4Mo-wE-wL7"/>
+                            <constraint firstItem="mFu-zd-A1a" firstAttribute="top" secondItem="FUB-df-UAe" secondAttribute="bottom" constant="20" id="DDX-RP-Are"/>
+                            <constraint firstItem="mFu-zd-A1a" firstAttribute="leading" secondItem="4iL-Aa-6lS" secondAttribute="leading" id="DiH-fv-Zrp"/>
+                            <constraint firstAttribute="trailing" secondItem="mFu-zd-A1a" secondAttribute="trailing" id="G3Z-Vg-dRp"/>
                             <constraint firstAttribute="trailing" secondItem="FUB-df-UAe" secondAttribute="trailing" id="K2e-pp-1yf"/>
-                            <constraint firstAttribute="trailing" secondItem="NWw-qS-q93" secondAttribute="trailing" id="PPt-Di-T03"/>
-                            <constraint firstItem="NWw-qS-q93" firstAttribute="leading" secondItem="4iL-Aa-6lS" secondAttribute="leading" id="keq-Ao-Gjf"/>
-                            <constraint firstAttribute="bottom" secondItem="NWw-qS-q93" secondAttribute="bottom" id="nQb-ZO-zrG"/>
+                            <constraint firstAttribute="bottom" secondItem="mFu-zd-A1a" secondAttribute="bottom" id="Rx6-or-Pkd"/>
                             <constraint firstItem="FUB-df-UAe" firstAttribute="leading" secondItem="4iL-Aa-6lS" secondAttribute="leading" id="t8b-dg-fbh"/>
                             <constraint firstItem="FUB-df-UAe" firstAttribute="top" secondItem="4iL-Aa-6lS" secondAttribute="top" id="xkv-D0-Pbg"/>
+                            <constraint firstItem="z4R-EX-x6J" firstAttribute="width" secondItem="4iL-Aa-6lS" secondAttribute="width" id="zDn-gU-Ycb"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Live" id="HFw-cR-rC1"/>
                     <connections>
                         <outlet property="accountButton" destination="ayq-NF-TG1" id="B0E-NK-cl5"/>
                         <outlet property="accountOuterView" destination="g8k-Ov-iJA" id="xEQ-EB-GMB"/>
+                        <outlet property="comingSoonLabel" destination="E2d-cK-1ix" id="lhK-oX-03s"/>
                         <outlet property="dropDownArrowACcount" destination="PzD-Uo-V4r" id="czH-ck-eBC"/>
+                        <outlet property="filterButton" destination="ncW-dL-S5B" id="9hv-gR-fOh"/>
+                        <outlet property="filterCollectionView" destination="JPX-pH-JIp" id="GiI-y5-zoN"/>
+                        <outlet property="filterCollectionViewHeight" destination="kAD-u7-5Fw" id="ggN-pW-3yW"/>
                         <outlet property="liveTableView" destination="NWw-qS-q93" id="FiK-PB-e7p"/>
+                        <outlet property="liveTableViewHeight" destination="MYq-3i-rAx" id="Pu7-Ic-Z1Y"/>
+                        <outlet property="mainScrollView" destination="mFu-zd-A1a" id="nYV-aA-RNa"/>
+                        <outlet property="mainView" destination="z4R-EX-x6J" id="zwf-FP-LUw"/>
+                        <outlet property="mainViewHeight" destination="FYY-Gd-pqU" id="pdm-Zx-0En"/>
                         <outlet property="menuBar" destination="FUB-df-UAe" id="sG8-k1-6H2"/>
                         <outlet property="menuCollectionView" destination="2xR-yM-kiS" id="Bvc-lR-L6z"/>
+                        <outlet property="sepratorView" destination="Kl0-0b-8pL" id="4oI-1n-3XD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="il9-e7-isP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2739,7 +2843,7 @@ Just Watch Me
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1675" y="33"/>
+            <point key="canvasLocation" x="1073" y="30"/>
         </scene>
         <!--Subscription View Controller-->
         <scene sceneID="WTn-tF-gXS">
@@ -3386,19 +3490,17 @@ Just Watch Me
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZc-2d-E3c">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-ud-NQa" userLabel="Search Button">
-                                        <rect key="frame" x="1620" y="-25" width="110" height="150"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-ud-NQa" userLabel="Search Button">
+                                        <rect key="frame" x="1640" y="20" width="60" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="eCT-K3-rnG"/>
-                                            <constraint firstAttribute="height" constant="150" id="jcK-B8-G2u"/>
+                                            <constraint firstAttribute="width" constant="60" id="eCT-K3-rnG"/>
+                                            <constraint firstAttribute="height" constant="60" id="jcK-B8-G2u"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="TVExcelSearchImage-1">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                                        <state key="normal" image="TVExcelSearchImage-1"/>
                                         <buttonConfiguration key="configuration" style="plain" image="TVExcelSearchImage-1">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
@@ -3466,7 +3568,6 @@ Just Watch Me
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
-                                    <constraint firstItem="5aD-Ud-e0q" firstAttribute="trailing" secondItem="8W8-ud-NQa" secondAttribute="leading" id="1uD-r3-vh5"/>
                                     <constraint firstItem="LdD-Hh-0Lr" firstAttribute="leading" secondItem="AZc-2d-E3c" secondAttribute="leading" constant="50" id="5am-Iy-Nah"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="trailing" secondItem="Y2d-o3-RW9" secondAttribute="leading" constant="-100" id="FJr-Yz-SZ6"/>
                                     <constraint firstItem="8W8-ud-NQa" firstAttribute="centerY" secondItem="AZc-2d-E3c" secondAttribute="centerY" id="Hg8-v1-UAF"/>
@@ -3477,6 +3578,7 @@ Just Watch Me
                                     <constraint firstAttribute="trailing" secondItem="Y2d-o3-RW9" secondAttribute="trailing" constant="50" id="cLE-Vi-ynh"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="leading" secondItem="LdD-Hh-0Lr" secondAttribute="trailing" constant="100" id="iDU-Ra-eQ6"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="top" constant="10" id="qHO-Iw-YJQ"/>
+                                    <constraint firstItem="8W8-ud-NQa" firstAttribute="leading" secondItem="5aD-Ud-e0q" secondAttribute="trailing" constant="20" id="vYt-Db-aby"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-RE-2cc" userLabel="dividerView">
