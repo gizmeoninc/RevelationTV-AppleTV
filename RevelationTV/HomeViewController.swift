@@ -75,8 +75,7 @@ var menuArray = [String]()
         HomeTableView.register(nibFeaturedBanner, forCellReuseIdentifier: "DemandTableCell")
         let nibLive =  UINib(nibName: "LiveTableViewCell", bundle: nil)
         HomeTableView.register(nibLive, forCellReuseIdentifier: "LiveTableCell")
-        let nibSchedule =  UINib(nibName: "ScheduleListTableViewCell", bundle: nil)
-        HomeTableView.register(nibSchedule, forCellReuseIdentifier: "ScheduleListTableCell")
+       
         HomeTableView.delegate = self
         HomeTableView.dataSource = self
         HomeTableView.backgroundColor =
@@ -109,6 +108,8 @@ var menuArray = [String]()
         return true
     }
     let scale = 1.0
+    let scale1 = 0.5
+
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
        
         if accountButton.isFocused {
@@ -117,9 +118,25 @@ var menuArray = [String]()
             self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
+            
+            self.searchButton.transform = CGAffineTransformIdentity
+        }
+        else if searchButton.isFocused {
+            self.searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            self.searchButton.transform = CGAffineTransformMakeScale(scale1, scale1)
+            self.accountButton.transform = CGAffineTransformIdentity
+            self.accountOuterView.layer.borderWidth = 0
+            searchButton.tintColor = ThemeManager.currentTheme().buttonTextColor
+    
+            
+
+
+          
+
         }
         else{
             self.accountButton.transform = CGAffineTransformIdentity
+            self.searchButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
             
         }
@@ -508,14 +525,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate,UIScrol
             cell.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             return cell
         }
-        else if dianamicVideos[indexPath.section].type == "LIVE_GUIDE" {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleListTableCell", for: indexPath) as! ScheduleListTableViewCell
-            cell.delegate = self
-            cell.channelType = "HomeSchedule"
-            cell.scheduleVideos = dianamicVideos[indexPath.section].shows
-            cell.backgroundColor = .clear
-            return cell
-        }
+       
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableCell", for: indexPath) as! HomeTableViewCell
             cell.selectionStyle = .none
