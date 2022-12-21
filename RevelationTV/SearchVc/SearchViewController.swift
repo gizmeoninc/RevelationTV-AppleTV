@@ -250,6 +250,10 @@ extension HomeSearchViewController: UITableViewDataSource, UITableViewDelegate,U
   
 }
 extension HomeSearchViewController: HomeTableViewCellDelegate  {
+    func didSelectMoreIcon(_didSelectMoreIcon: HomeTableViewCell, didTapMoreIconInSection section: Int) {
+        
+    }
+    
     func didSelectDianamicVideosEpisode(passModel: VideoModel?) {
         
     }

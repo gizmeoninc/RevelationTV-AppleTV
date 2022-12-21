@@ -332,6 +332,10 @@ extension WatchListViewController: UITableViewDataSource, UITableViewDelegate,UI
 
 }
 extension WatchListViewController: HomeTableViewCellDelegate  {
+    func didSelectMoreIcon(_didSelectMoreIcon: HomeTableViewCell, didTapMoreIconInSection section: Int) {
+        
+    }
+    
     func didSelectDianamicVideosEpisode(passModel: VideoModel?) {
             if let passModel = passModel  {
                 

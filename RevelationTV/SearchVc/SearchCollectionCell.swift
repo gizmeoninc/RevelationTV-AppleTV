@@ -12,7 +12,7 @@ class SearchCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var videoNameLabel: UILabel!{
         didSet{
-            self.videoNameLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 25)
+            self.videoNameLabel.font = UIFont(name: ThemeManager.currentTheme().fontDefault, size: 24)
         }
     }
     @IBOutlet weak var imageView: UIImageView!

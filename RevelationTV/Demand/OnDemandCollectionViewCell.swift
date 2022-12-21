@@ -46,14 +46,14 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
         didSet{
             showDescriptionLabel.numberOfLines = 3
             self.showDescriptionLabel.textColor = ThemeManager.currentTheme().descriptionTextColor
-            self.showDescriptionLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size:25)
+            self.showDescriptionLabel.font = UIFont(name: ThemeManager.currentTheme().fontDefault, size:20)
           }
     }
     
     @IBOutlet weak var showTitleLabel: UILabel!{
         didSet{
             self.showTitleLabel.textColor = ThemeManager.currentTheme().headerTextColor
-            self.showTitleLabel.font = UIFont.init(name: ThemeManager.currentTheme().fontBold, size:40)
+            self.showTitleLabel.font = UIFont.init(name: ThemeManager.currentTheme().fontDefault, size:30)
 //            self.showTitleLabel.font = UIFont.init(name: "ITCAvantGardePro-Bk", size:40)
 
         }
@@ -70,7 +70,7 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
             playButton.backgroundColor = ThemeManager.currentTheme().ButtonBorderColor
             playButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             playButton.layer.borderWidth = 3.0
-            playButton.titleLabel?.font =  UIFont.init(name:"ITCAvantGardePro-Bk", size: 25)
+            playButton.titleLabel?.font = UIFont(name: ThemeManager.currentTheme().fontDefault, size: 20)
             playButton.titleLabel?.textColor = ThemeManager.currentTheme().buttonTextColor
             playButton.layer.cornerRadius = 10
             playButton.titleLabel?.textAlignment = .center
@@ -78,7 +78,7 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
             playButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             playButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             playButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            playButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50)
+            playButton.imageEdgeInsets = UIEdgeInsets(top: -12, left: -50, bottom: -12, right: -30)
         }
     }
     
@@ -91,14 +91,14 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
             MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().ButtonBorderColor
             MoreInfoButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
             MoreInfoButton.layer.borderWidth = 3.0
-            MoreInfoButton.titleLabel?.font =  UIFont(name:"ITCAvantGardePro-Bk", size: 25)
+            MoreInfoButton.titleLabel?.font =  UIFont(name: ThemeManager.currentTheme().fontDefault, size: 20)
             MoreInfoButton.layer.cornerRadius = 10
             MoreInfoButton.titleLabel?.textAlignment = .center
             MoreInfoButton.layer.masksToBounds = true
             MoreInfoButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             MoreInfoButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             MoreInfoButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            MoreInfoButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50)
+            MoreInfoButton.imageEdgeInsets = UIEdgeInsets(top: -12, left: -50, bottom: -12, right: -30)
         }
     }
     
