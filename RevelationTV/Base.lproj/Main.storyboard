@@ -882,6 +882,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEf-BP-Mw3">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3e-nH-SrM" userLabel="Search Button">
+                                        <rect key="frame" x="1520" y="0.0" width="150" height="100"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="EHB-rE-Cjn"/>
+                                            <constraint firstAttribute="height" constant="100" id="car-UW-11d"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7t-GB-jpe" userLabel="AccountView">
                                         <rect key="frame" x="1720" y="0.0" width="150" height="100"/>
                                         <subviews>
@@ -916,7 +927,7 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8zS-Rm-QrG">
-                                        <rect key="frame" x="250" y="10" width="1445" height="80"/>
+                                        <rect key="frame" x="465" y="10" width="1005" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YWt-p9-vnZ">
                                             <size key="itemSize" width="128" height="128"/>
@@ -936,15 +947,23 @@
                                         </cells>
                                     </collectionView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo" translatesAutoresizingMaskIntoConstraints="NO" id="c9s-Tm-ACj">
-                                        <rect key="frame" x="50" y="0.0" width="100" height="100"/>
+                                        <rect key="frame" x="50" y="15" width="315" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="V1g-06-MPN"/>
-                                            <constraint firstAttribute="width" constant="100" id="jL0-bL-fuh"/>
+                                            <constraint firstAttribute="height" constant="70" id="V1g-06-MPN"/>
+                                            <constraint firstAttribute="width" constant="315" id="jL0-bL-fuh"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpq-Wb-6Kc">
+                                        <rect key="frame" x="130" y="0.0" width="1660" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="M3w-Lg-mwk"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
+                                    <constraint firstItem="mpq-Wb-6Kc" firstAttribute="leading" secondItem="sEf-BP-Mw3" secondAttribute="leading" constant="130" id="9CN-hp-wnI"/>
                                     <constraint firstItem="c9s-Tm-ACj" firstAttribute="leading" secondItem="sEf-BP-Mw3" secondAttribute="leading" constant="50" id="Bub-dm-gd1"/>
                                     <constraint firstItem="8zS-Rm-QrG" firstAttribute="leading" secondItem="c9s-Tm-ACj" secondAttribute="trailing" constant="100" id="Dmb-l6-3se"/>
                                     <constraint firstAttribute="bottom" secondItem="8zS-Rm-QrG" secondAttribute="bottom" constant="10" id="Ept-jE-nxb"/>
@@ -952,8 +971,12 @@
                                     <constraint firstItem="b7t-GB-jpe" firstAttribute="top" secondItem="sEf-BP-Mw3" secondAttribute="top" id="K8s-PV-ZTS"/>
                                     <constraint firstAttribute="trailing" secondItem="b7t-GB-jpe" secondAttribute="trailing" constant="50" id="MTJ-GJ-HlT"/>
                                     <constraint firstAttribute="height" constant="100" id="NEK-oY-KqW"/>
-                                    <constraint firstItem="8zS-Rm-QrG" firstAttribute="trailing" secondItem="b7t-GB-jpe" secondAttribute="leading" constant="-25" id="VGo-pv-uXN"/>
+                                    <constraint firstItem="j3e-nH-SrM" firstAttribute="trailing" secondItem="b7t-GB-jpe" secondAttribute="leading" constant="-50" id="VqI-bq-8A2"/>
+                                    <constraint firstAttribute="trailing" secondItem="mpq-Wb-6Kc" secondAttribute="trailing" constant="130" id="fgi-bC-jPd"/>
+                                    <constraint firstItem="8zS-Rm-QrG" firstAttribute="trailing" secondItem="j3e-nH-SrM" secondAttribute="leading" constant="-50" id="jq9-aN-3tj"/>
+                                    <constraint firstItem="j3e-nH-SrM" firstAttribute="centerY" secondItem="8zS-Rm-QrG" secondAttribute="centerY" id="njY-Ob-kdV"/>
                                     <constraint firstItem="c9s-Tm-ACj" firstAttribute="centerY" secondItem="sEf-BP-Mw3" secondAttribute="centerY" id="vYO-pS-GWX"/>
+                                    <constraint firstItem="mpq-Wb-6Kc" firstAttribute="top" secondItem="sEf-BP-Mw3" secondAttribute="top" id="wiH-HB-kKt"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -994,6 +1017,7 @@
                         <outlet property="scheduleView" destination="4rK-oo-Mw0" id="sNc-uI-0lo"/>
                         <outlet property="scheduleViewHeight" destination="5uP-Ly-oKO" id="yMD-9l-tKX"/>
                         <outlet property="scheduleViewWidth" destination="QtX-ho-8lG" id="dNH-fO-2ye"/>
+                        <outlet property="searchButton" destination="j3e-nH-SrM" id="FUp-lU-Ag1"/>
                         <outlet property="seasonButton" destination="dO7-zf-nEB" id="y2O-l5-V6q"/>
                         <outlet property="seasonButtonHeight" destination="VQU-UY-vmI" id="e0A-1u-h9T"/>
                         <outlet property="seasonButtonWidth" destination="Wil-LE-ksp" id="Wyr-zH-3X2"/>
@@ -3204,17 +3228,26 @@ Just Watch Me
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98Q-Z3-zg6">
+                                <rect key="frame" x="130" y="100" width="1660" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="TzV-RG-IkU"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPd-eT-hbh">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaV-wy-4Af" userLabel="Search Button">
-                                        <rect key="frame" x="1620" y="-25" width="110" height="150"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaV-wy-4Af" userLabel="Search Button">
+                                        <rect key="frame" x="1520" y="0.0" width="150" height="100"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="Koe-P2-tXa"/>
-                                            <constraint firstAttribute="height" constant="150" id="nit-D2-jLI"/>
+                                            <constraint firstAttribute="width" constant="150" id="Koe-P2-tXa"/>
+                                            <constraint firstAttribute="height" constant="100" id="nit-D2-jLI"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="search"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RlI-TC-BQZ" userLabel="AccountView">
                                         <rect key="frame" x="1720" y="0.0" width="150" height="100"/>
@@ -3250,7 +3283,7 @@ Just Watch Me
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gJZ-pH-Jn3">
-                                        <rect key="frame" x="465" y="10" width="1155" height="80"/>
+                                        <rect key="frame" x="465" y="10" width="1005" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pQ5-Gf-iTp">
                                             <size key="itemSize" width="128" height="128"/>
@@ -3282,14 +3315,14 @@ Just Watch Me
                                     <constraint firstItem="RlI-TC-BQZ" firstAttribute="top" secondItem="NPd-eT-hbh" secondAttribute="top" id="6c1-27-XOa"/>
                                     <constraint firstItem="gJZ-pH-Jn3" firstAttribute="top" secondItem="NPd-eT-hbh" secondAttribute="top" constant="10" id="DY3-x2-WY3"/>
                                     <constraint firstItem="ogW-e2-Gmf" firstAttribute="leading" secondItem="NPd-eT-hbh" secondAttribute="leading" constant="50" id="Du9-xu-7p5"/>
-                                    <constraint firstItem="uaV-wy-4Af" firstAttribute="centerY" secondItem="NPd-eT-hbh" secondAttribute="centerY" id="NPA-gC-ZGR"/>
+                                    <constraint firstItem="uaV-wy-4Af" firstAttribute="trailing" secondItem="RlI-TC-BQZ" secondAttribute="leading" constant="-50" id="MfY-ZO-LvY"/>
+                                    <constraint firstItem="uaV-wy-4Af" firstAttribute="centerY" secondItem="gJZ-pH-Jn3" secondAttribute="centerY" id="NPA-gC-ZGR"/>
                                     <constraint firstAttribute="height" constant="100" id="NSQ-rV-sk5"/>
                                     <constraint firstAttribute="bottom" secondItem="gJZ-pH-Jn3" secondAttribute="bottom" constant="10" id="TJi-tk-Gbf"/>
                                     <constraint firstAttribute="trailing" secondItem="RlI-TC-BQZ" secondAttribute="trailing" constant="50" id="Xex-Ub-quI"/>
                                     <constraint firstItem="ogW-e2-Gmf" firstAttribute="centerY" secondItem="NPd-eT-hbh" secondAttribute="centerY" id="Xuk-NE-yEd"/>
-                                    <constraint firstItem="gJZ-pH-Jn3" firstAttribute="trailing" secondItem="uaV-wy-4Af" secondAttribute="leading" id="YEg-AV-iPA"/>
+                                    <constraint firstItem="gJZ-pH-Jn3" firstAttribute="trailing" secondItem="uaV-wy-4Af" secondAttribute="leading" constant="-50" id="YEg-AV-iPA"/>
                                     <constraint firstItem="gJZ-pH-Jn3" firstAttribute="leading" secondItem="ogW-e2-Gmf" secondAttribute="trailing" constant="100" id="ese-a7-tC2"/>
-                                    <constraint firstItem="gJZ-pH-Jn3" firstAttribute="trailing" secondItem="RlI-TC-BQZ" secondAttribute="leading" constant="-100" id="imH-R9-R0H"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -3297,14 +3330,17 @@ Just Watch Me
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aaI-cm-10L" secondAttribute="trailing" id="5iz-bL-axx"/>
                             <constraint firstItem="4Hi-D9-0BF" firstAttribute="top" secondItem="VSr-GH-eyH" secondAttribute="bottom" constant="8" id="80s-4X-sXx"/>
+                            <constraint firstAttribute="trailing" secondItem="98Q-Z3-zg6" secondAttribute="trailing" constant="130" id="8xG-h9-96g"/>
                             <constraint firstItem="VSr-GH-eyH" firstAttribute="top" secondItem="NPd-eT-hbh" secondAttribute="bottom" constant="30" id="DYe-f7-tsv"/>
                             <constraint firstAttribute="trailing" secondItem="o7s-ZL-Iuu" secondAttribute="trailing" id="EbV-yh-v4G"/>
                             <constraint firstItem="L8u-sS-FET" firstAttribute="top" secondItem="4Hi-D9-0BF" secondAttribute="bottom" id="KQn-2V-6zl"/>
                             <constraint firstItem="o7s-ZL-Iuu" firstAttribute="top" secondItem="2h2-XM-XGl" secondAttribute="bottom" constant="50" id="L7f-H1-xSq"/>
+                            <constraint firstItem="98Q-Z3-zg6" firstAttribute="top" secondItem="NPd-eT-hbh" secondAttribute="bottom" id="Qay-wN-wQd"/>
                             <constraint firstItem="aaI-cm-10L" firstAttribute="top" secondItem="NPd-eT-hbh" secondAttribute="bottom" constant="30" id="W9C-0e-Vx3"/>
                             <constraint firstItem="NPd-eT-hbh" firstAttribute="leading" secondItem="o4x-rB-0zc" secondAttribute="leading" id="eNK-Hw-oRG"/>
                             <constraint firstItem="4Hi-D9-0BF" firstAttribute="leading" secondItem="o4x-rB-0zc" secondAttribute="leading" constant="50" id="iD9-wW-I4Z"/>
                             <constraint firstItem="L8u-sS-FET" firstAttribute="top" secondItem="aaI-cm-10L" secondAttribute="bottom" id="ikj-bF-Udx"/>
+                            <constraint firstItem="98Q-Z3-zg6" firstAttribute="leading" secondItem="o4x-rB-0zc" secondAttribute="leading" constant="130" id="kAO-B6-BuS"/>
                             <constraint firstItem="VSr-GH-eyH" firstAttribute="leading" secondItem="o4x-rB-0zc" secondAttribute="leading" constant="50" id="lTX-xd-mrU"/>
                             <constraint firstItem="L8u-sS-FET" firstAttribute="top" secondItem="o7s-ZL-Iuu" secondAttribute="bottom" id="nbq-VA-9D3"/>
                             <constraint firstItem="aaI-cm-10L" firstAttribute="leading" secondItem="o4x-rB-0zc" secondAttribute="leading" id="rqk-Us-7JW"/>
@@ -3326,6 +3362,7 @@ Just Watch Me
                         <outlet property="headerTitleLabel" destination="VSr-GH-eyH" id="YLw-L2-OOB"/>
                         <outlet property="menuBar" destination="NPd-eT-hbh" id="lOJ-v4-O1q"/>
                         <outlet property="menuCollectionView" destination="gJZ-pH-Jn3" id="nmw-Bq-35n"/>
+                        <outlet property="searchButton" destination="uaV-wy-4Af" id="pzH-kq-oc2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="APd-P4-lgH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3607,13 +3644,11 @@ Just Watch Me
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="eCT-K3-rnG"/>
                                             <constraint firstAttribute="height" constant="100" id="jcK-B8-G2u"/>
-
                                         </constraints>
                                         <color key="tintColor" systemColor="tintColor"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Sea" image="TVExcelSearchImage-1">
-
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -3690,9 +3725,7 @@ Just Watch Me
                                     <constraint firstAttribute="trailing" secondItem="Y2d-o3-RW9" secondAttribute="trailing" constant="50" id="cLE-Vi-ynh"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="leading" secondItem="LdD-Hh-0Lr" secondAttribute="trailing" constant="100" id="iDU-Ra-eQ6"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="top" constant="10" id="qHO-Iw-YJQ"/>
-
                                     <constraint firstItem="Y2d-o3-RW9" firstAttribute="leading" secondItem="8W8-ud-NQa" secondAttribute="trailing" constant="50" id="vYt-Db-aby"/>
-
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-RE-2cc" userLabel="dividerView">
@@ -3811,7 +3844,7 @@ Just Watch Me
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3x2-Ab-qLf" userLabel="favouritesIcon">
-                                        <rect key="frame" x="194" y="458" width="50" height="50"/>
+                                        <rect key="frame" x="194" y="456" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="EtF-J5-vMB"/>
                                             <constraint firstAttribute="height" constant="50" id="iTS-u0-xN7"/>
@@ -3854,7 +3887,7 @@ Just Watch Me
                                     <constraint firstItem="hoj-Tt-o5i" firstAttribute="top" secondItem="6zd-FE-COx" secondAttribute="bottom" constant="20" id="eXE-WR-1oz"/>
                                     <constraint firstItem="3x2-Ab-qLf" firstAttribute="leading" secondItem="hoj-Tt-o5i" secondAttribute="leading" constant="120" id="q8m-tp-Kx0"/>
                                     <constraint firstItem="hoj-Tt-o5i" firstAttribute="leading" secondItem="QOA-79-viA" secondAttribute="leading" id="tcH-1o-5uN"/>
-                                    <constraint firstItem="3x2-Ab-qLf" firstAttribute="top" secondItem="imm-sw-2fk" secondAttribute="bottom" constant="156" id="v0O-F8-vDF"/>
+                                    <constraint firstItem="3x2-Ab-qLf" firstAttribute="top" secondItem="imm-sw-2fk" secondAttribute="bottom" constant="154" id="v0O-F8-vDF"/>
                                     <constraint firstItem="imm-sw-2fk" firstAttribute="leading" secondItem="hoj-Tt-o5i" secondAttribute="leading" id="vIr-uT-QAp"/>
                                 </constraints>
                             </view>
@@ -4307,9 +4340,26 @@ Just Watch Me
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wo-5N-2l0">
                                 <rect key="frame" x="50" y="110" width="1820" height="970"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x85-Kq-aMN">
+                                <rect key="frame" x="130" y="100" width="1660" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Vno-rg-PWD"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BU9-nL-Afh">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIg-DU-saJ" userLabel="Search Button">
+                                        <rect key="frame" x="1520" y="0.0" width="150" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="ZGb-LB-W9T"/>
+                                            <constraint firstAttribute="height" constant="100" id="ndB-Gz-oDH"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGw-dn-M9w" userLabel="AccountView">
                                         <rect key="frame" x="1720" y="0.0" width="150" height="100"/>
                                         <subviews>
@@ -4344,7 +4394,7 @@ Just Watch Me
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cbt-LU-KqM">
-                                        <rect key="frame" x="465" y="10" width="1230" height="80"/>
+                                        <rect key="frame" x="465" y="10" width="1005" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="R3s-Ar-yQ4">
                                             <size key="itemSize" width="128" height="128"/>
@@ -4374,7 +4424,8 @@ Just Watch Me
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Dxa-cg-7e6"/>
-                                    <constraint firstItem="Cbt-LU-KqM" firstAttribute="trailing" secondItem="WGw-dn-M9w" secondAttribute="leading" constant="-25" id="MqE-zU-5QR"/>
+                                    <constraint firstItem="JIg-DU-saJ" firstAttribute="centerY" secondItem="Cbt-LU-KqM" secondAttribute="centerY" id="IYA-5P-EGL"/>
+                                    <constraint firstItem="JIg-DU-saJ" firstAttribute="trailing" secondItem="WGw-dn-M9w" secondAttribute="leading" constant="-50" id="NTT-3C-3Z1"/>
                                     <constraint firstItem="Cbt-LU-KqM" firstAttribute="top" secondItem="BU9-nL-Afh" secondAttribute="top" constant="10" id="O8u-5C-D6a"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Tfu-KF-8Px"/>
                                     <constraint firstAttribute="trailing" secondItem="WGw-dn-M9w" secondAttribute="trailing" constant="50" id="VCx-RZ-BPQ"/>
@@ -4382,6 +4433,7 @@ Just Watch Me
                                     <constraint firstItem="jEh-dc-fQr" firstAttribute="centerY" secondItem="BU9-nL-Afh" secondAttribute="centerY" id="g94-pC-lxB"/>
                                     <constraint firstItem="WGw-dn-M9w" firstAttribute="top" secondItem="BU9-nL-Afh" secondAttribute="top" id="jKb-o5-8XF"/>
                                     <constraint firstItem="jEh-dc-fQr" firstAttribute="leading" secondItem="BU9-nL-Afh" secondAttribute="leading" constant="50" id="mE1-pO-5Yf"/>
+                                    <constraint firstItem="Cbt-LU-KqM" firstAttribute="trailing" secondItem="JIg-DU-saJ" secondAttribute="leading" constant="-50" id="ppi-Tv-zPj"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="rvF-BI-csT"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="uSS-q7-8HA"/>
                                     <constraint firstAttribute="height" constant="100" id="vdC-Hs-xST"/>
@@ -4390,11 +4442,14 @@ Just Watch Me
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="x85-Kq-aMN" firstAttribute="top" secondItem="BU9-nL-Afh" secondAttribute="bottom" id="2cn-h0-8qB"/>
                             <constraint firstItem="2Wo-5N-2l0" firstAttribute="leading" secondItem="PW8-Xf-nmy" secondAttribute="leading" constant="50" id="48Y-sE-W8W"/>
                             <constraint firstAttribute="bottom" secondItem="2Wo-5N-2l0" secondAttribute="bottom" id="59R-49-k0r"/>
+                            <constraint firstAttribute="trailing" secondItem="x85-Kq-aMN" secondAttribute="trailing" constant="130" id="6D3-Qn-ApD"/>
                             <constraint firstAttribute="trailing" secondItem="BU9-nL-Afh" secondAttribute="trailing" id="B0L-QU-yKw"/>
                             <constraint firstAttribute="trailing" secondItem="2Wo-5N-2l0" secondAttribute="trailing" constant="50" id="HwQ-mb-CmX"/>
                             <constraint firstItem="BU9-nL-Afh" firstAttribute="leading" secondItem="PW8-Xf-nmy" secondAttribute="leading" id="jkq-bW-XXY"/>
+                            <constraint firstItem="x85-Kq-aMN" firstAttribute="leading" secondItem="PW8-Xf-nmy" secondAttribute="leading" constant="130" id="oHO-Ib-MQH"/>
                             <constraint firstItem="2Wo-5N-2l0" firstAttribute="top" secondItem="PW8-Xf-nmy" secondAttribute="top" constant="110" id="tbW-Ux-pvR"/>
                             <constraint firstItem="BU9-nL-Afh" firstAttribute="top" secondItem="PW8-Xf-nmy" secondAttribute="top" id="zRH-Vg-yNJ"/>
                         </constraints>
@@ -4406,6 +4461,7 @@ Just Watch Me
                         <outlet property="dropDownArrowACcount" destination="RnJ-KX-ONm" id="MQv-D6-9yM"/>
                         <outlet property="menuBar" destination="BU9-nL-Afh" id="3L5-KC-hoy"/>
                         <outlet property="menuCollectionView" destination="Cbt-LU-KqM" id="m3f-hy-j3m"/>
+                        <outlet property="searchButton" destination="JIg-DU-saJ" id="MoQ-Kc-6bv"/>
                         <outlet property="watchlistTableView" destination="2Wo-5N-2l0" id="vbc-4M-ygv"/>
                     </connections>
                 </viewController>
