@@ -35,9 +35,24 @@ class ShowsOverlayViewController:UIViewController {
     
     @IBOutlet weak var backButton: UIButton!{
         didSet{
-            backButton.setImage(UIImage(named: "back Icon"), for: .normal)
-            backButton.tintColor = UIColor.white
             backButton.isHidden = true
+            backButton.setTitle("", for: .normal)
+            let image = UIImage(named: "back Icon")?.withRenderingMode(.alwaysTemplate)
+            backButton.setImage(image, for: .normal)
+            backButton.tintColor = UIColor.white
+            backButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            backButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            backButton.layer.borderWidth = 0.0
+            backButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            backButton.titleLabel?.textColor = UIColor.white
+            backButton.layer.cornerRadius = 10
+            backButton.titleLabel?.textAlignment = .center
+            backButton.layer.masksToBounds = true
+            backButton.imageEdgeInsets = UIEdgeInsets(top: -25, left: -30, bottom: -25, right: -30)
+
+//            backButton.setImage(UIImage(named: "back Icon"), for: .normal)
+//            backButton.tintColor = UIColor.white
+//            backButton.isHidden = true
         }
     }
     
@@ -87,9 +102,24 @@ class ShowsOverlayViewController:UIViewController {
     
     @IBOutlet weak var favouritesIcon: UIButton!{
         didSet{
-            favouritesIcon.tintColor = UIColor.white
-            favouritesIcon.setImage(UIImage(named: "favouritesIcon"), for: .normal)
             favouritesIcon.isHidden = true
+            favouritesIcon.setTitle("", for: .normal)
+            let image = UIImage(named: "favouritesIcon")?.withRenderingMode(.alwaysTemplate)
+            favouritesIcon.setImage(image, for: .normal)
+            favouritesIcon.tintColor = UIColor.white
+            favouritesIcon.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            favouritesIcon.layer.borderColor = UIColor.white.cgColor
+            favouritesIcon.layer.borderWidth = 0.0
+            favouritesIcon.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            favouritesIcon.titleLabel?.textColor = UIColor.white
+            favouritesIcon.layer.cornerRadius = 10
+            favouritesIcon.titleLabel?.textAlignment = .center
+            favouritesIcon.layer.masksToBounds = true
+            favouritesIcon.imageEdgeInsets = UIEdgeInsets(top: -25, left: -30, bottom: -25, right: -30)
+
+//            favouritesIcon.tintColor = UIColor.white
+//            favouritesIcon.setImage(UIImage(named: "favouritesIcon"), for: .normal)
+//            favouritesIcon.isHidden = true
         }
     }
     
@@ -417,7 +447,7 @@ class ShowsOverlayViewController:UIViewController {
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if self.backButton.isFocused{
             backButton.tintColor = ThemeManager.currentTheme().buttonTextColor
-            favouritesIcon.tintColor = UIColor.white
+            favouritesIcon.layer.borderWidth = 0.0
             if showFlag == true{
                 MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
                 MoreInfoButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
@@ -432,7 +462,10 @@ class ShowsOverlayViewController:UIViewController {
             }
         }
         else if favouritesIcon.isFocused{
+            backButton.tintColor = UIColor.white
             self.favouritesIcon.backgroundColor = .clear
+            favouritesIcon.layer.borderWidth = 1.0
+            self.favouritesIcon.layer.borderColor = UIColor.white.cgColor
             if showFlag == true{
                 MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
                 MoreInfoButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
@@ -446,12 +479,30 @@ class ShowsOverlayViewController:UIViewController {
                 MoreInfoButton.tintColor = ThemeManager.currentTheme().headerTextColor
             }
         }
+        else if MoreInfoButton.isFocused{
+            backButton.tintColor = UIColor.white
+            favouritesIcon.layer.borderWidth = 0.0
+            if showFlag == true{
+                MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                MoreInfoButton.layer.borderColor = UIColor.white.cgColor
+                MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().ButtonBorderColor
+                MoreInfoButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
+            }
+            else{
+                MoreInfoButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+                MoreInfoButton.layer.borderColor = UIColor.white.cgColor
+                MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().headerTextColor
+                MoreInfoButton.tintColor = ThemeManager.currentTheme().headerTextColor
+            }
+
+        }
         else{
+            backButton.tintColor = UIColor.white
+            favouritesIcon.layer.borderWidth = 0.0
             if showFlag == true{
                 MoreInfoButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
                 MoreInfoButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
                 MoreInfoButton.titleLabel?.textColor = ThemeManager.currentTheme().ButtonBorderColor
-                MoreInfoButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
             }
             else{
                 MoreInfoButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor

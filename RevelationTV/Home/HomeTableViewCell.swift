@@ -42,6 +42,9 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     
     @IBOutlet weak var moreIconButton: UIButton!{
         didSet{
+
+            moreIconButton.setImage(UIImage(named: "moreButtonUnfocused"), for: .normal)
+
             moreIconButton.setTitle("", for: .normal)
             let image = UIImage(named: "moreButtonUnfocused")?.withRenderingMode(.alwaysTemplate)
             moreIconButton.setImage(image, for: .normal)
@@ -54,10 +57,8 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
             moreIconButton.layer.cornerRadius = 10
             moreIconButton.titleLabel?.textAlignment = .center
             moreIconButton.layer.masksToBounds = true
-//            moreIconButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-//            moreIconButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-//            moreIconButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            moreIconButton.imageEdgeInsets = UIEdgeInsets(top: -20, left: -20, bottom: -20, right: -20)
+            moreIconButton.imageEdgeInsets = UIEdgeInsets(top: -25, left: -30, bottom: -25, right: -30)
+
         }
     }
 

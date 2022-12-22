@@ -3765,7 +3765,7 @@ Just Watch Me
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVw-I4-jS0" userLabel="mainView">
                                 <rect key="frame" x="646" y="106" width="628" height="868"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZe-tR-QVg" userLabel="backButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZe-tR-QVg" userLabel="backButton">
                                         <rect key="frame" x="25" y="25" width="35" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="KyD-gD-XZX"/>
@@ -3773,8 +3773,7 @@ Just Watch Me
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="back Icon"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="back Icon"/>
+                                        <state key="normal" title="BackButton" image="back Icon"/>
                                         <connections>
                                             <action selector="backButtonAction:" destination="8IK-J6-YBb" eventType="primaryActionTriggered" id="xTx-dR-MyD"/>
                                         </connections>
@@ -3811,16 +3810,15 @@ Just Watch Me
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3x2-Ab-qLf" userLabel="favouritesIcon">
-                                        <rect key="frame" x="194" y="458" width="40" height="39"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3x2-Ab-qLf" userLabel="favouritesIcon">
+                                        <rect key="frame" x="194" y="458" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="EtF-J5-vMB"/>
-                                            <constraint firstAttribute="height" constant="39" id="iTS-u0-xN7"/>
+                                            <constraint firstAttribute="width" constant="50" id="EtF-J5-vMB"/>
+                                            <constraint firstAttribute="height" constant="50" id="iTS-u0-xN7"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="favouritesIcon"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="favouritesIcon"/>
+                                        <state key="normal" title="Favourites" image="favouritesIcon"/>
                                         <connections>
                                             <action selector="favouritesAction:" destination="8IK-J6-YBb" eventType="primaryActionTriggered" id="Dar-gM-JEp"/>
                                         </connections>
