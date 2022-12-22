@@ -40,8 +40,13 @@
                             <constraint firstAttribute="width" constant="45" id="Xn9-mk-ubN"/>
                         </constraints>
                     </imageView>
+<<<<<<< Updated upstream
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-a0-m43" userLabel="moreIconButton">
                         <rect key="frame" x="1895" y="0.0" width="48" height="48"/>
+=======
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-a0-m43" userLabel="moreIconButton">
+                        <rect key="frame" x="1900" y="-2" width="50" height="50"/>
+>>>>>>> Stashed changes
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="Ewu-tt-vgc"/>
@@ -87,12 +92,12 @@
                     <constraint firstItem="wlj-DX-ZKl" firstAttribute="centerY" secondItem="OfZ-RR-ipR" secondAttribute="centerY" id="8D4-16-MfH"/>
                     <constraint firstAttribute="trailing" secondItem="YBG-5V-mzb" secondAttribute="trailing" constant="35" id="Clx-Ig-OyM"/>
                     <constraint firstItem="ljN-lf-aKB" firstAttribute="leading" secondItem="492-My-HOm" secondAttribute="trailing" constant="20" id="FHw-z6-5dk"/>
-                    <constraint firstItem="YBG-5V-mzb" firstAttribute="leading" secondItem="e1L-a0-m43" secondAttribute="trailing" constant="22" id="Grz-B8-Wkh"/>
                     <constraint firstItem="492-My-HOm" firstAttribute="leading" secondItem="OfZ-RR-ipR" secondAttribute="leading" constant="75" id="NhW-i9-7ZF"/>
                     <constraint firstItem="YBG-5V-mzb" firstAttribute="centerY" secondItem="OfZ-RR-ipR" secondAttribute="centerY" id="TqZ-w3-Ocj"/>
                     <constraint firstItem="Osj-Ru-6yi" firstAttribute="top" secondItem="492-My-HOm" secondAttribute="bottom" constant="15" id="bSg-ap-ml2"/>
                     <constraint firstItem="ljN-lf-aKB" firstAttribute="bottom" secondItem="Osj-Ru-6yi" secondAttribute="top" constant="-15" id="dya-Np-oEs"/>
                     <constraint firstItem="YBG-5V-mzb" firstAttribute="leading" secondItem="Osj-Ru-6yi" secondAttribute="trailing" constant="15" id="eYr-s2-Baf"/>
+                    <constraint firstItem="e1L-a0-m43" firstAttribute="trailing" secondItem="Osj-Ru-6yi" secondAttribute="trailing" id="i91-bg-NXm"/>
                     <constraint firstItem="Osj-Ru-6yi" firstAttribute="top" secondItem="e1L-a0-m43" secondAttribute="bottom" constant="12" id="iqI-m6-0fw"/>
                     <constraint firstAttribute="bottom" secondItem="Osj-Ru-6yi" secondAttribute="bottom" id="jHh-n6-Mxf"/>
                     <constraint firstItem="492-My-HOm" firstAttribute="top" secondItem="OfZ-RR-ipR" secondAttribute="top" constant="15" id="wZ6-3Q-tZV"/>

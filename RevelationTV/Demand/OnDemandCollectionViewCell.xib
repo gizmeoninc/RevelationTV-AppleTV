@@ -22,28 +22,49 @@
                 <rect key="frame" x="0.0" y="0.0" width="1562" height="860"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+<<<<<<< Updated upstream
                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JiB-0s-7Gp" userLabel="OuterImageView">
                         <rect key="frame" x="200" y="0.0" width="1162" height="100"/>
+=======
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JiB-0s-7Gp" userLabel="OuterImageView">
+                        <rect key="frame" x="200" y="60" width="1162" height="100"/>
+>>>>>>> Stashed changes
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="arA-YM-W8s"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nl6-wQ-2T0" userLabel="Transparent View">
+<<<<<<< Updated upstream
                         <rect key="frame" x="200" y="0.0" width="1162" height="100"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Adc-on-Ise" userLabel="InnerImageView">
                         <rect key="frame" x="731" y="0.0" width="100" height="100"/>
+=======
+                        <rect key="frame" x="200" y="60" width="1162" height="100"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Adc-on-Ise" userLabel="InnerImageView">
+                        <rect key="frame" x="731" y="60" width="100" height="100"/>
+>>>>>>> Stashed changes
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="f3J-4N-Fdu"/>
                             <constraint firstAttribute="height" constant="100" id="y8d-KS-IaZ"/>
                         </constraints>
                     </imageView>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jdp-ZI-RWg">
+<<<<<<< Updated upstream
                         <rect key="frame" x="716" y="52" width="130" height="28"/>
                     </pageControl>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZv-pP-glg" userLabel="showTitleLabel">
                         <rect key="frame" x="215" y="128" width="81" height="30"/>
+=======
+                        <rect key="frame" x="716" y="112" width="130" height="28"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </pageControl>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZv-pP-glg" userLabel="showTitleLabel">
+                        <rect key="frame" x="215" y="194" width="81" height="30"/>
+>>>>>>> Stashed changes
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="EQ4-iR-6bs"/>
                         </constraints>
@@ -52,16 +73,24 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDk-Ho-JUV" userLabel="showDescriptionLabel">
+<<<<<<< Updated upstream
                         <rect key="frame" x="215" y="168" width="1147" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="G9g-Rw-uaj"/>
                         </constraints>
+=======
+                        <rect key="frame" x="215" y="242" width="1147" height="20"/>
+>>>>>>> Stashed changes
                         <fontDescription key="fontDescription" name="ITCAvantGardePro-Bk" family="ITC Avant Garde Gothic Pro" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2l-K5-MYY" userLabel="playButton">
+<<<<<<< Updated upstream
                         <rect key="frame" x="1152" y="122" width="190" height="45"/>
+=======
+                        <rect key="frame" x="1152" y="182" width="190" height="45"/>
+>>>>>>> Stashed changes
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="DPc-uv-x6W"/>
                             <constraint firstAttribute="width" constant="190" id="DxE-8j-4OT"/>
@@ -75,7 +104,11 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sm1-dw-7mc" userLabel="MoreInfoButton">
+<<<<<<< Updated upstream
                         <rect key="frame" x="922" y="120" width="190" height="45"/>
+=======
+                        <rect key="frame" x="922" y="180" width="190" height="45"/>
+>>>>>>> Stashed changes
                         <constraints>
                             <constraint firstAttribute="width" constant="190" id="qk6-nH-2cX"/>
                             <constraint firstAttribute="height" constant="45" id="soy-Er-3vS"/>
@@ -96,7 +129,11 @@
                     <constraint firstItem="qDk-Ho-JUV" firstAttribute="leading" secondItem="aO2-6A-yZp" secondAttribute="leading" constant="215" id="Csz-3t-s1d"/>
                     <constraint firstItem="Nl6-wQ-2T0" firstAttribute="bottom" secondItem="JiB-0s-7Gp" secondAttribute="bottom" id="EfV-uG-qwq"/>
                     <constraint firstItem="Adc-on-Ise" firstAttribute="centerX" secondItem="JiB-0s-7Gp" secondAttribute="centerX" id="G4H-1D-vjM"/>
+<<<<<<< Updated upstream
                     <constraint firstItem="JiB-0s-7Gp" firstAttribute="top" secondItem="aO2-6A-yZp" secondAttribute="top" id="GxJ-yP-91u"/>
+=======
+                    <constraint firstItem="JiB-0s-7Gp" firstAttribute="top" secondItem="aO2-6A-yZp" secondAttribute="top" constant="60" id="GxJ-yP-91u"/>
+>>>>>>> Stashed changes
                     <constraint firstItem="R2l-K5-MYY" firstAttribute="top" secondItem="JiB-0s-7Gp" secondAttribute="bottom" constant="22" id="INe-hY-bDG"/>
                     <constraint firstItem="cZv-pP-glg" firstAttribute="leading" secondItem="aO2-6A-yZp" secondAttribute="leading" constant="215" id="P3A-b0-zTf"/>
                     <constraint firstItem="JiB-0s-7Gp" firstAttribute="leading" secondItem="aO2-6A-yZp" secondAttribute="leading" constant="200" id="SiY-xY-ydr"/>

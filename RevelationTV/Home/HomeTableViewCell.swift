@@ -42,7 +42,23 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     
     @IBOutlet weak var moreIconButton: UIButton!{
         didSet{
+<<<<<<< Updated upstream
             moreIconButton.setImage(UIImage(named: "moreButtonUnfocused"), for: .normal)
+=======
+            moreIconButton.setTitle("", for: .normal)
+            let image = UIImage(named: "moreButtonUnfocused")?.withRenderingMode(.alwaysTemplate)
+            moreIconButton.setImage(image, for: .normal)
+            moreIconButton.tintColor = UIColor.white
+            moreIconButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            moreIconButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            moreIconButton.layer.borderWidth = 0.0
+            moreIconButton.titleLabel?.font = UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            moreIconButton.titleLabel?.textColor = UIColor.white
+            moreIconButton.layer.cornerRadius = 10
+            moreIconButton.titleLabel?.textAlignment = .center
+            moreIconButton.layer.masksToBounds = true
+            moreIconButton.imageEdgeInsets = UIEdgeInsets(top: -25, left: -30, bottom: -25, right: -30)
+>>>>>>> Stashed changes
         }
     }
     
