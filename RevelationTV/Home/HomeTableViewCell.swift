@@ -42,9 +42,9 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
     
     @IBOutlet weak var moreIconButton: UIButton!{
         didSet{
-<<<<<<< Updated upstream
+
             moreIconButton.setImage(UIImage(named: "moreButtonUnfocused"), for: .normal)
-=======
+
             moreIconButton.setTitle("", for: .normal)
             let image = UIImage(named: "moreButtonUnfocused")?.withRenderingMode(.alwaysTemplate)
             moreIconButton.setImage(image, for: .normal)
@@ -58,17 +58,8 @@ class HomeTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionVi
             moreIconButton.titleLabel?.textAlignment = .center
             moreIconButton.layer.masksToBounds = true
             moreIconButton.imageEdgeInsets = UIEdgeInsets(top: -25, left: -30, bottom: -25, right: -30)
->>>>>>> Stashed changes
-        }
-    }
-    
-    @IBAction func moreIconButtonAction(_ sender: Any) {
-//        delegate?.customHeader(self, didTapButtonInSection: sectionNumber)
-//        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "videoDetail") as! VideoDetailsViewController
-//        videoDetailView.videoItem = filmVideos[0]
-//            videoDetailView.fromCategories = false
-//        self.present(videoDetailView, animated: true, completion: nil)
 
+        }
     }
 
     @IBOutlet weak var rightArrowIcon: UIImageView!{

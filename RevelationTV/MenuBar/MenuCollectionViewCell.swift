@@ -15,6 +15,11 @@ class MenuCollectionViewCell: UICollectionViewCell {
             menuLabel.font = UIFont(name: ThemeManager.currentTheme().fontDefault, size: 25)
         }
     }
+    @IBOutlet weak var seperatorLine: UIView!{
+        didSet{
+            seperatorLine.isHidden = true
+        }
+    }
     var menuItem: String? {
         didSet{
             if menuItem != nil{
@@ -30,10 +35,12 @@ class MenuCollectionViewCell: UICollectionViewCell {
         override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
             super.didUpdateFocus(in: context, with: coordinator)
             if context.nextFocusedView == self {
-                self.menuLabel.textColor = .white
+                self.menuLabel.textColor = ThemeManager.currentTheme().buttonTextColor
+                self.seperatorLine.isHidden = false
         
             } else {
-                self.menuLabel.textColor = .gray
+                self.menuLabel.textColor = .white
+                self.seperatorLine.isHidden = true
             }
         }
 }
