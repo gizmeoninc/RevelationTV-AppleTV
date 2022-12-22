@@ -373,20 +373,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLp-BV-OLC" userLabel="AccountView">
-                                        <rect key="frame" x="1570" y="0.0" width="300" height="100"/>
+                                        <rect key="frame" x="1720" y="0.0" width="150" height="100"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fU-6C-8sU" userLabel="Search Button">
-                                                <rect key="frame" x="16" y="-25" width="150" height="150"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="amM-Gf-ml9"/>
-                                                    <constraint firstAttribute="height" constant="150" id="sfE-kT-gQE"/>
-                                                </constraints>
-                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="TVExcelSearchImage-1"/>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2u-xd-Jlh">
-                                                <rect key="frame" x="236" y="15" width="70" height="70"/>
+                                                <rect key="frame" x="16" y="15" width="70" height="70"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="gPq-3b-5fa"/>
@@ -397,7 +387,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="Profile_icon.png"/>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop-down-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="MOd-HD-wop">
-                                                <rect key="frame" x="322" y="38" width="24" height="24"/>
+                                                <rect key="frame" x="102" y="38" width="24" height="24"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="24" id="xRU-k2-68g"/>
@@ -407,19 +397,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="7fU-6C-8sU" firstAttribute="centerY" secondItem="MOd-HD-wop" secondAttribute="centerY" id="4jF-ng-xy9"/>
                                             <constraint firstItem="L2u-xd-Jlh" firstAttribute="centerY" secondItem="TLp-BV-OLC" secondAttribute="centerY" id="54m-Fe-RAw"/>
                                             <constraint firstItem="MOd-HD-wop" firstAttribute="centerY" secondItem="L2u-xd-Jlh" secondAttribute="centerY" id="64U-h7-o9c"/>
                                             <constraint firstItem="MOd-HD-wop" firstAttribute="leading" secondItem="L2u-xd-Jlh" secondAttribute="trailing" constant="16" id="E7y-ex-1tt"/>
                                             <constraint firstAttribute="height" constant="100" id="Ecj-bC-iQS"/>
-                                            <constraint firstAttribute="width" constant="300" id="cI5-Ts-pYe"/>
-                                            <constraint firstItem="7fU-6C-8sU" firstAttribute="centerY" secondItem="TLp-BV-OLC" secondAttribute="centerY" id="e7j-Vb-ckk"/>
-                                            <constraint firstItem="7fU-6C-8sU" firstAttribute="leading" secondItem="TLp-BV-OLC" secondAttribute="leading" constant="16" id="g72-w3-XxS"/>
-                                            <constraint firstItem="L2u-xd-Jlh" firstAttribute="leading" secondItem="7fU-6C-8sU" secondAttribute="trailing" constant="70" id="rYg-9D-MCE"/>
+                                            <constraint firstAttribute="width" constant="150" id="cI5-Ts-pYe"/>
+                                            <constraint firstItem="L2u-xd-Jlh" firstAttribute="leading" secondItem="TLp-BV-OLC" secondAttribute="leading" constant="16" id="n73-od-sg3"/>
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SwC-h8-M3r">
-                                        <rect key="frame" x="465" y="10" width="1080" height="80"/>
+                                        <rect key="frame" x="465" y="10" width="1005" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="f5Z-yM-18u">
                                             <size key="itemSize" width="128" height="128"/>
@@ -445,17 +432,40 @@
                                             <constraint firstAttribute="width" constant="315" id="jFp-qz-Yvb"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5L-QI-4ME" userLabel="Search Button">
+                                        <rect key="frame" x="1520" y="0.0" width="150" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="gYf-Wl-07z"/>
+                                            <constraint firstAttribute="width" constant="150" id="rdB-GS-BHC"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="TVExcelSearchImage-1"/>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoo-Ud-rYV">
+                                        <rect key="frame" x="130" y="100" width="1660" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="8tR-wP-Igr"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
+                                    <constraint firstItem="zoo-Ud-rYV" firstAttribute="leading" secondItem="YQf-R9-hGg" secondAttribute="leading" constant="130" id="0KY-i8-3zS"/>
+                                    <constraint firstItem="X5L-QI-4ME" firstAttribute="centerY" secondItem="SwC-h8-M3r" secondAttribute="centerY" id="5GA-yy-4o2"/>
                                     <constraint firstItem="SwC-h8-M3r" firstAttribute="leading" secondItem="WvZ-5g-h9g" secondAttribute="trailing" constant="100" id="AnK-Z7-DGv"/>
                                     <constraint firstAttribute="trailing" secondItem="TLp-BV-OLC" secondAttribute="trailing" constant="50" id="Qw0-z1-743"/>
                                     <constraint firstItem="WvZ-5g-h9g" firstAttribute="leading" secondItem="YQf-R9-hGg" secondAttribute="leading" constant="50" id="TfN-Wn-wUP"/>
+                                    <constraint firstItem="X5L-QI-4ME" firstAttribute="trailing" secondItem="TLp-BV-OLC" secondAttribute="leading" constant="-50" id="UMF-PE-q4b"/>
+                                    <constraint firstAttribute="trailing" secondItem="zoo-Ud-rYV" secondAttribute="trailing" constant="130" id="XPf-8M-1Hi"/>
                                     <constraint firstAttribute="height" constant="100" id="agB-0K-u3U"/>
                                     <constraint firstItem="SwC-h8-M3r" firstAttribute="top" secondItem="YQf-R9-hGg" secondAttribute="top" constant="10" id="cPm-Up-Rkn"/>
                                     <constraint firstAttribute="bottom" secondItem="SwC-h8-M3r" secondAttribute="bottom" constant="10" id="ctl-ZW-l7c"/>
                                     <constraint firstItem="TLp-BV-OLC" firstAttribute="top" secondItem="YQf-R9-hGg" secondAttribute="top" id="fr6-zy-glY"/>
-                                    <constraint firstItem="SwC-h8-M3r" firstAttribute="trailing" secondItem="TLp-BV-OLC" secondAttribute="leading" constant="-25" id="iuE-Al-gxb"/>
+                                    <constraint firstItem="SwC-h8-M3r" firstAttribute="trailing" secondItem="X5L-QI-4ME" secondAttribute="leading" constant="-50" id="iuE-Al-gxb"/>
+                                    <constraint firstItem="zoo-Ud-rYV" firstAttribute="top" secondItem="YQf-R9-hGg" secondAttribute="bottom" id="oRg-FS-TbC"/>
                                     <constraint firstItem="WvZ-5g-h9g" firstAttribute="centerY" secondItem="YQf-R9-hGg" secondAttribute="centerY" id="sn9-tU-wiM"/>
                                 </constraints>
                             </view>
@@ -479,7 +489,7 @@
                         <outlet property="dropDownArrowACcount" destination="MOd-HD-wop" id="gWC-vE-UkV"/>
                         <outlet property="menuBar" destination="YQf-R9-hGg" id="76f-4N-yev"/>
                         <outlet property="menuCollectionView" destination="SwC-h8-M3r" id="cug-ju-MKW"/>
-                        <outlet property="searchButton" destination="7fU-6C-8sU" id="bTT-zH-T5N"/>
+                        <outlet property="searchButton" destination="X5L-QI-4ME" id="c1T-dP-6Bl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFG-30-rlL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2225,13 +2235,13 @@ Just Watch Me
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YyF-s8-gwC">
-                                <rect key="frame" x="0.0" y="120" width="1920" height="960"/>
+                                <rect key="frame" x="0.0" y="150" width="1920" height="930"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hgF-A2-ne5">
                                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a29-iD-fJf">
-                                                <rect key="frame" x="100" y="0.0" width="1720" height="400"/>
+                                                <rect key="frame" x="130" y="0.0" width="1660" height="400"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player image - home" translatesAutoresizingMaskIntoConstraints="NO" id="PCX-qG-8GT">
                                                         <rect key="frame" x="0.0" y="0.0" width="800" height="250"/>
@@ -2355,7 +2365,7 @@ Just Watch Me
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XDe-5d-NeI">
-                                                <rect key="frame" x="100" y="416" width="1720" height="128"/>
+                                                <rect key="frame" x="130" y="416" width="1660" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="pOE-rl-W7B"/>
@@ -2378,7 +2388,7 @@ Just Watch Me
                                                 </cells>
                                             </collectionView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ch-hq-jQU">
-                                                <rect key="frame" x="200" y="649" width="1520" height="670"/>
+                                                <rect key="frame" x="200" y="674" width="1520" height="670"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="670" id="DiX-R8-uwa"/>
                                                 </constraints>
@@ -2392,19 +2402,49 @@ Just Watch Me
                                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftArrow" translatesAutoresizingMaskIntoConstraints="NO" id="UsO-xb-HnV" userLabel="leftArrowImage">
+                                                <rect key="frame" x="84" y="465" width="30" height="30"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="2WX-3T-2Wc"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="3FF-65-Cy6"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="4pI-Jo-SkK"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="OrS-Eo-yaM"/>
+                                                    <constraint firstAttribute="width" constant="30" id="eiq-py-AMn"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="u76-6d-v1N"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="U3v-Ol-q41" userLabel="rightArrowImage">
+                                                <rect key="frame" x="1806" y="465" width="30" height="30"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="5ds-vs-F8T"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="B0O-gA-4Ju"/>
+                                                    <constraint firstAttribute="width" constant="30" id="I1S-Ev-ZUu"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="Ick-96-acM"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="Ybe-n6-9np"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="eyl-o4-ckO"/>
+                                                    <constraint firstAttribute="height" constant="30" id="qu9-eo-5HP"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="zpj-za-DHg"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="XDe-5d-NeI" secondAttribute="trailing" constant="100" id="F2O-Hq-Fbe"/>
+                                            <constraint firstItem="UsO-xb-HnV" firstAttribute="centerY" secondItem="XDe-5d-NeI" secondAttribute="centerY" id="7n0-OH-eCt"/>
+                                            <constraint firstItem="U3v-Ol-q41" firstAttribute="centerY" secondItem="XDe-5d-NeI" secondAttribute="centerY" id="CpE-5f-fqv"/>
+                                            <constraint firstAttribute="trailing" secondItem="XDe-5d-NeI" secondAttribute="trailing" constant="130" id="F2O-Hq-Fbe"/>
                                             <constraint firstItem="a29-iD-fJf" firstAttribute="top" secondItem="hgF-A2-ne5" secondAttribute="top" id="Lgp-Cw-sUL"/>
                                             <constraint firstAttribute="trailing" secondItem="1ch-hq-jQU" secondAttribute="trailing" constant="200" id="Q6o-aK-YXR"/>
                                             <constraint firstItem="XDe-5d-NeI" firstAttribute="top" secondItem="a29-iD-fJf" secondAttribute="bottom" constant="16" id="VUk-zd-Yob"/>
-                                            <constraint firstItem="1ch-hq-jQU" firstAttribute="top" secondItem="Cyk-mH-pIn" secondAttribute="bottom" constant="25" id="aEG-Sn-JeU"/>
-                                            <constraint firstItem="a29-iD-fJf" firstAttribute="trailing" secondItem="hgF-A2-ne5" secondAttribute="trailing" constant="-100" id="b7c-ye-uPs"/>
+                                            <constraint firstItem="1ch-hq-jQU" firstAttribute="top" secondItem="Cyk-mH-pIn" secondAttribute="bottom" constant="50" id="aEG-Sn-JeU"/>
+                                            <constraint firstItem="UsO-xb-HnV" firstAttribute="trailing" secondItem="XDe-5d-NeI" secondAttribute="leading" constant="-16" id="b5g-ez-XmG"/>
+                                            <constraint firstItem="a29-iD-fJf" firstAttribute="trailing" secondItem="hgF-A2-ne5" secondAttribute="trailing" constant="-130" id="b7c-ye-uPs"/>
                                             <constraint firstItem="Cyk-mH-pIn" firstAttribute="top" secondItem="XDe-5d-NeI" secondAttribute="bottom" constant="25" id="bnU-0r-rtE"/>
                                             <constraint firstItem="Cyk-mH-pIn" firstAttribute="centerX" secondItem="XDe-5d-NeI" secondAttribute="centerX" id="gPj-7B-urZ"/>
-                                            <constraint firstItem="XDe-5d-NeI" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="100" id="qZJ-2r-Z6w"/>
-                                            <constraint firstItem="a29-iD-fJf" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="100" id="qtU-Cg-xvJ"/>
+                                            <constraint firstItem="U3v-Ol-q41" firstAttribute="leading" secondItem="XDe-5d-NeI" secondAttribute="trailing" constant="16" id="jeW-36-QeZ"/>
+                                            <constraint firstItem="XDe-5d-NeI" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="130" id="qZJ-2r-Z6w"/>
+                                            <constraint firstItem="a29-iD-fJf" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="130" id="qtU-Cg-xvJ"/>
                                             <constraint firstItem="1ch-hq-jQU" firstAttribute="leading" secondItem="hgF-A2-ne5" secondAttribute="leading" constant="200" id="rUp-nb-svO"/>
                                             <constraint firstAttribute="height" constant="1200" id="tY3-8V-Rd2"/>
                                         </constraints>
@@ -2417,6 +2457,13 @@ Just Watch Me
                                     <constraint firstAttribute="trailing" secondItem="hgF-A2-ne5" secondAttribute="trailing" id="uhx-RI-CdN"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGj-oi-dyg" userLabel="divider">
+                                <rect key="frame" x="130" y="100" width="1660" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="tzu-Hl-wwq"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jb-4k-x12">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
@@ -2454,7 +2501,7 @@ Just Watch Me
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WCs-vW-O3S">
-                                        <rect key="frame" x="250" y="10" width="1445" height="80"/>
+                                        <rect key="frame" x="465" y="10" width="1005" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AZX-4a-7Hr">
                                             <size key="itemSize" width="128" height="128"/>
@@ -2474,16 +2521,28 @@ Just Watch Me
                                         </cells>
                                     </collectionView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo" translatesAutoresizingMaskIntoConstraints="NO" id="OzL-V3-ceP">
-                                        <rect key="frame" x="50" y="0.0" width="100" height="100"/>
+                                        <rect key="frame" x="50" y="15" width="315" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="le0-Yc-tMa"/>
-                                            <constraint firstAttribute="height" constant="100" id="vFg-WM-cUH"/>
+                                            <constraint firstAttribute="width" constant="315" id="le0-Yc-tMa"/>
+                                            <constraint firstAttribute="height" constant="70" id="vFg-WM-cUH"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fne-Tx-5HF" userLabel="Search Button">
+                                        <rect key="frame" x="1520" y="0.0" width="150" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="lJG-8x-THg"/>
+                                            <constraint firstAttribute="height" constant="100" id="m0X-CE-AwN"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="TVExcelSearchImage-1"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
-                                    <constraint firstItem="WCs-vW-O3S" firstAttribute="trailing" secondItem="X5D-Jd-EVm" secondAttribute="leading" constant="-25" id="Feu-UH-bCG"/>
+                                    <constraint firstItem="fne-Tx-5HF" firstAttribute="leading" secondItem="WCs-vW-O3S" secondAttribute="trailing" constant="50" id="0Nl-NO-b3y"/>
+                                    <constraint firstItem="X5D-Jd-EVm" firstAttribute="leading" secondItem="fne-Tx-5HF" secondAttribute="trailing" constant="50" id="Feu-UH-bCG"/>
                                     <constraint firstAttribute="bottom" secondItem="WCs-vW-O3S" secondAttribute="bottom" constant="10" id="HCw-av-kPE"/>
                                     <constraint firstItem="OzL-V3-ceP" firstAttribute="centerY" secondItem="8Jb-4k-x12" secondAttribute="centerY" id="g7Q-ke-acz"/>
                                     <constraint firstItem="WCs-vW-O3S" firstAttribute="top" secondItem="8Jb-4k-x12" secondAttribute="top" constant="10" id="grx-F6-xPM"/>
@@ -2492,15 +2551,19 @@ Just Watch Me
                                     <constraint firstItem="OzL-V3-ceP" firstAttribute="leading" secondItem="8Jb-4k-x12" secondAttribute="leading" constant="50" id="sLf-5n-OQh"/>
                                     <constraint firstItem="WCs-vW-O3S" firstAttribute="leading" secondItem="OzL-V3-ceP" secondAttribute="trailing" constant="100" id="t9M-pm-AUm"/>
                                     <constraint firstItem="X5D-Jd-EVm" firstAttribute="top" secondItem="8Jb-4k-x12" secondAttribute="top" id="vL9-u2-tTD"/>
+                                    <constraint firstItem="fne-Tx-5HF" firstAttribute="centerY" secondItem="8Jb-4k-x12" secondAttribute="centerY" id="wL0-hD-b22"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="hgF-A2-ne5" firstAttribute="width" secondItem="arD-Cw-KKj" secondAttribute="width" id="9AC-mD-dj0"/>
                             <constraint firstAttribute="trailing" secondItem="YyF-s8-gwC" secondAttribute="trailing" id="HuL-HD-PmV"/>
-                            <constraint firstItem="YyF-s8-gwC" firstAttribute="top" secondItem="arD-Cw-KKj" secondAttribute="top" constant="120" id="M9A-zZ-Tbp"/>
+                            <constraint firstItem="YyF-s8-gwC" firstAttribute="top" secondItem="arD-Cw-KKj" secondAttribute="top" constant="150" id="M9A-zZ-Tbp"/>
                             <constraint firstAttribute="bottom" secondItem="YyF-s8-gwC" secondAttribute="bottom" id="Xxu-yO-3R5"/>
+                            <constraint firstItem="vGj-oi-dyg" firstAttribute="trailing" secondItem="YyF-s8-gwC" secondAttribute="trailing" constant="-130" id="Y14-QO-BOL"/>
+                            <constraint firstItem="vGj-oi-dyg" firstAttribute="top" secondItem="8Jb-4k-x12" secondAttribute="bottom" id="aYh-ul-fAl"/>
                             <constraint firstItem="8Jb-4k-x12" firstAttribute="top" secondItem="arD-Cw-KKj" secondAttribute="top" id="c8b-WK-Qzg"/>
+                            <constraint firstItem="vGj-oi-dyg" firstAttribute="leading" secondItem="YyF-s8-gwC" secondAttribute="leading" constant="130" id="iYK-an-zko"/>
                             <constraint firstAttribute="trailing" secondItem="8Jb-4k-x12" secondAttribute="trailing" id="jQD-VB-tld"/>
                             <constraint firstItem="YyF-s8-gwC" firstAttribute="leading" secondItem="arD-Cw-KKj" secondAttribute="leading" id="rxu-A6-bSl"/>
                             <constraint firstItem="8Jb-4k-x12" firstAttribute="leading" secondItem="arD-Cw-KKj" secondAttribute="leading" id="v7z-em-pKd"/>
@@ -2533,6 +2596,7 @@ Just Watch Me
                         <outlet property="playButton" destination="Y9U-PB-zg8" id="E44-Fo-Kee"/>
                         <outlet property="playerView" destination="a29-iD-fJf" id="QI4-C1-MeW"/>
                         <outlet property="playerViewHeight" destination="UnK-1y-I5I" id="ctx-I0-t9B"/>
+                        <outlet property="searchButton" destination="fne-Tx-5HF" id="ryv-D0-Ndv"/>
                         <outlet property="seperatorLine" destination="QhA-M6-MDL" id="yd8-Dd-b5u"/>
                         <outlet property="timeImage" destination="sTG-Vg-3a7" id="w7w-ny-JSZ"/>
                         <outlet property="videoImageHeight" destination="Yy7-w5-l4I" id="gcg-lf-Vbk"/>
@@ -2560,17 +2624,16 @@ Just Watch Me
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-df-UAe">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-Hw-9Z1" userLabel="Search Button">
-                                        <rect key="frame" x="1620" y="-25" width="110" height="150"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-Hw-9Z1" userLabel="Search Button">
+                                        <rect key="frame" x="1520" y="0.0" width="150" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="01t-To-SLS"/>
-                                            <constraint firstAttribute="width" constant="110" id="CeN-1s-ZRg"/>
+                                            <constraint firstAttribute="height" constant="100" id="01t-To-SLS"/>
+                                            <constraint firstAttribute="width" constant="150" id="CeN-1s-ZRg"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="TVExcelSearchImage-1"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="TVExcelSearchImage-1"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8k-Ov-iJA" userLabel="AccountView">
                                         <rect key="frame" x="1720" y="0.0" width="150" height="100"/>
@@ -2606,7 +2669,7 @@ Just Watch Me
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2xR-yM-kiS">
-                                        <rect key="frame" x="465" y="10" width="1155" height="80"/>
+                                        <rect key="frame" x="465" y="10" width="1005" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dbM-E9-VXV">
                                             <size key="itemSize" width="128" height="128"/>
@@ -2638,14 +2701,21 @@ Just Watch Me
                                     <constraint firstItem="brq-7I-2pG" firstAttribute="leading" secondItem="FUB-df-UAe" secondAttribute="leading" constant="50" id="51g-yp-aep"/>
                                     <constraint firstItem="g8k-Ov-iJA" firstAttribute="top" secondItem="FUB-df-UAe" secondAttribute="top" id="Hqr-6t-mFW"/>
                                     <constraint firstItem="brq-7I-2pG" firstAttribute="centerY" secondItem="FUB-df-UAe" secondAttribute="centerY" id="Nh7-Oh-2W7"/>
-                                    <constraint firstItem="2xR-yM-kiS" firstAttribute="trailing" secondItem="g8k-Ov-iJA" secondAttribute="leading" constant="-100" id="QyM-bc-Wbh"/>
+                                    <constraint firstItem="g8k-Ov-iJA" firstAttribute="leading" secondItem="CYD-Hw-9Z1" secondAttribute="trailing" constant="50" id="QyM-bc-Wbh"/>
                                     <constraint firstAttribute="bottom" secondItem="2xR-yM-kiS" secondAttribute="bottom" constant="10" id="Rcr-nR-4Rw"/>
                                     <constraint firstAttribute="height" constant="100" id="bP1-xV-Gm6"/>
                                     <constraint firstItem="CYD-Hw-9Z1" firstAttribute="centerY" secondItem="FUB-df-UAe" secondAttribute="centerY" id="bci-S8-CcE"/>
                                     <constraint firstItem="2xR-yM-kiS" firstAttribute="top" secondItem="FUB-df-UAe" secondAttribute="top" constant="10" id="hWf-IF-4X6"/>
                                     <constraint firstAttribute="trailing" secondItem="g8k-Ov-iJA" secondAttribute="trailing" constant="50" id="ojZ-xU-Jsc"/>
-                                    <constraint firstItem="2xR-yM-kiS" firstAttribute="trailing" secondItem="CYD-Hw-9Z1" secondAttribute="leading" id="qCn-uh-jWg"/>
+                                    <constraint firstItem="2xR-yM-kiS" firstAttribute="trailing" secondItem="CYD-Hw-9Z1" secondAttribute="leading" constant="-50" id="qCn-uh-jWg"/>
                                     <constraint firstItem="2xR-yM-kiS" firstAttribute="leading" secondItem="brq-7I-2pG" secondAttribute="trailing" constant="100" id="vtH-wn-zCS"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gkb-yQ-PvF" userLabel="divider">
+                                <rect key="frame" x="130" y="100" width="1660" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="PK0-VL-69n"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFu-zd-A1a" userLabel="mainScrollView">
@@ -2655,20 +2725,20 @@ Just Watch Me
                                         <rect key="frame" x="0.0" y="0.0" width="1920" height="2000"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2d-cK-1ix">
-                                                <rect key="frame" x="200" y="20" width="1520" height="46"/>
+                                                <rect key="frame" x="130" y="50" width="1660" height="46"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kl0-0b-8pL">
-                                                <rect key="frame" x="200" y="82" width="1520" height="1"/>
+                                                <rect key="frame" x="130" y="112" width="1660" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="I2X-ft-7fd"/>
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JPX-pH-JIp">
-                                                <rect key="frame" x="200" y="108" width="1520" height="128"/>
+                                                <rect key="frame" x="130" y="138" width="1660" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="kAD-u7-5Fw"/>
@@ -2691,7 +2761,7 @@ Just Watch Me
                                                 </cells>
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncW-dL-S5B" userLabel="Earlier show button">
-                                                <rect key="frame" x="810" y="261" width="300" height="60"/>
+                                                <rect key="frame" x="810" y="291" width="300" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="300" id="eS8-HO-gT2"/>
                                                     <constraint firstAttribute="height" constant="60" id="xlb-KK-Eu8"/>
@@ -2700,28 +2770,54 @@ Just Watch Me
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="NWw-qS-q93">
-                                                <rect key="frame" x="200" y="346" width="1520" height="960"/>
+                                                <rect key="frame" x="200" y="401" width="1520" height="960"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="960" id="MYq-3i-rAx"/>
                                                 </constraints>
                                             </tableView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leftArrow" translatesAutoresizingMaskIntoConstraints="NO" id="x6h-2Z-Cvu" userLabel="leftArrowImage">
+                                                <rect key="frame" x="90" y="187" width="30" height="30"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="6i6-Qg-rUz"/>
+                                                    <constraint firstAttribute="height" constant="30" id="8uT-FC-UMi"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="DxC-pi-gvF"/>
+                                                    <constraint firstAttribute="width" constant="30" id="PnR-ur-Qjg"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="wWa-8G-ZlK" userLabel="rightArrowImage">
+                                                <rect key="frame" x="1806" y="187" width="30" height="30"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="1Rw-Ql-jfT"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="5Hl-zj-aw8"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="KvF-ey-6pJ"/>
+                                                    <constraint firstAttribute="width" constant="30" id="TWX-d7-heX"/>
+                                                    <constraint firstAttribute="height" constant="30" id="lnh-Mw-Iyu"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="xur-PH-a6t"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="E2d-cK-1ix" firstAttribute="top" secondItem="z4R-EX-x6J" secondAttribute="top" constant="20" id="5u7-KJ-KhG"/>
+                                            <constraint firstItem="E2d-cK-1ix" firstAttribute="top" secondItem="z4R-EX-x6J" secondAttribute="top" constant="50" id="5u7-KJ-KhG"/>
                                             <constraint firstItem="Kl0-0b-8pL" firstAttribute="top" secondItem="E2d-cK-1ix" secondAttribute="bottom" constant="16" id="6vD-H3-1Q4"/>
                                             <constraint firstItem="ncW-dL-S5B" firstAttribute="top" secondItem="JPX-pH-JIp" secondAttribute="bottom" constant="25" id="7p2-nC-Nxx"/>
-                                            <constraint firstAttribute="trailing" secondItem="Kl0-0b-8pL" secondAttribute="trailing" constant="200" id="8gx-EX-ZEG"/>
-                                            <constraint firstItem="Kl0-0b-8pL" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="AFA-BT-oF3"/>
-                                            <constraint firstAttribute="trailing" secondItem="JPX-pH-JIp" secondAttribute="trailing" constant="200" id="DEb-A8-j0E"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kl0-0b-8pL" secondAttribute="trailing" constant="130" id="8gx-EX-ZEG"/>
+                                            <constraint firstItem="Kl0-0b-8pL" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="130" id="AFA-BT-oF3"/>
+                                            <constraint firstAttribute="trailing" secondItem="JPX-pH-JIp" secondAttribute="trailing" constant="130" id="DEb-A8-j0E"/>
                                             <constraint firstAttribute="trailing" secondItem="NWw-qS-q93" secondAttribute="trailing" constant="200" id="DPY-w1-iTc"/>
                                             <constraint firstAttribute="height" constant="2000" id="FYY-Gd-pqU"/>
-                                            <constraint firstAttribute="trailing" secondItem="E2d-cK-1ix" secondAttribute="trailing" constant="200" id="G86-By-gRX"/>
-                                            <constraint firstItem="NWw-qS-q93" firstAttribute="top" secondItem="ncW-dL-S5B" secondAttribute="bottom" constant="25" id="QjU-Jk-W1H"/>
+                                            <constraint firstItem="wWa-8G-ZlK" firstAttribute="leading" secondItem="JPX-pH-JIp" secondAttribute="trailing" constant="16" id="G7q-3j-om7"/>
+                                            <constraint firstAttribute="trailing" secondItem="E2d-cK-1ix" secondAttribute="trailing" constant="130" id="G86-By-gRX"/>
+                                            <constraint firstItem="NWw-qS-q93" firstAttribute="top" secondItem="ncW-dL-S5B" secondAttribute="bottom" constant="50" id="QjU-Jk-W1H"/>
                                             <constraint firstItem="ncW-dL-S5B" firstAttribute="centerX" secondItem="z4R-EX-x6J" secondAttribute="centerX" id="YSX-QC-RYF"/>
-                                            <constraint firstItem="JPX-pH-JIp" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="eP2-nX-LvT"/>
+                                            <constraint firstItem="x6h-2Z-Cvu" firstAttribute="centerY" secondItem="JPX-pH-JIp" secondAttribute="centerY" id="dva-Zy-O2U"/>
+                                            <constraint firstItem="JPX-pH-JIp" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="130" id="eP2-nX-LvT"/>
+                                            <constraint firstItem="wWa-8G-ZlK" firstAttribute="centerY" secondItem="JPX-pH-JIp" secondAttribute="centerY" id="eaW-iA-Jzq"/>
                                             <constraint firstItem="JPX-pH-JIp" firstAttribute="top" secondItem="Kl0-0b-8pL" secondAttribute="bottom" constant="25" id="pUC-cq-dFI"/>
-                                            <constraint firstItem="E2d-cK-1ix" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="v61-Nj-1Eu"/>
+                                            <constraint firstItem="JPX-pH-JIp" firstAttribute="leading" secondItem="x6h-2Z-Cvu" secondAttribute="trailing" constant="10" id="pqk-Zn-EGo"/>
+                                            <constraint firstItem="E2d-cK-1ix" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="130" id="v61-Nj-1Eu"/>
                                             <constraint firstItem="NWw-qS-q93" firstAttribute="leading" secondItem="z4R-EX-x6J" secondAttribute="leading" constant="200" id="zdb-yd-Tdd"/>
                                         </constraints>
                                     </view>
@@ -2736,10 +2832,13 @@ Just Watch Me
                         </subviews>
                         <constraints>
                             <constraint firstItem="mFu-zd-A1a" firstAttribute="top" secondItem="FUB-df-UAe" secondAttribute="bottom" constant="20" id="DDX-RP-Are"/>
+                            <constraint firstItem="Gkb-yQ-PvF" firstAttribute="top" secondItem="FUB-df-UAe" secondAttribute="bottom" id="DL3-Gr-Qbv"/>
                             <constraint firstItem="mFu-zd-A1a" firstAttribute="leading" secondItem="4iL-Aa-6lS" secondAttribute="leading" id="DiH-fv-Zrp"/>
                             <constraint firstAttribute="trailing" secondItem="mFu-zd-A1a" secondAttribute="trailing" id="G3Z-Vg-dRp"/>
                             <constraint firstAttribute="trailing" secondItem="FUB-df-UAe" secondAttribute="trailing" id="K2e-pp-1yf"/>
                             <constraint firstAttribute="bottom" secondItem="mFu-zd-A1a" secondAttribute="bottom" id="Rx6-or-Pkd"/>
+                            <constraint firstItem="Gkb-yQ-PvF" firstAttribute="trailing" secondItem="4iL-Aa-6lS" secondAttribute="trailing" constant="-130" id="ZZ7-oB-elh"/>
+                            <constraint firstItem="Gkb-yQ-PvF" firstAttribute="leading" secondItem="4iL-Aa-6lS" secondAttribute="leading" constant="130" id="dUR-sF-A6R"/>
                             <constraint firstItem="FUB-df-UAe" firstAttribute="leading" secondItem="4iL-Aa-6lS" secondAttribute="leading" id="t8b-dg-fbh"/>
                             <constraint firstItem="FUB-df-UAe" firstAttribute="top" secondItem="4iL-Aa-6lS" secondAttribute="top" id="xkv-D0-Pbg"/>
                             <constraint firstItem="z4R-EX-x6J" firstAttribute="width" secondItem="4iL-Aa-6lS" secondAttribute="width" id="zDn-gU-Ycb"/>
@@ -2761,6 +2860,7 @@ Just Watch Me
                         <outlet property="mainViewHeight" destination="FYY-Gd-pqU" id="pdm-Zx-0En"/>
                         <outlet property="menuBar" destination="FUB-df-UAe" id="sG8-k1-6H2"/>
                         <outlet property="menuCollectionView" destination="2xR-yM-kiS" id="Bvc-lR-L6z"/>
+                        <outlet property="searchButton" destination="CYD-Hw-9Z1" id="GlG-fb-OBn"/>
                         <outlet property="sepratorView" destination="Kl0-0b-8pL" id="4oI-1n-3XD"/>
                     </connections>
                 </viewController>
@@ -3501,17 +3601,19 @@ Just Watch Me
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZc-2d-E3c">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-ud-NQa" userLabel="Search Button">
-                                        <rect key="frame" x="1620" y="-50" width="200" height="200"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-ud-NQa" userLabel="Search Button">
+                                        <rect key="frame" x="1520" y="0.0" width="150" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="eCT-K3-rnG"/>
-                                            <constraint firstAttribute="height" constant="200" id="jcK-B8-G2u"/>
+                                            <constraint firstAttribute="width" constant="150" id="eCT-K3-rnG"/>
+                                            <constraint firstAttribute="height" constant="100" id="jcK-B8-G2u"/>
+
                                         </constraints>
                                         <color key="tintColor" systemColor="tintColor"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="TVExcelSearchImage-1">
+                                        <state key="normal" title="Sea" image="TVExcelSearchImage-1">
+
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -3549,7 +3651,7 @@ Just Watch Me
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-Ud-e0q">
-                                        <rect key="frame" x="465" y="10" width="1155" height="80"/>
+                                        <rect key="frame" x="465" y="10" width="1005" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UP6-KY-7la">
                                             <size key="itemSize" width="128" height="128"/>
@@ -3579,7 +3681,7 @@ Just Watch Me
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstItem="LdD-Hh-0Lr" firstAttribute="leading" secondItem="AZc-2d-E3c" secondAttribute="leading" constant="50" id="5am-Iy-Nah"/>
-                                    <constraint firstItem="5aD-Ud-e0q" firstAttribute="trailing" secondItem="Y2d-o3-RW9" secondAttribute="leading" constant="-100" id="FJr-Yz-SZ6"/>
+                                    <constraint firstItem="5aD-Ud-e0q" firstAttribute="trailing" secondItem="8W8-ud-NQa" secondAttribute="leading" constant="-50" id="FJr-Yz-SZ6"/>
                                     <constraint firstItem="8W8-ud-NQa" firstAttribute="centerY" secondItem="AZc-2d-E3c" secondAttribute="centerY" id="Hg8-v1-UAF"/>
                                     <constraint firstItem="LdD-Hh-0Lr" firstAttribute="centerY" secondItem="AZc-2d-E3c" secondAttribute="centerY" id="LqM-rt-j3z"/>
                                     <constraint firstItem="Y2d-o3-RW9" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="top" id="N2i-rz-Vfg"/>
@@ -3588,11 +3690,13 @@ Just Watch Me
                                     <constraint firstAttribute="trailing" secondItem="Y2d-o3-RW9" secondAttribute="trailing" constant="50" id="cLE-Vi-ynh"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="leading" secondItem="LdD-Hh-0Lr" secondAttribute="trailing" constant="100" id="iDU-Ra-eQ6"/>
                                     <constraint firstItem="5aD-Ud-e0q" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="top" constant="10" id="qHO-Iw-YJQ"/>
-                                    <constraint firstItem="8W8-ud-NQa" firstAttribute="leading" secondItem="5aD-Ud-e0q" secondAttribute="trailing" id="vYt-Db-aby"/>
+
+                                    <constraint firstItem="Y2d-o3-RW9" firstAttribute="leading" secondItem="8W8-ud-NQa" secondAttribute="trailing" constant="50" id="vYt-Db-aby"/>
+
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-RE-2cc" userLabel="dividerView">
-                                <rect key="frame" x="126" y="100" width="1668" height="1"/>
+                                <rect key="frame" x="130" y="100" width="1660" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Hcr-xL-UNb"/>
@@ -3605,8 +3709,8 @@ Just Watch Me
                             <constraint firstItem="AZc-2d-E3c" firstAttribute="top" secondItem="kGG-bI-VjZ" secondAttribute="top" id="LL5-gT-yXQ"/>
                             <constraint firstAttribute="bottom" secondItem="RC4-Qe-BQe" secondAttribute="bottom" id="LZZ-Xh-yuS"/>
                             <constraint firstItem="AZc-2d-E3c" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leading" id="Ovb-rv-VMd"/>
-                            <constraint firstItem="b9S-RE-2cc" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leadingMargin" constant="30" id="aEF-yA-t5p"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="b9S-RE-2cc" secondAttribute="trailing" constant="30" id="ssn-J5-ttF"/>
+                            <constraint firstItem="b9S-RE-2cc" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leading" constant="130" id="aEF-yA-t5p"/>
+                            <constraint firstAttribute="trailing" secondItem="b9S-RE-2cc" secondAttribute="trailing" constant="130" id="ssn-J5-ttF"/>
                             <constraint firstItem="b9S-RE-2cc" firstAttribute="top" secondItem="AZc-2d-E3c" secondAttribute="bottom" id="vYj-ic-fRq"/>
                             <constraint firstItem="RC4-Qe-BQe" firstAttribute="leading" secondItem="kGG-bI-VjZ" secondAttribute="leading" constant="50" id="x4q-ZG-ZDT"/>
                             <constraint firstAttribute="trailing" secondItem="AZc-2d-E3c" secondAttribute="trailing" id="z8C-yQ-mW1"/>
@@ -4578,10 +4682,12 @@ Just Watch Me
         <image name="drop-down-arrow" width="24" height="24"/>
         <image name="favouritesIcon" width="40" height="39"/>
         <image name="icons8-play-48" width="48" height="48"/>
+        <image name="leftArrow" width="10" height="16"/>
         <image name="lightGrey" width="768" height="480"/>
         <image name="player image - home" width="1280" height="720"/>
         <image name="plus-icon" width="17" height="17"/>
         <image name="rectangle.grid.1x2.fill" catalog="system" width="128" height="104"/>
+        <image name="rightArrow" width="10" height="16"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

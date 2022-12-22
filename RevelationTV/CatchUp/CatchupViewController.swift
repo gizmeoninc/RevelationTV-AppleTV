@@ -31,6 +31,7 @@ class CatchupViewController: UIViewController {
         }
     }
     
+    
     @IBOutlet weak var accountOuterView: UIView!
     @IBOutlet weak var accountButton: UIButton!{
         didSet{
@@ -60,6 +61,7 @@ class CatchupViewController: UIViewController {
     @IBOutlet weak var videoImageView: UIImageView!{
         didSet{
             videoImageView.contentMode = .scaleAspectFill
+            
         }
     }
     @IBOutlet weak var filterCollectionView: UICollectionView!
@@ -97,7 +99,12 @@ class CatchupViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var imageViewLive: UIImageView!
+    @IBOutlet weak var imageViewLive: UIImageView!{
+        didSet{
+            self.imageViewLive.layer.cornerRadius = 8
+            self.imageViewLive.layer.masksToBounds = true
+        }
+    }
    
     @IBOutlet weak var nowPlayingTitle: UILabel!{
         didSet{
@@ -151,6 +158,31 @@ class CatchupViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var searchButton: UIButton!{
+        didSet{
+          
+            
+    
+                    searchButton.setTitle("", for: .normal)
+                    let image = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
+//                     let new  = image.imageFlippedForRightToLeftLayoutDirection()
+
+                    searchButton.setImage(image, for: .normal)
+                    searchButton.tintColor = UIColor.white
+                    searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                    searchButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+                    searchButton.layer.borderWidth = 0.0
+                    searchButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+                    searchButton.titleLabel?.textColor = UIColor.white
+                    searchButton.layer.cornerRadius = 10
+                    searchButton.titleLabel?.textAlignment = .center
+                    searchButton.layer.masksToBounds = true
+//                    searchButton.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
+                    searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                    searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
     
     
     
@@ -166,7 +198,7 @@ class CatchupViewController: UIViewController {
 
     var catchupVideoArray = [VideoModel?]()
     var catchupFilterArray = [showByCategoryModel]()
-    var menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+    var menuArray = [String]()
     var lastFocusedIndexPath: IndexPath?
     var selectCollectionView = false
     var videoUrl = String()
@@ -192,7 +224,7 @@ class CatchupViewController: UIViewController {
         
         
         
-        let width = UIScreen.main.bounds.width - 200
+        let width = UIScreen.main.bounds.width - 260
         self.videoImageViewWidth.constant = width - (width/3)
          let height = (self.videoImageViewWidth.constant*9)/16
         self.playerViewHeight.constant = height
@@ -217,13 +249,13 @@ class CatchupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
         }
         else{
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
 
         }
-        lastFocusedIndexPath = IndexPath(row: 3, section: 0)
+        lastFocusedIndexPath = IndexPath(row: 0, section: 0)
 
         menuCollectionView.register(UINib(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "menuCollectionCell")
         menuCollectionView.delegate = self
@@ -239,12 +271,15 @@ class CatchupViewController: UIViewController {
         if playButton.isFocused{
             playButton.backgroundColor = ThemeManager.currentTheme().focusedColor
             filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            self.searchButton.tintColor = .white
+
         }
        else  if self.filterButton.isFocused {
            
            filterButton.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
              playButton.backgroundColor = .clear
-           
+           self.searchButton.tintColor = .white
+
 
                 // handle focus appearance changes
             }
@@ -255,12 +290,26 @@ class CatchupViewController: UIViewController {
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
             playButton.backgroundColor = .clear
+            self.searchButton.tintColor = .white
+
+        }
+        else if searchButton.isFocused {
+            self.searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            self.searchButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
+            self.accountButton.transform = CGAffineTransformIdentity
+            self.accountOuterView.layer.borderWidth = 0
+            filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            playButton.backgroundColor = .clear
         }
         else{
             playButton.backgroundColor = .clear
             self.accountButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
             self.filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+
+            self.searchButton.tintColor = .white
+
 
         }
     }
@@ -682,7 +731,7 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
                 let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
                 self.present(videoDetailView, animated: false, completion: nil)
             }
-            else if menuArray[indexPath.item] == "Live"{
+            else if menuArray[indexPath.item] == "Schedule"{
                 let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveTabVC") as! LiveTabViewController
                
                 self.present(videoDetailView, animated: false, completion: nil)
@@ -692,9 +741,13 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
                
                 self.present(videoDetailView, animated: false, completion: nil)
             }
-            else if menuArray[indexPath.item] == "Catch-up"{
+            else if menuArray[indexPath.item] == "Watch Live"{
                 let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
                
+                self.present(videoDetailView, animated: false, completion: nil)
+            }
+            else if menuArray[indexPath.item] == "My List"{
+                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "WatchListVC") as! WatchListViewController
                 self.present(videoDetailView, animated: false, completion: nil)
             }
             else if menuArray[indexPath.item] == "My List"{
@@ -742,11 +795,11 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
         else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-        if indexPath.row == 3{
-            cell.menuLabel.textColor = .white
+        if indexPath.row == 0{
+            cell.menuLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }
         else{
-            cell.menuLabel.textColor = .gray
+            cell.menuLabel.textColor = .white
         }
             cell.menuItem = menuArray[indexPath.row]
             return cell
@@ -772,14 +825,14 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
         if collectionView == filterCollectionView{
            return 25
         }
-        return 50
+        return 75
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == filterCollectionView{
            return 25
         }
-        return 50
+        return 75
     }
 }
 extension CatchupViewController:CatchupTableViewCellDelegate{

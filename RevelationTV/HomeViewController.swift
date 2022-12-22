@@ -36,8 +36,27 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var searchButton: UIButton!{
         didSet{
-            searchButton.setImage(UIImage(named: "TVExcelSearchImage-1"), for: .normal)
-            searchButton.tintColor = .white
+          
+            
+    
+                    searchButton.setTitle("", for: .normal)
+                    let image = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
+//                     let new  = image.imageFlippedForRightToLeftLayoutDirection()
+
+                    searchButton.setImage(image, for: .normal)
+                    searchButton.tintColor = UIColor.white
+                    searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                    searchButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+                    searchButton.layer.borderWidth = 0.0
+                    searchButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+                    searchButton.titleLabel?.textColor = UIColor.white
+                    searchButton.layer.cornerRadius = 10
+                    searchButton.titleLabel?.textAlignment = .center
+                    searchButton.layer.masksToBounds = true
+//                    searchButton.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
+                    searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                    searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
     @IBOutlet weak var dropDownArrowACcount: UIImageView!{
@@ -93,13 +112,21 @@ var menuArray = [String]()
             print("Unable to start notifier")
         }
         
-        
+
         if UserDefaults.standard.string(forKey: "skiplogin_status") != nil{
             let status = UserDefaults.standard.string(forKey: "skiplogin_status")
             print("skiploginstatus",status)
         }
        
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NotificationIdentifier"), object: nil)
+        if UserDefaults.standard.string(forKey:"access_token") == nil {
+            print("getToken")
+            self.getToken()
+        }
+        else{
+            print("getHomeNewArrivals viewdidload")
+            self.getDianamicHomeVideos()
+        }
 
     }
     @objc func methodOfReceivedNotification(notification: Notification) {
@@ -115,29 +142,26 @@ var menuArray = [String]()
         if accountButton.isFocused {
             self.accountButton.transform = CGAffineTransformMakeScale(scale, scale)
             self.accountOuterView.layer.borderWidth = 3
-            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
+            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
-            
-            self.searchButton.transform = CGAffineTransformIdentity
+//            self.searchButton.backgroundColor = ThemeManager.currentTheme().ButtonBorderColor
+            self.searchButton.tintColor = .white
+
+           
         }
         else if searchButton.isFocused {
             self.searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-            self.searchButton.transform = CGAffineTransformMakeScale(scale1, scale1)
+            self.searchButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
             self.accountButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
-            searchButton.tintColor = ThemeManager.currentTheme().buttonTextColor
-    
-            
-
-
-          
-
         }
         else{
             self.accountButton.transform = CGAffineTransformIdentity
             self.searchButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
+//            self.searchButton.backgroundColor = ThemeManager.currentTheme().ButtonBorderColor
+            self.searchButton.tintColor = .white
             
         }
     }
@@ -148,25 +172,18 @@ var menuArray = [String]()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if UserDefaults.standard.string(forKey:"access_token") == nil {
-            print("getToken")
-            self.getToken()
-        }
-        else{
-            print("getHomeNewArrivals viewdidload")
-            self.getDianamicHomeVideos()
-        }
+        
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
         }
         else{
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
 
         }
         menuCollectionView.register(UINib(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "menuCollectionCell")
         menuCollectionView.delegate = self
         menuCollectionView.dataSource = self
-        lastFocusedIndexPath = IndexPath(row: 0, section: 0)
+        lastFocusedIndexPath = IndexPath(row: 1, section: 0)
         DispatchQueue.main.async {
             self.menuCollectionView.reloadData()
         }
@@ -268,7 +285,6 @@ var menuArray = [String]()
 
                 }
             } else {
-                
 
                 self.dianamicVideos.removeAll()
                 if let dianamicVideos = responseDictionary["data"] as? [showByCategoryModel] {
@@ -278,17 +294,16 @@ var menuArray = [String]()
                     print("dianamicVideos")
                     
                     DispatchQueue.main.async {
+                        commonClass.stopActivityIndicator(onViewController: self)
                         self.HomeTableView.reloadData()
                         self.HomeTableView.isHidden = false
-                        commonClass.stopActivityIndicator(onViewController: self)
 
                     }
                 } else {
                     DispatchQueue.main.async {
-                       
+                        commonClass.stopActivityIndicator(onViewController: self)
                         self.HomeTableView.isHidden = false
                         self.HomeTableView.reloadData()
-                        commonClass.stopActivityIndicator(onViewController: self)
                             
                        
                        
@@ -825,7 +840,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout,UICollectionView
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
             self.present(videoDetailView, animated: false, completion: nil)
         }
-        else if menuArray[indexPath.item] == "Live"{
+        else if menuArray[indexPath.item] == "Schedule"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveTabVC") as! LiveTabViewController
            
             self.present(videoDetailView, animated: false, completion: nil)
@@ -835,7 +850,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout,UICollectionView
            
             self.present(videoDetailView, animated: false, completion: nil)
         }
-        else if menuArray[indexPath.item] == "Catch-up"{
+        else if menuArray[indexPath.item] == "Watch Live"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
            
             self.present(videoDetailView, animated: false, completion: nil)
@@ -861,10 +876,10 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-        if indexPath.row == 0{
-            cell.menuLabel.textColor = .white
+        if indexPath.row == 1{
+            cell.menuLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }else{
-            cell.menuLabel.textColor = .gray
+            cell.menuLabel.textColor = .white
         }
             cell.menuItem = menuArray[indexPath.row]
             return cell
@@ -881,12 +896,12 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout,UICollectionView
     }
 //
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 75
        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 75
     }
 }
 extension HomeViewController:DemandTableViewCellDelegate{
