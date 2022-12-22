@@ -36,9 +36,6 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var searchButton: UIButton!{
         didSet{
-          
-            
-    
                     searchButton.setTitle("", for: .normal)
                     let image = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
 //                     let new  = image.imageFlippedForRightToLeftLayoutDirection()
@@ -57,7 +54,22 @@ class HomeViewController: UIViewController {
                     searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
 //                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                     searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            searchButton.addTarget(self, action: #selector(searchAction), for: UIControl.Event.primaryActionTriggered)
         }
+    }
+    @objc func searchAction(){
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsViewController") as! HomeSearchViewController
+        let searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = resultsController
+        let searchPlaceholderText = NSLocalizedString("Search Title", comment: "")
+        searchController.searchBar.placeholder = searchPlaceholderText
+        searchController.searchBar.delegate = resultsController
+         searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        searchController.view.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                    let searchContainerViewController = UISearchContainerViewController(searchController: searchController)
+        self.present(searchContainerViewController, animated: false, completion: nil)
+
     }
     @IBOutlet weak var dropDownArrowACcount: UIImageView!{
         didSet{

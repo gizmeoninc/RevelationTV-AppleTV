@@ -40,10 +40,8 @@
                             <constraint firstAttribute="width" constant="45" id="Xn9-mk-ubN"/>
                         </constraints>
                     </imageView>
-
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="plain" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-a0-m43" userLabel="moreIconButton">
-                        <rect key="frame" x="1895" y="0.0" width="48" height="48"/>
-
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-a0-m43" userLabel="moreIconButton">
+                        <rect key="frame" x="1900" y="-2" width="50" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Ewu-tt-vgc"/>

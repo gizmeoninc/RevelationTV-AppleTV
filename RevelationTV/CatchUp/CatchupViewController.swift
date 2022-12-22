@@ -181,10 +181,25 @@ class CatchupViewController: UIViewController {
                     searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
 //                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
                     searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            searchButton.addTarget(self, action: #selector(self.searchAction), for: UIControl.Event.primaryActionTriggered)
         }
     }
     
-    
+    @objc func searchAction(){
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsViewController") as! HomeSearchViewController
+        let searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = resultsController
+        let searchPlaceholderText = NSLocalizedString("Search Title", comment: "")
+        searchController.searchBar.placeholder = searchPlaceholderText
+        searchController.searchBar.delegate = resultsController
+         searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        searchController.view.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                    let searchContainerViewController = UISearchContainerViewController(searchController: searchController)
+        self.present(searchContainerViewController, animated: false, completion: nil)
+
+    }
+
     
     @IBOutlet weak var timeImage: UIImageView!
     
@@ -286,7 +301,7 @@ class CatchupViewController: UIViewController {
         else if accountButton.isFocused {
             self.accountButton.transform = CGAffineTransformMakeScale(scale, scale)
             self.accountOuterView.layer.borderWidth = 3
-            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
+            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
             playButton.backgroundColor = .clear

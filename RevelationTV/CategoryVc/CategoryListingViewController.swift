@@ -33,6 +33,44 @@ class CategoryListingViewController: UIViewController{
         }
     }
     
+    @IBOutlet weak var searchButton: UIButton!{
+        didSet{
+            searchButton.setTitle("", for: .normal)
+            let image = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
+
+            searchButton.setImage(image, for: .normal)
+            searchButton.tintColor = UIColor.white
+            searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            searchButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            searchButton.layer.borderWidth = 0.0
+            searchButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            searchButton.titleLabel?.textColor = UIColor.white
+            searchButton.layer.cornerRadius = 10
+            searchButton.titleLabel?.textAlignment = .center
+            searchButton.layer.masksToBounds = true
+//                    searchButton.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
+            searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            searchButton.addTarget(self, action: #selector(self.searchAction), for: UIControl.Event.primaryActionTriggered)
+
+        }
+    }
+    @objc func searchAction(){
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsViewController") as! HomeSearchViewController
+        let searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = resultsController
+        let searchPlaceholderText = NSLocalizedString("Search Title", comment: "")
+        searchController.searchBar.placeholder = searchPlaceholderText
+        searchController.searchBar.delegate = resultsController
+         searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        searchController.view.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                    let searchContainerViewController = UISearchContainerViewController(searchController: searchController)
+        self.present(searchContainerViewController, animated: false, completion: nil)
+
+    }
+
     @IBOutlet weak var menuCollectionView: UICollectionView!{
         didSet{
             menuCollectionView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
@@ -63,7 +101,7 @@ class CategoryListingViewController: UIViewController{
     
     
     
-    var menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+    var menuArray = ["Watch Live","Home","On-Demand","Schedule"]
     var lastFocusedIndexPath: IndexPath?
 
     override func viewDidLoad() {
@@ -99,18 +137,25 @@ class CategoryListingViewController: UIViewController{
     let scale = 1.0
 
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-       
+    
         if accountButton.isFocused {
             self.accountButton.transform = CGAffineTransformMakeScale(scale, scale)
             self.accountOuterView.layer.borderWidth = 3
-            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
+            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
+            self.searchButton.tintColor = .white
+        }
+        else if searchButton.isFocused {
+            self.searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            self.searchButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
+            self.accountButton.transform = CGAffineTransformIdentity
+            self.accountOuterView.layer.borderWidth = 0
         }
         else{
             self.accountButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
-            
+            self.searchButton.tintColor = .white
         }
     }
     @objc func click(sender: UIButton) {
@@ -132,13 +177,13 @@ class CategoryListingViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
         }
         else{
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
 
         }
-        lastFocusedIndexPath = IndexPath(row: 2, section: 0)
+        lastFocusedIndexPath = IndexPath(row: 1, section: 0)
 
         menuCollectionView.register(UINib(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "menuCollectionCell")
         menuCollectionView.delegate = self
@@ -328,11 +373,11 @@ extension CategoryListingViewController: UICollectionViewDelegate,UICollectionVi
         if collectionView == menuCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-        if indexPath.row == 2{
-            cell.menuLabel.textColor = .white
+        if indexPath.row == 1{
+            cell.menuLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }
         else{
-            cell.menuLabel.textColor = .gray
+            cell.menuLabel.textColor = .white
         }
             cell.menuItem = menuArray[indexPath.row]
             return cell
@@ -385,11 +430,21 @@ extension CategoryListingViewController: UICollectionViewDelegate,UICollectionVi
                 let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
                 self.present(videoDetailView, animated: false, completion: nil)
             }
-            else if menuArray[indexPath.item] == "Live"{
+            else if menuArray[indexPath.item] == "Watch Live"{
+                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
+               
+                self.present(videoDetailView, animated: false, completion: nil)
+            }
+            else if menuArray[indexPath.item] == "Schedule"{
                 let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveTabVC") as! LiveTabViewController
                
                 self.present(videoDetailView, animated: false, completion: nil)
             }
+//            else if menuArray[indexPath.item] == "Live"{
+//                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveTabVC") as! LiveTabViewController
+//
+//                self.present(videoDetailView, animated: false, completion: nil)
+//            }
             else if menuArray[indexPath.item] == "On-Demand"{
                 let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "DemandVC") as! DemandViewController
                
@@ -443,7 +498,7 @@ extension CategoryListingViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == menuCollectionView{
-            return 50
+            return 75
 
         }
         return 30
@@ -451,7 +506,7 @@ extension CategoryListingViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == menuCollectionView{
-            return 50
+            return 75
 
         }
         return 30
@@ -460,8 +515,8 @@ extension CategoryListingViewController: UICollectionViewDelegateFlowLayout {
 
 extension CategoryListingViewController : PopUpDelegate{
     func handleAccountButtonAction(action: Bool) {
-        let accountVC =  self.storyboard?.instantiateViewController(withIdentifier: "AccountVC") as! AccountViewController
-        self.present(accountVC, animated: false, completion: nil)
+        let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "WatchListVC") as! WatchListViewController
+        self.present(videoDetailView, animated: false, completion: nil)
     }
     
     func handleLogoutAction(action: Bool) {

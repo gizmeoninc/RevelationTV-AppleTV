@@ -55,8 +55,24 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
             searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
 //                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            searchButton.addTarget(self, action: #selector(self.searchAction), for: UIControl.Event.primaryActionTriggered)
         }
     }
+    @objc func searchAction(){
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsViewController") as! HomeSearchViewController
+        let searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = resultsController
+        let searchPlaceholderText = NSLocalizedString("Search Title", comment: "")
+        searchController.searchBar.placeholder = searchPlaceholderText
+        searchController.searchBar.delegate = resultsController
+         searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        searchController.view.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                    let searchContainerViewController = UISearchContainerViewController(searchController: searchController)
+        self.present(searchContainerViewController, animated: false, completion: nil)
+
+    }
+
     @IBOutlet weak var dropDownArrowACcount: UIImageView!{
         didSet{
             dropDownArrowACcount.setImageColor(color: ThemeManager.currentTheme().headerTextColor)
@@ -135,12 +151,11 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
             self.accountButton.layer.masksToBounds = true
             self.searchButton.tintColor = .white
         }
-        if searchButton.isFocused{
+        else if searchButton.isFocused{
         self.searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         self.searchButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
         self.accountButton.transform = CGAffineTransformIdentity
         self.accountOuterView.layer.borderWidth = 0
-       
        }
         else{
             self.accountButton.transform = CGAffineTransformIdentity
