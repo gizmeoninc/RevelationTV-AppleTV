@@ -169,6 +169,13 @@ public class ApiRESTUrlString {
         print("getvideoByCategory",replacedUrl)
         return replacedUrl
     }
+    func getFeaturedShowsList(parameterDictionary:Dictionary<String,String>!) -> String! {
+        let urlString = GetFeaturedShows
+        
+//        let replacedUrl = urlString.replacingOccurrences(of: "id", with: parameterDictionary["key"]!)
+        print("GetFeaturedShows",urlString)
+        return urlString
+    }
     func getlogOUtUrl(parameterDictionary:Dictionary<String,String>!) -> String! {
         let urlString = GetLogOUtUrl
      

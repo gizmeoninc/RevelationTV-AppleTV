@@ -140,8 +140,9 @@ class OnDemandCollectionViewCell: UICollectionViewCell {
     var fetauredItem: VideoModel? {
         didSet{
             if fetauredItem?.logo_thumb != nil {
-                self.outerImageView.sd_setImage(with: URL(string: ( imageUrl + (fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
-                self.innerImageView.sd_setImage(with: URL(string: (imageUrl + (fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                self.outerImageView.sd_setImage(with: URL(string: ( (fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+//                self.outerImageView.sd_setImage(with: URL(string: ( imageUrl + (fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
+                self.innerImageView.sd_setImage(with: URL(string: ( (fetauredItem?.logo_thumb)!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)),placeholderImage:UIImage(named: "landscape_placeholder"))
                 
             }
             else if  fetauredItem?.thumbnail_350_200 != nil{

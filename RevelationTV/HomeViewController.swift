@@ -229,7 +229,6 @@ var menuArray = [String]()
                     self.getDianamicHomeVideos()
               }
             } else {
-                
                 self.newArrivedVideos.removeAll()
                 if let videos = responseDictionary["data"] as? [VideoModel] {
                     print("newArrivedVideos",videos.count)
@@ -1028,13 +1027,17 @@ extension HomeViewController:DemandShowsListingTableCellDelegate{
         if dianamicVideos[section!.tag].type == "CATEGORY_SHOWS" {
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryListVC") as! CategoryListingViewController
             let id = Int(dianamicVideos[section!.tag].category_id!)
+            videoDetailView.categoryType = "Category_Shows"
             videoDetailView.categoryID = String(id)
+            print("category id shows",id)
             videoDetailView.categoryName = dianamicVideos[section!.tag].category_name!
             self.present(videoDetailView, animated: true, completion: nil)
        }
         else if dianamicVideos[section!.tag].type == "FEATURED" {
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CategoryListVC") as! CategoryListingViewController
             let id = Int(dianamicVideos[section!.tag].category_id!)
+            print("category id featured",id)
+            videoDetailView.categoryType = "Featured"
             videoDetailView.categoryID = String(id)
             videoDetailView.categoryName = dianamicVideos[section!.tag].category_name!
             self.present(videoDetailView, animated: true, completion: nil)

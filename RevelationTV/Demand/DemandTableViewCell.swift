@@ -73,9 +73,13 @@ extension DemandTableViewCell:UICollectionViewDelegateFlowLayout,UICollectionVie
           cell.pageControl.numberOfPages = featuredVideos!.count
           cell.pageControl.currentPage = indexPath.row
           cell.pageControl.pageIndicatorTintColor = UIColor.white
+          cell.pageControl.subviews.forEach {
+              $0.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+          }
+          cell.pageControl.backgroundColor = .clear
+//          cell.pageControl.setba
           cell.pageControl.currentPageIndicatorTintColor = ThemeManager.currentTheme().ButtonBorderColor
           cell.fetauredItem = featuredVideos?[indexPath.row]
-
       }
         return cell
     }
