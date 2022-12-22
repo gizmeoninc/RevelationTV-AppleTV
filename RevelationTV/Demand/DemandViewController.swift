@@ -485,6 +485,8 @@ extension DemandViewController: HomeTableViewCellDelegate  {
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveVC") as! LivePlayingViewController
             videoDetailView.channelVideo = passModel
             self.present(videoDetailView, animated: true, completion: nil)
+            
+
         }
     }
     func didSelectDianamicVideos(passModel: VideoModel?) {

@@ -259,6 +259,10 @@ class CatchupViewController: UIViewController {
             let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
             swipeDown.direction = .up
             self.view.addGestureRecognizer(swipeDown)
+        let menuPressRecognizer = UITapGestureRecognizer()
+               menuPressRecognizer.addTarget(self, action: #selector(self.menuButtonAction))
+               menuPressRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
+               self.view.addGestureRecognizer(menuPressRecognizer)
      
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -280,6 +284,10 @@ class CatchupViewController: UIViewController {
             self.menuCollectionView.reloadData()
         }
     }
+    @objc func menuButtonAction() {
+        print("menu pressed")
+        UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
+    }
     let scale = 1.0
 
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
@@ -287,13 +295,29 @@ class CatchupViewController: UIViewController {
             playButton.backgroundColor = ThemeManager.currentTheme().focusedColor
             filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             self.searchButton.tintColor = .white
+            demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            demandButton.setTitleColor(UIColor.white, for: .normal)
+            demandButton.layer.borderColor = UIColor.clear.cgColor
+
+        }
+        else if demandButton.isFocused{
+            demandButton.backgroundColor = .white
+            demandButton.setTitleColor(UIColor.black, for: .normal)
+            self.searchButton.tintColor = .white
+            filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            playButton.backgroundColor = .clear
+            demandButton.layer.borderColor = UIColor.clear.cgColor
+
 
         }
        else  if self.filterButton.isFocused {
            
            filterButton.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
-             playButton.backgroundColor = .clear
+            playButton.backgroundColor = .clear
            self.searchButton.tintColor = .white
+           demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+           demandButton.setTitleColor(UIColor.white, for: .normal)
+           demandButton.layer.borderColor = UIColor.clear.cgColor
 
 
                 // handle focus appearance changes
@@ -306,6 +330,10 @@ class CatchupViewController: UIViewController {
             self.accountButton.layer.masksToBounds = true
             playButton.backgroundColor = .clear
             self.searchButton.tintColor = .white
+            demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            demandButton.setTitleColor(UIColor.white, for: .normal)
+            demandButton.layer.borderColor = UIColor.clear.cgColor
+
 
         }
         else if searchButton.isFocused {
@@ -315,6 +343,11 @@ class CatchupViewController: UIViewController {
             self.accountOuterView.layer.borderWidth = 0
             filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             playButton.backgroundColor = .clear
+            demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            demandButton.setTitleColor(UIColor.white, for: .normal)
+            demandButton.layer.borderColor = UIColor.clear.cgColor
+
+
         }
         else{
             playButton.backgroundColor = .clear
@@ -322,8 +355,11 @@ class CatchupViewController: UIViewController {
             self.accountOuterView.layer.borderWidth = 0
             self.filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
             filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
-
             self.searchButton.tintColor = .white
+            demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
+            demandButton.setTitleColor(UIColor.white, for: .normal)
+            demandButton.layer.borderColor = UIColor.clear.cgColor
+
 
 
         }
@@ -392,7 +428,25 @@ class CatchupViewController: UIViewController {
     var dayArray = [String?]()
     var dateArray = [Date?]()
     var liveVideos = [VideoModel]()
-
+    
+    @IBAction func onDemandAction(_ sender: Any) {
+        if let passModel = self.liveVideos[0].now_playing  {
+            if passModel.show_id != nil{
+                let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
+                let id = Int(passModel.show_id!)
+                videoDetailView.show_Id = String(id)
+                self.present(videoDetailView, animated: true, completion: nil)
+            }
+            else{
+                commonClass.showAlert(viewController: self, messages: "No Live Found")
+                
+            }
+        }
+        else{
+            commonClass.showAlert(viewController: self, messages: "No Live Found")
+            
+        }
+    }
     func getLiveChannel() {
         print("getLiveGuide")
         commonClass.startActivityIndicator(onViewController: self)
@@ -403,7 +457,6 @@ class CatchupViewController: UIViewController {
                     DispatchQueue.main.async {
                         commonClass.stopActivityIndicator(onViewController: self)
 
-//                        self.getLiveGuide()
                     }
                 }
             } else {
@@ -422,6 +475,9 @@ class CatchupViewController: UIViewController {
     }
     func setupNowPlayingView(){
         if let nowplayingVideoArray = liveVideos[0].now_playing{
+            if let  url = liveVideos[0].live_link{
+                self.videoUrl = url
+            }
             if nowplayingVideoArray.video_title != nil{
                 self.nowPlayingTitle.text = nowplayingVideoArray.video_title
             }else{
@@ -488,16 +544,13 @@ class CatchupViewController: UIViewController {
                     }
                     else{
                         DispatchQueue.main.async {
-                            //                                self.getListByFilterDay(date: self.dateArray[self.selectedDateArrayIndex]!, dateString: self.dayArray[self.selectedDateArrayIndex]!)
+                                                           
                             self.scheduleVideos = data
                             self.allLiveVideos = data
-                            self.videoListingTableView.reloadData()
+                            self.getListByFilterDay(date: self.dateArray[self.selectedDateArrayIndex]!, dateString: self.dayArray[self.selectedDateArrayIndex]!)
+                            self.videoListingTableView.isHidden = false
                             commonClass.stopActivityIndicator(onViewController: self)
-                            let width = (UIScreen.main.bounds.width) - 30//some width
-                            let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
-                            let spaceHeight = (self.scheduleVideos!.count * 25)
-                            self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
-                            self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
+
                         }
                         self.mainView.isHidden = false
                     }
@@ -545,6 +598,194 @@ class CatchupViewController: UIViewController {
         }
         
         print(days)
+    }
+    func getListByFilterDay(date:Date,dateString:String){
+        if let value = allLiveVideos?.filter({ Calendar.current.isDate(self.convertStringTimeToDate(item:$0.starttime!), inSameDayAs:date)}){
+            self.scheduleVideos?.removeAll()
+            self.scheduleVideos = value
+            if dateString == "Today"{
+                self.todayFeaturedVideos = value
+                print("top featured getListByFilterDay",self.todayFeaturedVideos?.count)
+                if let array = self.todayFeaturedVideos?.filter({$0.status == "NOW_PLAYING"}){
+                    if array.count > 0{
+                        let endTime = array[0].endtime
+                        let startTime = array[0].starttime
+                        if let upcomingArray =  self.todayFeaturedVideos?.filter({endTime!<=$0.starttime!}){
+                            self.scheduleVideos? = upcomingArray
+                            DispatchQueue.main.async {
+                                let width = (UIScreen.main.bounds.width) - 30//some width
+                                let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
+                                let spaceHeight = (self.scheduleVideos!.count * 25)
+                                self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
+                                self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
+                                self.videoListingTableView.reloadData()
+                                if self.scheduleVideos!.count > 0{
+                                    let index = IndexPath(item: 0, section: 0)
+                                   
+                                }
+
+                            }
+                            print("upcoming guide array",self.scheduleVideos?.count)
+                        }
+                        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime! <= startTime!}){
+                            print("previous guide array",previousArray.count)
+                        }
+                    }
+                    else{
+                        setupUpcoming()
+                    }
+                    
+                }
+                else{
+                    setupUpcoming()
+                }
+            }
+            else{
+                DispatchQueue.main.async {
+                    
+                    if self.scheduleVideos!.count > 0{
+                        let width = (UIScreen.main.bounds.width) - 30//some width
+                        let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
+                        let spaceHeight = (self.scheduleVideos!.count * 25)
+                        self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
+                        self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
+                        self.videoListingTableView.reloadData()
+                        let index = IndexPath(item: 0, section: 0)
+                    }
+
+                }
+            }
+        }
+    }
+    var upcomingFilterImageClicked = false
+    @IBAction func filterAction(_ sender: Any) {
+        if !upcomingFilterImageClicked{
+            scheduleVideos?.removeAll()
+            print("top featured getEarlierShows blue",self.todayFeaturedVideos?.count)
+            if let array = self.todayFeaturedVideos?.filter({$0.status == "NOW_PLAYING"}){
+                if array.count > 0{
+                    let endTime = array[0].endtime
+                    let startTime = array[0].starttime
+                    if let upcomingArray =  self.todayFeaturedVideos?.filter({endTime!<=$0.starttime!}){
+                        
+                    }
+                    if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime!<=startTime!}){
+                        self.scheduleVideos? = previousArray
+                        DispatchQueue.main.async {
+                            let width = (UIScreen.main.bounds.width) - 30//some width
+                            let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
+                            let spaceHeight = (self.scheduleVideos!.count * 25)
+                            self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
+                            self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
+                            self.videoListingTableView.reloadData()
+                        }
+                        print("previous guide array",previousArray.count)
+                    }
+                }
+                else{
+                    setupUpPreviusArray()
+                }
+            }
+            else{
+                setupUpPreviusArray()
+            }
+            let image = UIImage(named: "arrow-up")?.withRenderingMode(.alwaysTemplate)
+            filterButton.setImage(image, for: .normal)
+            filterButton.tintColor = ThemeManager.currentTheme().buttonTextColor
+            filterButton.setTitleColor(ThemeManager.currentTheme().buttonTextColor, for: .normal)
+            filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+           
+           
+        }
+            else{
+                print("top featured getEarlierShows black",self.todayFeaturedVideos?.count)
+
+                if let array = self.todayFeaturedVideos?.filter({$0.status == "NOW_PLAYING"}){
+                    if array.count > 0{
+                        let endTime = array[0].endtime
+                        let startTime = array[0].starttime
+                        if let upcomingArray =  self.todayFeaturedVideos?.filter({endTime!<=$0.starttime!}){
+                            self.scheduleVideos? = upcomingArray
+                            DispatchQueue.main.async {
+                                let width = (UIScreen.main.bounds.width) - 30//some width
+                                let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
+                                let spaceHeight = (self.scheduleVideos!.count * 25)
+                                self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
+                                self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
+                                self.videoListingTableView.reloadData()
+                            }
+                            print("upcoming guide array",self.scheduleVideos?.count)
+                        }
+                        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime!<=startTime!}){
+                            print("previous guide array",previousArray.count)
+                        }
+                    }
+                    else{
+                        self.setupUpcoming()
+                    }
+                }
+                else{
+                    self.setupUpcoming()
+                }
+                let image = UIImage(named: "drop-down-arrow")?.withRenderingMode(.alwaysTemplate)
+                filterButton.setImage(image, for: .normal)
+                filterButton.tintColor = ThemeManager.currentTheme().buttonTextColor
+                filterButton.setTitleColor(ThemeManager.currentTheme().buttonTextColor, for: .normal)
+                filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            }
+            upcomingFilterImageClicked = !upcomingFilterImageClicked
+      
+    }
+    func setupUpcoming(){
+        let currentTime =  Date()
+        let df = DateFormatter()
+        df.timeZone = TimeZone(abbreviation: "UTC")
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
+        let currentDateString = df.string(from: currentTime)
+        print("date formatted",currentDateString)
+        if let upcomingArray =  self.todayFeaturedVideos?.filter({currentDateString < $0.starttime!}){
+            self.scheduleVideos = upcomingArray
+           
+
+            if scheduleVideos!.count > 0{
+                let width = (UIScreen.main.bounds.width) - 30//some width
+                let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
+                let spaceHeight = (self.scheduleVideos!.count * 25)
+                self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
+                self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
+                self.videoListingTableView.reloadData()
+                let index = IndexPath(item: 0, section: 0)
+            }
+
+        }
+        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime! <= currentDateString}){
+//             self.upcomingGuideArray = previousArray
+        }
+    }
+    func setupUpPreviusArray(){
+        let currentTime =  Date().localDate()
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.000Z"
+        df.timeZone = TimeZone(abbreviation: "UTC")
+        let currentDateString = df.string(from: currentTime)
+        print("date formatted",currentDateString)
+        if let upcomingArray =  self.todayFeaturedVideos?.filter({currentDateString < $0.starttime!}){
+            
+        }
+        if let previousArray =  self.todayFeaturedVideos?.filter({$0.endtime! <= currentDateString}){
+            self.scheduleVideos = previousArray
+            if scheduleVideos!.count > 0{
+                let width = (UIScreen.main.bounds.width) - 30//some width
+                let height =   (self.scheduleVideos!.count * ((9 * Int(width)) / 16)) + 140
+                let spaceHeight = (self.scheduleVideos!.count * 25)
+                self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
+                self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + self.playerViewHeight.constant
+                self.videoListingTableView.reloadData()
+            }
+
+            print("previous guide array",previousArray.count)
+        }
+        
     }
     
     func convertStringTimeToDate(item: String) -> Date {
@@ -594,10 +835,13 @@ class CatchupViewController: UIViewController {
     }
        
     @IBAction func playButtonAction(_ sender: Any) {
-         
-        let signupPageView =  self.storyboard?.instantiateViewController(withIdentifier: "catchupPlayerVC") as! CatchupVideoPlayer
-        signupPageView.videoName = self.videoUrl
-        self.present(signupPageView, animated: true, completion: nil)
+        if let  url = liveVideos[0].live_link{
+            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveVC") as! LivePlayingViewController
+            videoDetailView.channelVideo = self.liveVideos[0]
+            self.present(videoDetailView, animated: true, completion: nil)
+            
+        }
+       
         
     }
     
@@ -627,7 +871,7 @@ extension CatchupViewController: UITableViewDataSource, UITableViewDelegate,UISc
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleListTableCell", for: indexPath) as! ScheduleListTableViewCell
         cell.scheduleItem =  scheduleVideos?[indexPath.section]
-//        cell.delegate = self
+        cell.delegate = self
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         cell.selectionStyle = .none
         cell.layer.cornerRadius = 8
@@ -784,16 +1028,29 @@ extension CatchupViewController:UICollectionViewDelegateFlowLayout,UICollectionV
             }
         }
         else{
-            self.catchupVideoArray = catchupFilterArray[indexPath.row].data!
-            let width = (UIScreen.main.bounds.width) - 30//some width
-            let height =   (self.catchupVideoArray.count * ((9 * Int(width)) / 16)) + 140
-            let spaceHeight = (self.catchupVideoArray.count * 25)
-            self.videoListingTableViewHeight.constant = CGFloat(height) + CGFloat(spaceHeight)
-//            let indexpathItem = IndexPath(row: 0, section: 0)
-//            mainScrollView.setContentOffset(videoListingTableView.frame.origin, animated: true)
-//            videoListingTableView.scrollToRow(at:indexpathItem, at: .top, animated: true)
-//            videoListingTableView.reloadData()
-             self.mainViewHeight.constant = self.videoListingTableViewHeight.constant + self.filterCollectionViewHeight.constant + playerViewHeight.constant
+            selectedDateArrayIndex = indexPath.row
+           getListByFilterDay(date: dateArray[indexPath.item]!, dateString: dayArray[indexPath.item]!)
+            //Need to fix crash when there is  no data at the first cell
+           
+            if let cell = collectionView.cellForItem(at: indexPath) as! DayFilterCollectionViewCell?{
+                cell.backgroundColor = ThemeManager.currentTheme().focusedColor
+            }
+            if dayArray[indexPath.row] == "Today"{
+                self.todayFeaturedVideos = scheduleVideos
+                self.filterButton.isHidden = false
+                getListByFilterDay(date: dateArray[indexPath.item]!, dateString: dayArray[indexPath.item]!)
+                filterButton.backgroundColor = ThemeManager.currentTheme().focusedColor
+                let image = UIImage(named: "drop-down-arrow")?.withRenderingMode(.alwaysTemplate)
+                filterButton.setImage(image, for: .normal)
+                filterButton.tintColor = UIColor.white
+                filterButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+                upcomingFilterImageClicked = false
+            }
+            else{
+                self.filterButton.isHidden = true
+                getListByFilterDay(date: dateArray[indexPath.item]!, dateString: dayArray[indexPath.item]!)
+
+            }
           
         }
        
@@ -865,6 +1122,33 @@ extension CatchupViewController:CatchupTableViewCellDelegate{
         }
     }
     
+    
+}
+extension CatchupViewController:ScheduleListTableViewCellDelegate{
+    func didSelectEarlierShows() {
+        let indexPosition = IndexPath(row: 0, section: 1)
+    }
+    
+    func didSelectOnDemand(passModel: VideoModel?) {
+        if let passModel = passModel  {
+            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsViewController
+            let id = Int(passModel.show_id!)
+            videoDetailView.show_Id = String(id)
+//                videoDetailView.fromCategories = false
+            self.present(videoDetailView, animated: true, completion: nil)
+        }
+    }
+    
+    func didSelectReminder(passModel: VideoModel?) {
+        print("reminder added")
+        if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
+            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LoginRegisterVC") as! LoginRegisterViewController
+            self.present(videoDetailView, animated: false, completion: nil)
+
+        }else{
+            commonClass.showAlert(viewController:self, messages: "Reminder updated")
+        }
+    }
     
 }
 extension CatchupViewController : PopUpDelegate{

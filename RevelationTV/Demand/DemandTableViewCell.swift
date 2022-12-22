@@ -89,7 +89,7 @@ extension DemandTableViewCell:UICollectionViewDelegateFlowLayout,UICollectionVie
             let height = (width * 3 / 8)
             return CGSize(width: width, height: height + 130)
         }
-        let width = UIScreen.main.bounds.width - 100
+        let width = UIScreen.main.bounds.width - 400
         let height = (width * 3 / 8)
         return CGSize(width: width, height: height + 180)
     }

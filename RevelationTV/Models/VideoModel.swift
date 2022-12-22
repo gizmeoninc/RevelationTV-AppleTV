@@ -198,7 +198,7 @@ struct nowPlaying: Mappable {
     var thumbnail : String?
     var video_description : String?
     var thumbnail_350_200 : String?
-
+    var show_id : Int?
   init(map: Mapper) throws {
     video_title  = map.optionalFrom("video_title")
     thumbnail = map.optionalFrom("thumbnail")
@@ -206,6 +206,7 @@ struct nowPlaying: Mappable {
     end_time = map.optionalFrom("end_time")
       video_description = map.optionalFrom("video_description")
       thumbnail_350_200 = map.optionalFrom("thumbnail_350_200")
+      show_id = map.optionalFrom("show_id")
 
   }
 }
