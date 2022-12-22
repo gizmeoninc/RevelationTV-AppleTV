@@ -164,7 +164,7 @@ class ScheduleListTableViewCell: UITableViewCell {
     }
 
     @IBOutlet weak var showLibrary: UILabel!
-    weak var delegate: ReminderListingTableViewCellDelegate!
+    weak var delegate: ScheduleListTableViewCellDelegate!
 
     override func awakeFromNib() {
         super.awakeFromNib()

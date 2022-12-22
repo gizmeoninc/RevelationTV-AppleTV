@@ -1070,6 +1070,7 @@
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = K55QJLL8WS;
 				INFOPLIST_FILE = "$(SRCROOT)/RevelationTV/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Revelation TV";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1146,6 +1147,7 @@
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = K55QJLL8WS;
 				INFOPLIST_FILE = "$(SRCROOT)/RevelationTV/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Revelation TV";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

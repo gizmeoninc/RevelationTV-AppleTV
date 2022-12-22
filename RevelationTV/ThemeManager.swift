@@ -35,7 +35,7 @@ enum Theme: Int {
     return UIColor().colorFromHexString("#ef2002")
   }
     var backgroundColor: UIColor {
-      return UIColor().colorFromHexString("#011E4E")
+      return UIColor().colorFromHexString("#181818")
     }
     var themeColor: UIColor{
         return UIColor().colorFromHexString("#011E4E")

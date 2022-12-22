@@ -155,8 +155,10 @@ class SplashViewController: UIViewController,AVAudioPlayerDelegate {
         }
     }
     func goToHomeVC(){
-        let gotohomeView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
+        let gotohomeView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
         self.present(gotohomeView, animated: true, completion: nil)
+//        let gotohomeView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
+//        self.present(gotohomeView, animated: true, completion: nil)
         
     }
     func getToken() {

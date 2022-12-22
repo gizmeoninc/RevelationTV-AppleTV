@@ -104,6 +104,7 @@ class ShowDetailsViewController : UIViewController{
         didSet{
             self.ScheduleHeaderLabel.textColor = ThemeManager.currentTheme().headerTextColor
             self.ScheduleHeaderLabel.font = UIFont.init(name: ThemeManager.currentTheme().fontRegular, size: 30)
+            self.ScheduleHeaderLabel.isHidden = true
         }
     }
     
@@ -112,6 +113,8 @@ class ShowDetailsViewController : UIViewController{
             self.scheduleTableHeaderLabel.textColor = ThemeManager.currentTheme().headerTextColor
             self.scheduleTableHeaderLabel.font = UIFont.init(name: ThemeManager.currentTheme().fontRegular, size: 30)
             self.scheduleTableHeaderLabel.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            self.scheduleTableHeaderLabel.isHidden = true
+
         }
     }
     
@@ -131,6 +134,7 @@ class ShowDetailsViewController : UIViewController{
     @IBOutlet weak var scheduleView: UIView!{
         didSet{
             scheduleView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            scheduleView.isHidden = true
         }
     }
     
@@ -147,6 +151,7 @@ class ShowDetailsViewController : UIViewController{
     @IBOutlet weak var rerunView: UIView!{
         didSet{
             rerunView.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            rerunView.isHidden = true
         }
     }
     
@@ -308,6 +313,7 @@ class ShowDetailsViewController : UIViewController{
     
     func getShowData() {
         //Categories.removeAll()
+        commonClass.startActivityIndicator(onViewController: self)
         if self.show_Id != "" {
             var parameterDict: [String: String?] = [ : ]
             parameterDict["show-id"] = show_Id
@@ -344,6 +350,10 @@ class ShowDetailsViewController : UIViewController{
                                     DispatchQueue.main.async {
                                         self.scheduleTableView.reloadData()
                                         self.rerunTableView.reloadData()
+                                        self.scheduleView.isHidden = false
+                                        self.rerunView.isHidden = false
+                                        self.ScheduleHeaderLabel.isHidden = false
+                                        self.ScheduleSepearatorView.isHidden = false
                                         let rerunArrayCount =  self.rerunArray.count
                                         let scheduleArrayCount =  self.scheduleArray.count
 
@@ -628,9 +638,14 @@ extension ShowDetailsViewController:UICollectionViewDelegateFlowLayout,UICollect
             }
         }else{
             if let videoId = showVideoList[0].videos![indexPath.row].video_id  {
-                let episodeVC =  self.storyboard?.instantiateViewController(withIdentifier: "EpisodeDetailsVC") as! EpisodeViewController
-                episodeVC.video_Id = String(videoId)
-                self.present(episodeVC, animated: true, completion: nil)
+                let signupPageView =  self.storyboard?.instantiateViewController(withIdentifier: "videoPlayer") as! videoPlayingVC
+                signupPageView.selectedvideoItem = showVideoList[0].videos![indexPath.row]
+                        if let premiumFlag = showVideoList[0].videos![indexPath.row].premium_flag{
+                            signupPageView.premium_flag = premiumFlag
+                        }
+                signupPageView.episodeName = showVideoList[0].videos![indexPath.row].video_title!
+                self.present(signupPageView, animated: true, completion: nil)
+                
             }
         }
     }
@@ -866,6 +881,16 @@ extension ShowDetailsViewController:DemandTableViewCellDelegate{
     }
     
     func didSelectPlayIcon(passModel: VideoModel?) {
+        if let videoId = showVideoList[0].videos![0].video_id  {
+            let signupPageView =  self.storyboard?.instantiateViewController(withIdentifier: "videoPlayer") as! videoPlayingVC
+            signupPageView.selectedvideoItem = showVideoList[0].videos![0]
+                    if let premiumFlag = showVideoList[0].videos![0].premium_flag{
+                        signupPageView.premium_flag = premiumFlag
+                    }
+            signupPageView.episodeName = showVideoList[0].videos![0].video_title!
+            self.present(signupPageView, animated: true, completion: nil)
+            
+        }
         
     }
     
