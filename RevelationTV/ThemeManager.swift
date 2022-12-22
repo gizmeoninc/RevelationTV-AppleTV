@@ -185,6 +185,12 @@ enum Theme: Int {
     var textBackgroundColor: UIColor {
        return UIColor().colorFromHexString("#213A64")
      }
+    var splashGradientColorDark: UIColor {
+        return UIColor().colorFromHexString("#1D2124")
+    }
+    var splashGradientColorRed: UIColor {
+        return UIColor().colorFromHexString("#E72A31")
+    }
 
 }
 

@@ -18,6 +18,7 @@ class CategoryListingViewController: UIViewController{
     var delegate : categoryListingDelegate!
     var categoryID = String()
     var categoryName = String()
+    var categoryType = String()
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
     @IBOutlet weak var gardientview: UIView!
@@ -26,7 +27,7 @@ class CategoryListingViewController: UIViewController{
     @IBOutlet weak var headerTitleLabel: UILabel!{
         didSet{
             headerTitleLabel.textColor = ThemeManager.currentTheme().headerTextColor
-            headerTitleLabel.font = UIFont(name: ThemeManager.currentTheme().fontBold, size: 30)
+            headerTitleLabel.font = UIFont(name: ThemeManager.currentTheme().fontDefault, size: 28)
             headerTitleLabel.textAlignment = .left
 //            headerTitleLabel.
         }
@@ -91,6 +92,7 @@ class CategoryListingViewController: UIViewController{
             self.headerTitleLabel.text = categoryName
             getCategoryVideos(categoryId: self.categoryID)
         }
+        getFeaturedShows()
         
         // Do any additional setup after loading the view.
     }
@@ -182,6 +184,47 @@ class CategoryListingViewController: UIViewController{
                  } else {
                    DispatchQueue.main.async {
                     print("categoryListApi call")
+                    commonClass.stopActivityIndicator(onViewController: self)
+                    self.NoResultView.isHidden = true
+
+                    self.categoriesCollectionView.isHidden = false
+
+                     self.categoriesCollectionView.reloadData()
+                   }
+                 }
+               }
+             }
+           }
+    func getFeaturedShows() {
+        commonClass.startActivityIndicator(onViewController: self)
+
+        Categories.removeAll()
+             var parameterDict: [String: String?] = [ : ]
+//               parameterDict["key"] = String(categoryId)
+        parameterDict["user_id"] = String(UserDefaults.standard.integer(forKey: "user_id"))
+        parameterDict["country_code"] = UserDefaults.standard.string(forKey:"countryCode")
+        parameterDict["device_type"] = "apple-tv"
+        parameterDict["pubid"] = UserDefaults.standard.string(forKey:"pubid")
+       
+             ApiCommonClass.getFeaturedShowsList(parameterDictionary: parameterDict as? Dictionary<String, String>){ (responseDictionary: Dictionary) in
+               if responseDictionary["error"] != nil {
+                 DispatchQueue.main.async {
+                    self.NoResultView.isHidden = false
+                    commonClass.stopActivityIndicator(onViewController: self)
+                 }
+               } else {
+                 self.Categories = responseDictionary["data"] as! [VideoModel]
+                 if self.Categories.count == 0 {
+                   DispatchQueue.main.async {
+                    self.NoResultView.isHidden = false
+                    self.categoriesCollectionView.isHidden = true
+                    self.categoriesCollectionView.reloadData()
+                    commonClass.stopActivityIndicator(onViewController: self)
+
+                   }
+                 } else {
+                   DispatchQueue.main.async {
+                    print("featuredShowsListApi call")
                     commonClass.stopActivityIndicator(onViewController: self)
                     self.NoResultView.isHidden = true
 
@@ -308,11 +351,23 @@ extension CategoryListingViewController: UICollectionViewDelegate,UICollectionVi
         else{
             cell.videoNameLabel.text = " "
         }
-        if Categories[indexPath.row].logo != nil{
-            cell.imageView.sd_setImage(with: URL(string: showUrl + Categories[indexPath.row].logo!),placeholderImage:UIImage(named: "landscape_placeholder"))
+        if categoryType == "Featured"{
+            if Categories[indexPath.row].logo_thumb != nil{
+                cell.imageView.sd_setImage(with: URL(string: Categories[indexPath.row].logo_thumb!),placeholderImage:UIImage(named: "landscape_placeholder"))
+//                cell.imageView.sd_setImage(with: URL(string: showUrl + Categories[indexPath.row].logo_thumb!),placeholderImage:UIImage(named: "landscape_placeholder"))
+                print("img featuredshows url",showUrl + Categories[indexPath.row].logo_thumb!)
+            }
+            else {
+                cell.imageView.image = UIImage(named: "landscape_placeholder")
+            }
         }
-        else {
-            cell.imageView.image = UIImage(named: "landscape_placeholder")
+        else{
+            if Categories[indexPath.row].logo != nil{
+                cell.imageView.sd_setImage(with: URL(string: showUrl + Categories[indexPath.row].logo_thumb!),placeholderImage:UIImage(named: "landscape_placeholder"))
+            }
+            else {
+                cell.imageView.image = UIImage(named: "landscape_placeholder")
+            }
         }
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCollectionViewCell", for: indexPath as IndexPath) as! PopularCollectionViewCell
 //        cell.backgroundColor = .red
