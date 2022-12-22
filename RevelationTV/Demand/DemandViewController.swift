@@ -39,8 +39,22 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
     
     @IBOutlet weak var searchButton: UIButton!{
         didSet{
-            self.searchButton.setImage(UIImage(named: "TVExcelSearchImage-1"), for: .normal)
-            searchButton.tintColor = .white
+            searchButton.setTitle("", for: .normal)
+            let image = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
+            searchButton.setImage(image, for: .normal)
+            searchButton.tintColor = UIColor.white
+            searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            searchButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            searchButton.layer.borderWidth = 0.0
+            searchButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            searchButton.titleLabel?.textColor = UIColor.white
+            searchButton.layer.cornerRadius = 10
+            searchButton.titleLabel?.textAlignment = .center
+            searchButton.layer.masksToBounds = true
+//                    searchButton.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
+            searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
     @IBOutlet weak var dropDownArrowACcount: UIImageView!{
@@ -54,7 +68,7 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
     
     let reachability = try! Reachability()
     var dianamicVideos = [showByCategoryModel]()
-    var menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+    var menuArray = [String]()
     var lastFocusedIndexPath: IndexPath?
     fileprivate let rowHeight = UIScreen.main.bounds.height * 0.3
     var maincollectionviewheight = CGFloat()
@@ -96,10 +110,10 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
         }
         else{
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
 
         }
         lastFocusedIndexPath = IndexPath(row: 2, section: 0)
@@ -113,17 +127,25 @@ class DemandViewController: UIViewController, DemandShowsListingTableCellDelegat
     }
     let scale = 1.0
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-       
         if accountButton.isFocused {
             self.accountButton.transform = CGAffineTransformMakeScale(scale, scale)
             self.accountOuterView.layer.borderWidth = 3
-            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
+            self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             self.accountButton.layer.cornerRadius = 35
             self.accountButton.layer.masksToBounds = true
+            self.searchButton.tintColor = .white
         }
+        if searchButton.isFocused{
+        self.searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        self.searchButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
+        self.accountButton.transform = CGAffineTransformIdentity
+        self.accountOuterView.layer.borderWidth = 0
+       
+       }
         else{
             self.accountButton.transform = CGAffineTransformIdentity
             self.accountOuterView.layer.borderWidth = 0
+            self.searchButton.tintColor = .white
             
         }
     }
@@ -540,7 +562,7 @@ extension DemandViewController:UICollectionViewDelegateFlowLayout,UICollectionVi
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
             self.present(videoDetailView, animated: false, completion: nil)
         }
-        else if menuArray[indexPath.item] == "Live"{
+        else if menuArray[indexPath.item] == "Schedule"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveTabVC") as! LiveTabViewController
            
             self.present(videoDetailView, animated: false, completion: nil)
@@ -550,7 +572,7 @@ extension DemandViewController:UICollectionViewDelegateFlowLayout,UICollectionVi
            
             self.present(videoDetailView, animated: false, completion: nil)
         }
-        else if menuArray[indexPath.item] == "Catch-up"{
+        else if menuArray[indexPath.item] == "Watch Live"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
            
             self.present(videoDetailView, animated: false, completion: nil)
@@ -578,10 +600,10 @@ extension DemandViewController:UICollectionViewDelegateFlowLayout,UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         if indexPath.row == 2{
-            cell.menuLabel.textColor = .white
+            cell.menuLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }
         else{
-            cell.menuLabel.textColor = .gray
+            cell.menuLabel.textColor = .white
         }
             cell.menuItem = menuArray[indexPath.row]
             return cell
@@ -598,12 +620,12 @@ extension DemandViewController:UICollectionViewDelegateFlowLayout,UICollectionVi
     }
 //
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 75
        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 75
     }
 }
 
