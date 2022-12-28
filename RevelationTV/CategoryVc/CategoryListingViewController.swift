@@ -126,11 +126,20 @@ class CategoryListingViewController: UIViewController{
         
       
         NoResultView.backgroundColor = .black
-        if self.categoryID != ""{
-            self.headerTitleLabel.text = categoryName
-            getCategoryVideos(categoryId: self.categoryID)
+        
+        if categoryType == "Category_Shows"{
+            if self.categoryID != ""{
+                self.headerTitleLabel.text = categoryName
+                getCategoryVideos(categoryId: self.categoryID)
+            }
+            
         }
-        getFeaturedShows()
+        if categoryType == "Featured"{
+            self.headerTitleLabel.text = categoryName
+            getFeaturedShows()
+        }
+       
+        
         
         // Do any additional setup after loading the view.
     }

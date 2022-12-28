@@ -52,10 +52,28 @@ class CatchupViewController: UIViewController {
     
     @IBOutlet weak var playButton: UIButton!{
         didSet{
-            let image = UIImage(named: "icons8-play-48")?.withRenderingMode(.alwaysTemplate)
+//            let image = UIImage(named: "icons8-play-48")?.withRenderingMode(.alwaysTemplate)
+//            playButton.setImage(image, for: .normal)
+//            playButton.tintColor = UIColor.white
+//            playButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+           
+            
+            playButton.setTitle("", for: .normal)
+            let image = UIImage(named: "ic_play")?.withRenderingMode(.alwaysTemplate)
             playButton.setImage(image, for: .normal)
             playButton.tintColor = UIColor.white
-            playButton.backgroundColor = ThemeManager.currentTheme().buttonColorDark
+            playButton.backgroundColor = .clear
+//            playButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+//            playButton.layer.borderWidth = 2.0
+            playButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            playButton.titleLabel?.textColor = UIColor.white
+            playButton.layer.cornerRadius = 10
+            playButton.titleLabel?.textAlignment = .center
+            playButton.layer.masksToBounds = true
+            playButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            playButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            playButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            playButton.imageEdgeInsets = UIEdgeInsets(top: -12, left: 0, bottom: -12, right: 0)
         }
     }
     @IBOutlet weak var videoImageView: UIImageView!{
@@ -95,7 +113,7 @@ class CatchupViewController: UIViewController {
     @IBOutlet weak var nowPlayingTimeLabel: UILabel!{
         didSet{
             nowPlayingTimeLabel.font = UIFont(name: ThemeManager.currentTheme().fontRegular, size: 20)
-            nowPlayingTimeLabel.textColor = ThemeManager.currentTheme().headerTextColor
+            nowPlayingTimeLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }
     }
     
@@ -209,6 +227,9 @@ class CatchupViewController: UIViewController {
     
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var playButtonWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var playButtonHeight: NSLayoutConstraint!
     fileprivate let rowHeight = UIScreen.main.bounds.height * 0.3
 
     var catchupVideoArray = [VideoModel?]()
@@ -248,6 +269,8 @@ class CatchupViewController: UIViewController {
         self.metaDataViewHeight.constant =  height
         self.imageViewWidth.constant = self.metaDataViewWidth.constant/2
         self.imageViewHeight.constant = (imageViewWidth.constant * 9)/16
+        playButtonWidth.constant =    self.videoImageViewWidth.constant
+        playButtonHeight.constant =  self.videoImageHeight.constant
         view.backgroundColor = ThemeManager.currentTheme().buttonColorDark
         getWeekDays()
         self.getLiveChannel()
@@ -292,7 +315,8 @@ class CatchupViewController: UIViewController {
 
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if playButton.isFocused{
-            playButton.backgroundColor = ThemeManager.currentTheme().focusedColor
+            videoImageView.layer.borderColor = UIColor.white.cgColor
+            videoImageView.layer.borderWidth = 2.0
             filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
             self.searchButton.tintColor = .white
             demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
@@ -305,9 +329,10 @@ class CatchupViewController: UIViewController {
             demandButton.setTitleColor(UIColor.black, for: .normal)
             self.searchButton.tintColor = .white
             filterButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
-            playButton.backgroundColor = .clear
+            videoImageView.layer.borderColor = UIColor.clear.cgColor
+            videoImageView.layer.borderWidth = 2.0
             demandButton.layer.borderColor = UIColor.clear.cgColor
-
+            playButton.backgroundColor = .clear
 
         }
        else  if self.filterButton.isFocused {
@@ -318,7 +343,8 @@ class CatchupViewController: UIViewController {
            demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
            demandButton.setTitleColor(UIColor.white, for: .normal)
            demandButton.layer.borderColor = UIColor.clear.cgColor
-
+           videoImageView.layer.borderColor = UIColor.clear.cgColor
+           videoImageView.layer.borderWidth = 2.0
 
                 // handle focus appearance changes
             }
@@ -333,6 +359,8 @@ class CatchupViewController: UIViewController {
             demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
             demandButton.setTitleColor(UIColor.white, for: .normal)
             demandButton.layer.borderColor = UIColor.clear.cgColor
+            videoImageView.layer.borderColor = UIColor.clear.cgColor
+            videoImageView.layer.borderWidth = 2.0
 
 
         }
@@ -346,7 +374,8 @@ class CatchupViewController: UIViewController {
             demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
             demandButton.setTitleColor(UIColor.white, for: .normal)
             demandButton.layer.borderColor = UIColor.clear.cgColor
-
+            videoImageView.layer.borderColor = UIColor.clear.cgColor
+            videoImageView.layer.borderWidth = 2.0
 
         }
         else{
@@ -359,7 +388,8 @@ class CatchupViewController: UIViewController {
             demandButton.backgroundColor = ThemeManager.currentTheme().buttonTextColor
             demandButton.setTitleColor(UIColor.white, for: .normal)
             demandButton.layer.borderColor = UIColor.clear.cgColor
-
+            videoImageView.layer.borderColor = UIColor.clear.cgColor
+            videoImageView.layer.borderWidth = 2.0
 
 
         }
@@ -490,9 +520,9 @@ class CatchupViewController: UIViewController {
             }
             let formatter = DateFormatter()
               formatter.timeZone = TimeZone.current
-              formatter.dateFormat = "h:mm a"
-              formatter.amSymbol = "AM"
-              formatter.pmSymbol = "PM"
+              formatter.dateFormat = "h:mma"
+              formatter.amSymbol = "am"
+              formatter.pmSymbol = "pm"
             if  let startTime = nowplayingVideoArray.start_time {
                 let startTimeConverted = self.convertStringTimeToDate(item: startTime)
                 let timeStart = formatter.string(from: startTimeConverted)
@@ -871,7 +901,14 @@ extension CatchupViewController: UITableViewDataSource, UITableViewDelegate,UISc
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleListTableCell", for: indexPath) as! ScheduleListTableViewCell
         cell.scheduleItem =  scheduleVideos?[indexPath.section]
+        if upcomingFilterImageClicked{
+            cell.watchlistButton.isHidden = true
+        }
+        else{
+            cell.watchlistButton.isHidden = false
+        }
         cell.delegate = self
+        
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         cell.selectionStyle = .none
         cell.layer.cornerRadius = 8
