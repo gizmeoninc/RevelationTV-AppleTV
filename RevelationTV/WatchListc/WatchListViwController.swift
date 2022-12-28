@@ -78,7 +78,7 @@ class WatchListViewController: UIViewController {
 
     let reachability = try! Reachability()
     var dianamicVideos = [showByCategoryModel]()
-    var menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+    var menuArray = ["Watch Live","Home","On-Demand","Schedule"]
     var lastFocusedIndexPath: IndexPath?
     fileprivate let rowHeight = UIScreen.main.bounds.height * 0.3
 
@@ -544,12 +544,7 @@ extension WatchListViewController:UICollectionViewDelegateFlowLayout,UICollectio
            
             self.present(videoDetailView, animated: false, completion: nil)
         }
-//
-//        else if menuArray[indexPath.item] == "Live"{
-//            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveTabVC") as! LiveTabViewController
-//
-//            self.present(videoDetailView, animated: false, completion: nil)
-//        }
+
         else if menuArray[indexPath.item] == "On-Demand"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "DemandVC") as! DemandViewController
            
@@ -592,7 +587,7 @@ extension WatchListViewController:UICollectionViewDelegateFlowLayout,UICollectio
       
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-        if indexPath.row == 2{
+        if indexPath.row == 1{
             cell.menuLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }
         else{

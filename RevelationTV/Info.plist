@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>ITCAvantGardePro-Bk</string>
-	</array>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>com.8942325J88.BoondockNation</string>
@@ -35,6 +31,10 @@
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>App would like to access IDFA for tracking purpose.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ITCAvantGardePro-Bk</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

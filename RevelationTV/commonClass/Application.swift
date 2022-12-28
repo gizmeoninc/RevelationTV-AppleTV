@@ -23,7 +23,7 @@ class Application {
 
     var app_bundle_id: String {
         let bundleID = Bundle.main.bundleIdentifier
-        return "com.ios.revelationtv.tv"
+        return "com.omegastreaming.revelation"
      }
       var app_key: String {
       return "RevelationTVtvOS"

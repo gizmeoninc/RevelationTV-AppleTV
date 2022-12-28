@@ -166,7 +166,11 @@ class ShowDetailsViewController : UIViewController{
     }
     
     
-    @IBOutlet weak var ScheduleSepearatorView: UIView!
+    @IBOutlet weak var ScheduleSepearatorView: UIView!{
+        didSet{
+            ScheduleSepearatorView.isHidden = true
+        }
+    }
     
     @IBOutlet weak var scheduleView: UIView!{
         didSet{
@@ -359,7 +363,7 @@ class ShowDetailsViewController : UIViewController{
 
                 if responseDictionary["error"] != nil {
                     DispatchQueue.main.async {
-                        commonClass.showAlert(viewController:self, messages: "Server error")
+                        commonClass.showAlert(viewController:self, messages: "No data found")
                         
                         //   WarningDisplayViewController().noResultview(view : self.view,title: "No Results Found")
                         commonClass.stopActivityIndicator(onViewController: self)

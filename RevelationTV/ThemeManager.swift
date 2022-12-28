@@ -170,8 +170,9 @@ enum Theme: Int {
     return "Revelation TV"
   }
  var app_publisher_bundle_id: String {
-//    let bundleID = Bundle.main.bundleIdentifier
-    return "com.ios.revelationtv.tv"
+    let bundleID = Bundle.main.bundleIdentifier
+     return bundleID!
+//    return "com.ios.revelationtv.tv"
   }
   var app_key: String {
    return "RevelationTVtvOS"

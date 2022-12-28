@@ -188,6 +188,9 @@ var menuArray = [String]()
         didSet{
             countryButton.layer.cornerRadius = 5
             countryButton.layer.masksToBounds = true
+            countryButton.setTitleColor(.black, for: .normal)
+            countryButton.titleLabel?.font = UIFont(name: "Helvetica", size: 20)
+            countryButton.titleLabel?.textAlignment = .left
         }
     }
     
@@ -223,6 +226,46 @@ var menuArray = [String]()
               registerButton.layer.masksToBounds = true
             }
         }
+    
+    @IBOutlet weak var seperatorView: UIView!{
+        didSet{
+            seperatorView.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        }
+    }
+   
+    @IBOutlet weak var seperatorFocusButton: UIButton!{
+        didSet{
+            seperatorFocusButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            seperatorFocusButton.setTitle("", for: .normal)
+            seperatorFocusButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            seperatorFocusButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            seperatorFocusButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            seperatorFocusButton.imageEdgeInsets = UIEdgeInsets(top: -12, left: 0, bottom: -12, right: 0)
+        }
+    }
+   
+    @IBOutlet weak var searchButton: UIButton!{
+        didSet{
+            searchButton.setTitle("", for: .normal)
+            let image = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
+            searchButton.setImage(image, for: .normal)
+            searchButton.tintColor = UIColor.white
+            searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            searchButton.layer.borderColor = ThemeManager.currentTheme().ButtonBorderColor.cgColor
+            searchButton.layer.borderWidth = 0.0
+            searchButton.titleLabel?.font =  UIFont(name: "ITCAvantGardePro-Bk", size: 20)
+            searchButton.titleLabel?.textColor = UIColor.white
+            searchButton.layer.cornerRadius = 10
+            searchButton.titleLabel?.textAlignment = .center
+            searchButton.layer.masksToBounds = true
+//                    searchButton.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
+            searchButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//                    searchButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+            searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            searchButton.addTarget(self, action: #selector(self.searchAction), for: UIControl.Event.primaryActionTriggered)
+        }
+    }
+    
 //    @objc
 //      private func dobButtonTapped() {
 //          let picker = MultiPicker.datePicker { date, picker in
@@ -297,16 +340,16 @@ var menuArray = [String]()
         super.viewWillAppear(animated)
         
         if UserDefaults.standard.string(forKey:"skiplogin_status") == "true" {
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
         }
         else{
-            self.menuArray = ["Home","Live","On-Demand","Catch-up","My List","Search"]
+            self.menuArray = ["Watch Live","Home","On-Demand","Schedule"]
 
         }
         menuCollectionView.register(UINib(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "menuCollectionCell")
         menuCollectionView.delegate = self
         menuCollectionView.dataSource = self
-        lastFocusedIndexPath = IndexPath(row: 0, section: 0)
+        lastFocusedIndexPath = IndexPath(row: 1, section: 0)
         DispatchQueue.main.async {
             self.menuCollectionView.reloadData()
         }
@@ -366,6 +409,19 @@ var menuArray = [String]()
         let gotohomeView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
         present(gotohomeView, animated: true, completion: nil)
 
+    }
+    @objc func searchAction(){
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsViewController") as! HomeSearchViewController
+        let searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = resultsController
+        let searchPlaceholderText = NSLocalizedString("Search Title", comment: "")
+        searchController.searchBar.placeholder = searchPlaceholderText
+        searchController.searchBar.delegate = resultsController
+         searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+        searchController.view.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                    let searchContainerViewController = UISearchContainerViewController(searchController: searchController)
+        self.present(searchContainerViewController, animated: false, completion: nil)
     }
     func signin(){
         if (commonClass.isValidEmail(email:emailLoginText!.text! ) == 1) {
@@ -748,31 +804,46 @@ var menuArray = [String]()
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         super.didUpdateFocus(in: context, with: coordinator)
         coordinator.addCoordinatedAnimations({
-            
             if self.accountButton.isFocused {
                 self.accountButton.transform = CGAffineTransformMakeScale(self.scale, self.scale)
                 self.accountOuterView.layer.borderWidth = 3
                 self.accountOuterView.layer.borderColor = ThemeManager.currentTheme().headerTextColor.cgColor
                 self.accountButton.layer.cornerRadius = 35
                 self.accountButton.layer.masksToBounds = true
+                self.searchButton.tintColor = .white
+                self.seperatorFocusButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                self.countryButton.backgroundColor = UIColor.white
+            }
+            else if self.seperatorFocusButton.isFocused{
+                self.seperatorFocusButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                self.searchButton.tintColor = .white
+                self.seperatorFocusButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                self.countryButton.backgroundColor = UIColor.white
+                self.accountButton.transform = CGAffineTransformIdentity
+                self.accountOuterView.layer.borderWidth = 0
+
+            }
+           else if self.searchButton.isFocused{
+            self.searchButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+            self.searchButton.tintColor = ThemeManager.currentTheme().ButtonBorderColor
+            self.accountButton.transform = CGAffineTransformIdentity
+            self.accountOuterView.layer.borderWidth = 0
+           }
+           else  if self.countryButton.isFocused {
+                self.countryButton.backgroundColor = ThemeManager.currentTheme().focusedColor
+                self.searchButton.tintColor = .white
+                self.seperatorFocusButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
+                self.accountButton.transform = CGAffineTransformIdentity
+                self.accountOuterView.layer.borderWidth = 0
             }
             else{
                 self.accountButton.transform = CGAffineTransformIdentity
                 self.accountOuterView.layer.borderWidth = 0
-                
-            }
-            if self.countryButton.isFocused {
-                self.countryButton.backgroundColor = ThemeManager.currentTheme().focusedColor
-            }
-            else {
+                self.searchButton.tintColor = .white
+                self.seperatorFocusButton.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
                 self.countryButton.backgroundColor = UIColor.white
             }
-//            if self.lastNameText.isEditing{
-//                self.emailLoginText.resignFirstResponder()
-//            }
-//            else{
-//                
-//            }
+
         }, completion: nil)
     }
 //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -826,6 +897,7 @@ extension LoginRegisterViewController: UITextFieldDelegate {
             passwordLoginText.becomeFirstResponder()
             return true
         }
+        
         else if textField == passwordLoginText{
             passwordLoginText.resignFirstResponder()
             return true
@@ -867,7 +939,9 @@ extension LoginRegisterViewController:UICollectionViewDelegateFlowLayout,UIColle
             self.updateFocusIfNeeded()
         }
     }
-
+    override var preferredFocusEnvironments : [UIFocusEnvironment] {
+        return [menuCollectionView]
+    }
     func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
         return lastFocusedIndexPath
     }
@@ -877,17 +951,18 @@ extension LoginRegisterViewController:UICollectionViewDelegateFlowLayout,UIColle
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeViewController
             self.present(videoDetailView, animated: false, completion: nil)
         }
-        else if menuArray[indexPath.item] == "Live"{
+        else if menuArray[indexPath.item] == "Schedule"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "LiveTabVC") as! LiveTabViewController
            
             self.present(videoDetailView, animated: false, completion: nil)
         }
+
         else if menuArray[indexPath.item] == "On-Demand"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "DemandVC") as! DemandViewController
            
             self.present(videoDetailView, animated: false, completion: nil)
         }
-        else if menuArray[indexPath.item] == "Catch-up"{
+        else if menuArray[indexPath.item] == "Watch Live"{
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
            
             self.present(videoDetailView, animated: false, completion: nil)
@@ -896,6 +971,12 @@ extension LoginRegisterViewController:UICollectionViewDelegateFlowLayout,UIColle
             let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "WatchListVC") as! WatchListViewController
             self.present(videoDetailView, animated: false, completion: nil)
         }
+        else if menuArray[indexPath.item] == "Catch-up"{
+            let videoDetailView =  self.storyboard?.instantiateViewController(withIdentifier: "CatchupVC") as! CatchupViewController
+           
+            self.present(videoDetailView, animated: false, completion: nil)
+        }
+       
         else if menuArray[indexPath.item] == "Search"{
             let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsViewController") as! HomeSearchViewController
             let searchController = UISearchController(searchResultsController: resultsController)
@@ -913,10 +994,10 @@ extension LoginRegisterViewController:UICollectionViewDelegateFlowLayout,UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCollectionCell", for: indexPath as IndexPath) as! MenuCollectionViewCell
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
-        if indexPath.row == 0{
-            cell.menuLabel.textColor = .white
+        if indexPath.row == 1{
+            cell.menuLabel.textColor = ThemeManager.currentTheme().buttonTextColor
         }else{
-            cell.menuLabel.textColor = .gray
+            cell.menuLabel.textColor = .white
         }
             cell.menuItem = menuArray[indexPath.row]
             return cell
@@ -933,12 +1014,12 @@ extension LoginRegisterViewController:UICollectionViewDelegateFlowLayout,UIColle
     }
 //
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 75
        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 75
     }
 }
 extension LoginRegisterViewController : PopUpDelegate{

@@ -128,9 +128,9 @@ class ScheduleListTableViewCell: UITableViewCell {
             if let time = scheduleItem?.starttime{
                 let formatter = DateFormatter()
                   formatter.timeZone = TimeZone.current
-                  formatter.dateFormat = "h:mm a"
-                  formatter.amSymbol = "AM"
-                  formatter.pmSymbol = "PM"
+                  formatter.dateFormat = "h:mma"
+                  formatter.amSymbol = "am"
+                  formatter.pmSymbol = "pm"
                   let startTime = self.convertStringTimeToDate(item: time)
                   let timeStart1 = formatter.string(from: startTime)
                   self.timeLabel.text = timeStart1

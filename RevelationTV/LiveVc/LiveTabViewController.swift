@@ -614,6 +614,13 @@ extension LiveTabViewController: UITableViewDataSource, UITableViewDelegate,UISc
             cell.scheduleItem =  scheduleVideos?[indexPath.section]
         cell.backgroundColor = ThemeManager.currentTheme().viewBackgroundColor
         cell.selectionStyle = .none
+        if upcomingFilterImageClicked{
+            cell.watchlistButton.isHidden = true
+        }
+        else{
+            cell.watchlistButton.isHidden = false
+        }
+           
         cell.delegate = self
         cell.layer.cornerRadius = 8
             return cell
